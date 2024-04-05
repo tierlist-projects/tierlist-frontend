@@ -1,20 +1,7 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@atom/*": ["atom/*"],
-      "@utils/*": ["utils/*"],
-      "@routers/*": ["routers/*"],
-      "@constants/*": ["constants/*"],
-      "@assets/*": ["assets/*"],
-      "@apis/*": ["apis/*"],
-      "@pages/*": ["components/pages/*"],
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
-      "@types/*": ["types/*"],
-      "@/*": ["src/*"]
-    },
-    "target": "es5",
+    "target": "ES6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -32,11 +19,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "@emotion/react" // /** @jsx jsx */를 매번 안 쓰기 위함
   },
   "include": [
-    "src",
     "**/*.ts",
     "**/*.tsx"
   ],
