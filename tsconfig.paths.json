@@ -12,6 +12,7 @@
         "@components/*": ["components/*"],
         "@hooks/*": ["hooks/*"],
         "@types/*": ["types/*"],
+        "@styles/*": ["styles/*"],
         "@/*": ["src/*"]
         },
     }

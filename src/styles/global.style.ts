@@ -3,6 +3,8 @@ import { css } from '@emotion/react'
 const GlobalStyle = css`
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -31,14 +33,20 @@ const GlobalStyle = css`
   textarea {
     border: 0;
     outline: 0 !important;
+    background-color: transparent;
   }
 
+  ul {
+    list-style: none;
+  }
+
+  /* 
   @font-face {
     font-family: 'gmarket-sans';
     font-weight: 400;
     src: url('/fonts/GmarketSansTTFLight.ttf') format('truetype');
     font-style: normal;
-  }
+  } */
 
   @font-face {
     font-family: 'gmarket-sans';
