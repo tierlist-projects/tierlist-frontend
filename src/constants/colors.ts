@@ -17,4 +17,5 @@ export const colors = {
     second: '#D9D9D9',
   },
   error: '#FA7070',
+  correct: '#4AB963',
 }

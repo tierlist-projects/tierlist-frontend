@@ -15,7 +15,8 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   text-align: center;
-  padding: 8px 20px;
+  padding: ${(props) => (props.hPadding ? props.hPadding : 8)}px
+    ${(props) => (props.vPadding ? props.vPadding : 20)}px;
   box-shadow: 0px 2px 4px rgba(177, 177, 177, 0.5);
   font-size: ${(props) => (props.fontSize ? props.fontSize : 16)}px;
   color: ${(props) => (props.color ? props.color : 'white')};

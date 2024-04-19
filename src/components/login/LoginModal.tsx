@@ -2,12 +2,14 @@ import React from 'react'
 import * as S from '@styles/login/LoginModal.style'
 import { images } from '@constants/images'
 import useLogin from '@hooks/useLogin'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   closeModal: () => void
 }
 
 const LoginModal = ({ closeModal }: Props) => {
+  const navigate = useNavigate()
   const { emailRef, pwRef, errorMsg, onClickLogin } = useLogin()
   return (
     <S.Container>
@@ -21,7 +23,14 @@ const LoginModal = ({ closeModal }: Props) => {
         <S.errorText>{errorMsg}</S.errorText>
       </S.InputBlock>
       <S.LoginButton onClick={onClickLogin}>로그인</S.LoginButton>
-      <S.SignUpButton>회원가입</S.SignUpButton>
+      <S.SignUpButton
+        onClick={() => {
+          navigate('/sign-up')
+          closeModal()
+        }}
+      >
+        회원가입
+      </S.SignUpButton>
     </S.Container>
   )
 }
