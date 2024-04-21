@@ -15,11 +15,13 @@ const useModal = (): UseModalReturnType => {
   // 모달 열기
   const openModal = useCallback(() => {
     setIsOpen(true)
+    document.body.style.overflow = 'hidden'
   }, [])
 
   // 모달 닫기
   const closeModal = useCallback(() => {
     setIsOpen(false)
+    document.body.style.removeProperty('overflow')
   }, [])
 
   return {
