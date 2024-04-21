@@ -14,5 +14,8 @@ export const colors = {
   },
   grey: {
     primary: '#999999',
+    second: '#D9D9D9',
   },
+  error: '#FA7070',
+  correct: '#4AB963',
 }

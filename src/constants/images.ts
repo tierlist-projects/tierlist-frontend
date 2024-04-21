@@ -8,5 +8,10 @@ export const images = {
       comment: '/images/common/ic-comment.png',
       views: '/images/common/ic-views.png',
     },
+    favorites: {
+      fullStar: '/images/common/ic-star-full.png',
+      emptyStar: '/images/common/ic-star-empty.png',
+    },
+    close: '/images/common/ic-close.png',
   },
 }
