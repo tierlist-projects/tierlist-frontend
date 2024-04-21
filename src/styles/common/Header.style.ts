@@ -8,6 +8,11 @@ export const HeaderContainer = styled.div`
   justify-content: center;
   box-shadow: 0 2px 4px rgba(206, 206, 206, 0.5);
   margin-bottom: 50px;
+  background-color: white;
+
+  position: sticky;
+  top: 0;
+  z-index: 5px;
 `
 
 export const ContentBlock = styled.div`
