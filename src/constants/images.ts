@@ -12,5 +12,7 @@ export const images = {
       fullStar: '/images/common/ic-star-full.png',
       emptyStar: '/images/common/ic-star-empty.png',
     },
+    plus: '/images/common/ic-plus.png',
+    close: '/images/common/ic-close.png',
   },
 }
