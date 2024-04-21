@@ -1,12 +1,6 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
-export const Container = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-`
-
 export const CreateButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
