@@ -3,12 +3,14 @@ import * as S from '@styles/tierlist/createModal.style'
 import { images } from '@constants/images'
 import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   closeModal: () => void
 }
 
 const CreateModal = ({ closeModal }: Props) => {
+  const navigate = useNavigate()
   return (
     <S.Container>
       <S.CloseButton type="button" onClick={closeModal}>
@@ -41,11 +43,19 @@ const CreateModal = ({ closeModal }: Props) => {
         </S.InputBlock>
       </S.Content>
       <S.ButtonBlock>
-        <CButton text="생성" fontSize={20} />
+        <CButton
+          text="생성"
+          fontSize={20}
+          onClick={() => {
+            navigate('/tierlist-modify')
+            closeModal()
+          }}
+        />
         <CButton
           text="취소"
           fontSize={20}
           backgroundColor={colors.grey.primary}
+          onClick={closeModal}
         />
       </S.ButtonBlock>
     </S.Container>

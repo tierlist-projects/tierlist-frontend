@@ -15,4 +15,8 @@ export const images = {
     plus: '/images/common/ic-plus.png',
     close: '/images/common/ic-close.png',
   },
+  cat: '/images/cat.jpg',
+  tierlist: {
+    image: '/images/tierlist/ic-image.png',
+  },
 }
