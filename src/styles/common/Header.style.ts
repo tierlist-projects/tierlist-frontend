@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
 
   position: sticky;
   top: 0;
-  z-index: 5px;
+  z-index: 5;
 `
 
 export const ContentBlock = styled.div`
