@@ -12,7 +12,7 @@ const RootRouter = () => {
         <Route element={<LayoutPage />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/tierlist-modify" element={<TierlistModifyPage />} />
+          <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
