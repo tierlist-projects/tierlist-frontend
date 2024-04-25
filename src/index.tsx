@@ -8,12 +8,10 @@ import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <RecoilRoot>
-        <Global styles={GlobalStyle} />
-        <App />
-      </RecoilRoot>
-    </CookiesProvider>
-  </React.StrictMode>,
+  <CookiesProvider>
+    <RecoilRoot>
+      <Global styles={GlobalStyle} />
+      <App />
+    </RecoilRoot>
+  </CookiesProvider>,
 )
