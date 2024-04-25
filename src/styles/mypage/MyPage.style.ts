@@ -12,3 +12,10 @@ export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
 `
+
+export const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  gap: 24px;
+`

@@ -13,5 +13,6 @@ export const images = {
       emptyStar: '/images/common/ic-star-empty.png',
     },
     close: '/images/common/ic-close.png',
+    dotMenu: '/images/common/ic-menu-dot.png',
   },
 }
