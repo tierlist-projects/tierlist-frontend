@@ -39,6 +39,8 @@ export const Content = styled.div`
 
 export const InputBlock = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: space-between;
   gap: 40px;
 
   p {

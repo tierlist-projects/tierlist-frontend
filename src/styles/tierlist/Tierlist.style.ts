@@ -73,6 +73,41 @@ export const ItemSearch = styled.div`
   }
 `
 
+export const InputWithDrop = styled.div`
+  flex: 1;
+  height: 40px;
+  position: relative;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  img {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+  }
+`
+export const Search = styled.input`
+  padding-left: 50px;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+`
+
+export const SearchResultContainer = styled.div`
+  z-index: 3;
+  width: 100%;
+  height: 200px;
+  background-color: white;
+  position: absolute;
+  top: 50px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 16px;
+`
+
 export const ButtonBlock = styled.div`
   width: 100%;
   display: flex;

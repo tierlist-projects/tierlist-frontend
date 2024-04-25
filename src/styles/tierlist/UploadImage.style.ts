@@ -20,7 +20,7 @@ export const Container = styled.label<{ active: boolean }>`
     width: 100%;
     height: 100%;
     border-radius: 15px;
-    object-fit: cover;
+    object-fit: contain;
   }
 `
 
@@ -46,7 +46,7 @@ export const InnerDiv = styled.div`
   }
 
   p {
-    font-size: 14px;
+    font-size: 14px !important;
     color: ${colors.primary[200]};
   }
 `

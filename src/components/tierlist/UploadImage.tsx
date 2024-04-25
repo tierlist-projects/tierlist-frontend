@@ -27,7 +27,16 @@ const UploadImage = () => {
     setImageUrl(URL.createObjectURL(file))
   }
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = () => {}
+  const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    event.preventDefault()
+    setIsActive(false)
+
+    if (event.target.files === null) return
+
+    const file = event.target.files[0]
+    setUploadedInfo(file)
+    setImageUrl(URL.createObjectURL(file))
+  }
 
   return (
     <S.Container

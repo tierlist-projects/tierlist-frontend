@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from '@styles/tierlist/Tierlist.style'
 import {
   DragDropContext,
@@ -11,6 +11,8 @@ import {
 import { colors } from '@constants/colors'
 import { images } from '@constants/images'
 import CButton from '@components/common/CButton'
+import useModal from '@hooks/useModal'
+import ItemRegistModal from './ItemRegistModal'
 
 const Tierlist = () => {
   const lankList = [
@@ -62,6 +64,10 @@ const Tierlist = () => {
   const onDragEnd = (result: DropResult) => {
     console.log(result)
   }
+
+  const { Modal, isOpen, openModal, closeModal } = useModal()
+  const [isActive] = useState(false)
+
   return (
     <S.Container>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -104,6 +110,13 @@ const Tierlist = () => {
         </S.Table>
         <S.ItemSearch>
           <p>아이템 검색</p>
+          <S.InputWithDrop>
+            <img src={images.common.searchBar.search} alt="아이템 검색" />
+            <S.Search type="text" placeholder="검색어를 입력하세요." />
+            {isActive && (
+              <S.SearchResultContainer>gkdlgkdl</S.SearchResultContainer>
+            )}
+          </S.InputWithDrop>
         </S.ItemSearch>
         <S.ButtonBlock>
           <CButton
@@ -113,6 +126,7 @@ const Tierlist = () => {
             vPadding={12}
             radius={5}
             medium
+            onClick={openModal}
           />
           <CButton
             text="아이템 삭제"
@@ -122,6 +136,9 @@ const Tierlist = () => {
             vPadding={12}
             radius={5}
           />
+          <Modal isOpen={isOpen} closeModal={closeModal}>
+            <ItemRegistModal closeModal={closeModal} />
+          </Modal>
         </S.ButtonBlock>
         <Droppable droppableId="waitingItem" direction="horizontal">
           {(provided) => (
