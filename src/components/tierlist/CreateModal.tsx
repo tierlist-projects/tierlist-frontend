@@ -47,7 +47,7 @@ const CreateModal = ({ closeModal }: Props) => {
           text="생성"
           fontSize={20}
           onClick={() => {
-            navigate('/tierlist-modify')
+            navigate('/tierlist-modify/1')
             closeModal()
           }}
         />
