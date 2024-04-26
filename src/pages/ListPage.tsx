@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import * as S from '@styles/tierlist/ListPage'
+import * as S from '@styles/tierlist/ListPage.style'
 import { images } from '@constants/images'
 import PostCard from '@components/common/PostCard'
 import Pagination from '@mui/material/Pagination'
