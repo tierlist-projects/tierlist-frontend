@@ -3,6 +3,7 @@ import * as S from '@styles/tierlist/ListPage.style'
 import { images } from '@constants/images'
 import PostCard from '@components/common/PostCard'
 import Pagination from '@mui/material/Pagination'
+import TopicSidebar from '@components/tierlist/TopicSidebar'
 
 const ListPage = () => {
   const [page, setPage] = useState(1)
@@ -73,6 +74,7 @@ const ListPage = () => {
           </S.TierlistSearch>
         </S.BottomBlock>
       </S.TierlistBlock>
+      <TopicSidebar />
     </S.Container>
   )
 }

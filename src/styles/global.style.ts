@@ -51,6 +51,14 @@ const GlobalStyle = css`
     cursor: pointer;
   }
 
+  a {
+    text-decoration: none;
+    :visited,
+    :active {
+      color: black;
+    }
+  }
+
   /* 
   @font-face {
     font-family: 'gmarket-sans';
