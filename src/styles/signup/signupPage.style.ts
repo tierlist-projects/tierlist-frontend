@@ -60,7 +60,6 @@ export const InputWithButton = styled.div`
     color: white;
     background-color: ${colors.primary[300]};
     font-size: 12px;
-    cursor: pointer;
   }
 `
 

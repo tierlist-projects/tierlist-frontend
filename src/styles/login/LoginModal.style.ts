@@ -16,7 +16,6 @@ export const CloseButton = styled.button`
   position: fixed;
   top: 28px;
   right: 28px;
-  cursor: pointer;
   img {
     width: 28px;
     height: 28px;
@@ -61,7 +60,6 @@ export const LoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   padding: 12px 16px;
   border-radius: 5px;
   font-size: 16px;
@@ -71,6 +69,5 @@ export const LoginButton = styled.button`
 export const SignUpButton = styled.button`
   font-size: 12px;
   color: ${colors.grey.primary};
-  cursor: pointer;
   margin-top: 16px;
 `

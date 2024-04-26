@@ -29,7 +29,6 @@ export const ContentBlock = styled.div`
 export const Logo = styled.button`
   font-size: 30px;
   font-weight: bold;
-  cursor: pointer;
 `
 
 export const RightArea = styled.div`
@@ -46,5 +45,4 @@ export const RightArea = styled.div`
 export const LoginMyPageButton = styled.button`
   font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
 `

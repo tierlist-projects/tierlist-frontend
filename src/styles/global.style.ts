@@ -47,6 +47,10 @@ const GlobalStyle = css`
     list-style: none;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   /* 
   @font-face {
     font-family: 'gmarket-sans';

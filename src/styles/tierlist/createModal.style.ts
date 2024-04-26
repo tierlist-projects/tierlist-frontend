@@ -21,7 +21,6 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 28px;
   right: 28px;
-  cursor: pointer;
 `
 
 export const Title = styled.p`

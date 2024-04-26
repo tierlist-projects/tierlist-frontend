@@ -2,7 +2,6 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const CreateButton = styled.button`
-  cursor: pointer;
   border-radius: 50%;
   background-color: ${colors.primary[400]};
   padding: 10px;

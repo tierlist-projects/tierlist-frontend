@@ -13,7 +13,6 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 export const Button = styled.button<ButtonProps>`
-  cursor: pointer;
   text-align: center;
   padding: ${(props) => (props.hPadding ? props.hPadding : 8)}px
     ${(props) => (props.vPadding ? props.vPadding : 20)}px;

@@ -84,10 +84,6 @@ export const Menu = styled.div`
   flex-direction: column;
   align-items: end;
 
-  button {
-    cursor: pointer;
-  }
-
   img {
     width: 20px;
     height: 20px;
