@@ -10,10 +10,11 @@ export const PostCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  img {
+  & > img {
     width: 100%;
     height: 140px;
     border-radius: 15px 15px 0px 0px;
+    object-fit: cover;
   }
 `
 
