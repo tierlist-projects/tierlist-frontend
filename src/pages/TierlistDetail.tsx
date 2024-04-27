@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import * as S from '@styles/tierlist/TierlistDetail.style'
 import { images } from '@constants/images'
 import TierlistView from '@components/tierlist/TierlistView'
 import Comment from '@components/tierlist/Comment'
 
 const TierlistDetail = () => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const onClickMenu = useCallback(() => {
+    setIsOpenMenu((prev) => !prev)
+  }, [])
+
   return (
     <S.Container>
+      <S.Menu>
+        <button type="button" onClick={onClickMenu}>
+          <img src={images.common.dotMenu} alt="메뉴" />
+        </button>
+        {isOpenMenu && (
+          <S.DropMenu>
+            <li>
+              <button type="button">수정</button>
+            </li>
+            <li>
+              <button type="button">삭제</button>
+            </li>
+          </S.DropMenu>
+        )}
+      </S.Menu>
       <S.TitleBlock>
         <p className="category">카테고리 / 토픽</p>
         <p className="title">제목</p>

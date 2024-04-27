@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  position: relative;
 `
 
 export const TitleBlock = styled.div`
@@ -71,4 +72,37 @@ export const LikeButton = styled.button`
   }
 
   font-size: 16px;
+`
+
+export const Menu = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+`
+
+export const DropMenu = styled.ul`
+  background-color: white;
+  border: 1px solid ${colors.grey.second};
+  border-radius: 5px;
+
+  li {
+    :hover {
+      background-color: ${colors.primary[50]};
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }
 `
