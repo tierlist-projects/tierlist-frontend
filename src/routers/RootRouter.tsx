@@ -6,6 +6,7 @@ import SignUpPage from 'pages/SignUpPage'
 import MyPage from 'pages/MyPage'
 import TierlistModifyPage from 'pages/TierlistModifyPage'
 import ListPage from 'pages/ListPage'
+import TierlistDetail from 'pages/TierlistDetail'
 
 const RootRouter = () => {
   return (
@@ -17,6 +18,7 @@ const RootRouter = () => {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
           <Route path="/tierlist/:categoryId" element={<ListPage />} />
+          <Route path="/tierlist-detail/:id" element={<TierlistDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
