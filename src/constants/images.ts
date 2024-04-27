@@ -13,6 +13,7 @@ export const images = {
       emptyStar: '/images/common/ic-star-empty.png',
     },
     plus: '/images/common/ic-plus.png',
+    plusBlack: '/images/common/ic-plus-black.png',
     close: '/images/common/ic-close.png',
     dotMenu: '/images/common/ic-menu-dot.png',
   },

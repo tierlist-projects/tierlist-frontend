@@ -1,3 +1,4 @@
+import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
@@ -11,16 +12,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 50px;
-`
-
-export const CloseButton = styled.button`
-  img {
-    width: 28px;
-    height: 28px;
-  }
-  position: absolute;
-  top: 28px;
-  right: 28px;
 `
 
 export const Title = styled.p`
@@ -60,6 +51,10 @@ export const Input = styled.input`
   font-size: 20px;
   padding-bottom: 5px;
   padding-left: 5px;
+
+  ::placeholder {
+    color: ${colors.grey.primary};
+  }
 `
 
 export const Drop = styled.ul`
@@ -69,10 +64,36 @@ export const Drop = styled.ul`
   overflow: auto;
   border: 1px solid #999999;
   background-color: white;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const DropContent = styled.li`
+  width: 100%;
   padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+
+  :hover {
+    background-color: ${colors.primary[50]};
+    transition: all 0.2s ease-in-out;
+  }
+
+  & > img {
+    width: 16px;
+    height: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: bold;
+  }
 `
 
 export const ButtonBlock = styled.div`
