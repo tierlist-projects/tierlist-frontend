@@ -1,5 +1,6 @@
 import React from 'react'
 import * as S from '@styles/tierlist/Comment.style'
+import Pagination from '@mui/material/Pagination'
 import CommentItem from './CommentItem'
 
 const Comment = () => {
@@ -13,6 +14,7 @@ const Comment = () => {
       <S.CommentList>
         <CommentItem />
         <CommentItem />
+        <Pagination count={5} />
       </S.CommentList>
     </S.Container>
   )
