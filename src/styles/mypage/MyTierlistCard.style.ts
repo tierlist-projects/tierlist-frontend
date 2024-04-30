@@ -1,14 +1,16 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
-export const PostCardContainer = styled.div`
-  width: 200px;
+export const Container = styled.div`
+  width: 230px;
   height: 240px;
   border-radius: 15px;
   box-shadow: 2px 2px 4px rgba(187, 187, 187, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  cursor: pointer;
 
   & > img {
     width: 100%;
@@ -71,5 +73,38 @@ export const NumberWithIcon = styled.div`
   p {
     font-size: 10px;
     color: ${colors.grey.primary};
+  }
+`
+
+export const Menu = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`
+
+export const DropMenu = styled.ul`
+  background-color: white;
+  border: 1px solid ${colors.grey.second};
+  border-radius: 5px;
+
+  li {
+    :hover {
+      background-color: ${colors.primary[50]};
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
   }
 `

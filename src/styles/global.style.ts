@@ -47,6 +47,18 @@ const GlobalStyle = css`
     list-style: none;
   }
 
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    :visited,
+    :active {
+      color: black;
+    }
+  }
+
   /* 
   @font-face {
     font-family: 'gmarket-sans';

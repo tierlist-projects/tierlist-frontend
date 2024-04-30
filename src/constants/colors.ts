@@ -18,4 +18,15 @@ export const colors = {
   },
   error: '#FA7070',
   correct: '#4AB963',
+  tierlist: {
+    lank: {
+      S: '#FF7F7F',
+      A: '#FFBF7E',
+      B: '#FEFF7F',
+      C: '#BFFF7F',
+      D: '#99C6DE',
+      F: '#8B8B8B',
+    },
+    background: '#2D2D2D',
+  },
 }

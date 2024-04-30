@@ -8,6 +8,11 @@ export const HeaderContainer = styled.div`
   justify-content: center;
   box-shadow: 0 2px 4px rgba(206, 206, 206, 0.5);
   margin-bottom: 50px;
+  background-color: white;
+
+  position: sticky;
+  top: 0;
+  z-index: 5;
 `
 
 export const ContentBlock = styled.div`
@@ -24,7 +29,6 @@ export const ContentBlock = styled.div`
 export const Logo = styled.button`
   font-size: 30px;
   font-weight: bold;
-  cursor: pointer;
 `
 
 export const RightArea = styled.div`
@@ -41,5 +45,4 @@ export const RightArea = styled.div`
 export const LoginMyPageButton = styled.button`
   font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
 `
