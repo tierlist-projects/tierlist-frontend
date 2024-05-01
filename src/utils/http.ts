@@ -1,5 +1,7 @@
 import { SERVER_BASE_URL } from '@constants/baseUrl'
 import AxiosS, { AxiosRequestConfig } from 'axios'
+import { ResponseTokenType } from 'types/auth.type'
+import { getCookie, setCookie } from './cookie'
 
 const axios = AxiosS.create()
 export const authAxios = AxiosS.create()
@@ -34,6 +36,46 @@ export const http = {
     return res.data
   },
 }
+
+authAxios.interceptors.response.use(
+  (response) => {
+    return response
+  },
+
+  async (error) => {
+    const {
+      config,
+      response: { status },
+    } = error
+
+    if (status === 401) {
+      const originRequest = config
+      const refreshToken = getCookie('refresh-token')
+
+      const newToken = await http.post<ResponseTokenType>('reissue', null, {
+        'Refresh-Token': `${refreshToken}`,
+      })
+
+      if (newToken) {
+        setCookie(
+          'refresh-token',
+          `${newToken.tokenType} ${newToken.refreshToken}`,
+          {
+            path: '/',
+            // httpOnly: true,
+          },
+        )
+
+        authAxios.defaults.headers.common.Authorization = `Bearer ${newToken.accessToken}`
+        originRequest.headers.Authorization = `Bearer ${newToken.accessToken}`
+        return axios(originRequest)
+      }
+    }
+    alert('로그인 해주세요.')
+    window.location.replace('/')
+    return Promise.reject(error)
+  },
+)
 
 export const authHttp = {
   get: async function get<Response = unknown>(

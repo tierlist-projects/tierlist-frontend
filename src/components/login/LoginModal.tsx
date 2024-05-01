@@ -10,7 +10,7 @@ type Props = {
 
 const LoginModal = ({ closeModal }: Props) => {
   const navigate = useNavigate()
-  const { emailRef, pwRef, errorMsg, onClickLogin } = useLogin()
+  const { emailRef, pwRef, errorMsg, onClickLogin } = useLogin(closeModal)
   return (
     <S.Container>
       <S.CloseButton onClick={closeModal}>
