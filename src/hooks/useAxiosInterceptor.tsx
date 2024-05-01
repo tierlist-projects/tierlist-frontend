@@ -11,19 +11,19 @@ import { useEffect } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { getCookie, removeCookie, setCookie } from '@utils/cookie'
 import { ResponseTokenType } from 'types/auth.type'
-// import useInitUser from './useInitUser'
+import useInitUser from './useInitUser'
 
 const useAxiosInterceptor = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
   const resetAccessToken = useResetRecoilState(accessTokenState)
-  //   const initUser = useInitUser()
+  const initUser = useInitUser()
 
   const errorHandler = (error: AxiosError) => {
     console.log('errInterceptor!', error)
     if (error.response?.status === 401) {
       removeCookie('refresh-token')
       resetAccessToken()
-      window.location.href = '/'
+      // window.location.href = '/'
     }
     return Promise.reject(error)
   }
@@ -41,8 +41,8 @@ const useAxiosInterceptor = () => {
       try {
         const refreshToken = getCookie('refresh-token')
 
-        const newToken = await http.post<ResponseTokenType>('reissue', {
-          'Refresh-Token': `Bearer ${refreshToken}`,
+        const newToken = await http.post<ResponseTokenType>('reissue', null, {
+          'Refresh-Token': `${refreshToken}`,
         })
 
         if (newToken) {
@@ -56,16 +56,16 @@ const useAxiosInterceptor = () => {
             `${newToken.tokenType} ${newToken.refreshToken}`,
             {
               path: '/',
-              httpOnly: true,
+              // httpOnly: true,
             },
           )
-          //   initUser()
+          initUser()
         }
       } catch (error) {
         console.error('액세스 토큰 재발급 실패:', error)
         removeCookie('refresh-token')
         resetAccessToken()
-        window.location.href = '/'
+        // window.location.href = '/'
       }
     }
     return config
