@@ -31,10 +31,13 @@ const useLogin = (closeModal: () => void) => {
             const data = res as ResponseTokenType
 
             setAccessToken(data.accessToken)
-            setCookie('refresh-token', `Bearer ${data.refreshToken}`, {
-              path: '/',
-              // httpOnly: true,
-            })
+            setCookie(
+              'refresh-token',
+              `${data.tokenType} ${data.refreshToken}`,
+              {
+                path: '/',
+              },
+            )
             authHttp
               .get<UserInformationType>(`member/me`, {
                 Authorization: `Bearer ${data.accessToken}`,

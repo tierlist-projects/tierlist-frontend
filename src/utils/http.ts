@@ -1,7 +1,8 @@
+/* eslint-disable no-else-return */
 import { SERVER_BASE_URL } from '@constants/baseUrl'
 import AxiosS, { AxiosRequestConfig } from 'axios'
 import { ResponseTokenType } from 'types/auth.type'
-import { getCookie, setCookie } from './cookie'
+import { getCookie, removeCookie, setCookie } from './cookie'
 
 const axios = AxiosS.create()
 export const authAxios = AxiosS.create()
@@ -52,9 +53,16 @@ authAxios.interceptors.response.use(
       const originRequest = config
       const refreshToken = getCookie('refresh-token')
 
-      const newToken = await http.post<ResponseTokenType>('reissue', null, {
-        'Refresh-Token': `${refreshToken}`,
-      })
+      const newToken = await http
+        .post<ResponseTokenType>('reissue', null, {
+          'Refresh-Token': refreshToken,
+        })
+        .catch(() => {
+          alert('로그인 해주세요.')
+          removeCookie('refresh-token')
+          removeCookie('isLogin')
+          window.location.replace('/')
+        })
 
       if (newToken) {
         setCookie(
@@ -62,7 +70,6 @@ authAxios.interceptors.response.use(
           `${newToken.tokenType} ${newToken.refreshToken}`,
           {
             path: '/',
-            // httpOnly: true,
           },
         )
 
@@ -71,8 +78,6 @@ authAxios.interceptors.response.use(
         return axios(originRequest)
       }
     }
-    alert('로그인 해주세요.')
-    window.location.replace('/')
     return Promise.reject(error)
   },
 )
