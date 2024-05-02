@@ -1,8 +1,12 @@
-import { createCategory } from '@apis/tierlist/createModalApi'
+import { createCategory, getCategory } from '@apis/tierlist/createModalApi'
 import useDebounce from '@hooks/useDebounce'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CategoryType, TopicType } from 'types/tierlist/category.type'
+import {
+  CategoryErrorType,
+  CategoryType,
+  TopicType,
+} from 'types/tierlist/category.type'
 
 const useCreateModal = () => {
   const navigate = useNavigate()
@@ -10,6 +14,7 @@ const useCreateModal = () => {
   const [category, setCategory] = useState('')
   const [categoryList, setCategoryList] = useState<CategoryType[]>([])
   const [isDropCategories, setIsDropCategories] = useState(false)
+  const [categoryPages, setCategoryPages] = useState(0)
 
   const [topic, setTopic] = useState('')
   const [topicList, setTopicList] = useState<TopicType[]>([])
@@ -19,8 +24,22 @@ const useCreateModal = () => {
   const debouncedTopic = useDebounce(topic, 1000)
 
   useEffect(() => {
-    setCategoryList([{ id: 1, name: '카테고리1', isFavorite: false }])
-    console.log('디바인스 카테고리')
+    getCategory({
+      pageCount: 1,
+      pageSize: 5,
+      query: debouncedCategory,
+      filter: 'NONE',
+    })
+      .then((res) => {
+        setCategoryList(res.content)
+        setCategoryPages(res.totalPages)
+      })
+      .catch((err) => {
+        const data = err.response.data as CategoryErrorType
+        if (data.errorCode === 'D-004') {
+          alert(data.message)
+        }
+      })
   }, [debouncedCategory])
 
   useEffect(() => {
@@ -55,6 +74,7 @@ const useCreateModal = () => {
     topicList,
     isDropCategories,
     isDropTopics,
+    categoryPages,
     onChangeCategory,
     onChangeTopic,
     onClickCategory,

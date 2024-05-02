@@ -10,3 +10,17 @@ export type TopicType = {
   isFavorite: boolean
   category: CategoryType
 }
+
+export type CategoryErrorType = {
+  errorCode: string
+  message: string
+}
+
+export type ResponseCategoryType = {
+  content: CategoryType[]
+  numberOfElements: number
+  pageNumber: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}

@@ -16,6 +16,7 @@ const CreateModal = ({ closeModal }: Props) => {
     topicList,
     isDropCategories,
     isDropTopics,
+    categoryPages,
     onChangeCategory,
     onChangeTopic,
     onClickCategory,
@@ -45,12 +46,18 @@ const CreateModal = ({ closeModal }: Props) => {
                   <img src={images.common.plusBlack} alt="카테고리 생성" />
                   <p>생성</p>
                 </S.DropContent>
-                {categoryList.map((item) => (
-                  <S.DropContent key={item.id} onMouseDown={onClickCategory}>
-                    {item.name}
-                  </S.DropContent>
-                ))}
-                <Pagination count={0} size="small" />
+                {categoryList.length > 0 &&
+                  categoryList.map((item) => (
+                    <S.DropContent
+                      key={`category${item.id}`}
+                      onMouseDown={onClickCategory}
+                    >
+                      {item.name}
+                    </S.DropContent>
+                  ))}
+                {categoryPages > 0 && (
+                  <Pagination count={categoryPages} size="small" />
+                )}
               </S.Drop>
             )}
           </S.InputWithDrop>
