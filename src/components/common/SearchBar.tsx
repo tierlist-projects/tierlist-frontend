@@ -1,32 +1,49 @@
-import React, { useState } from 'react'
 import * as S from '@styles/common/SearchBar.style'
 import { images } from '@constants/images'
-import { changeNumberOfPost } from '@utils/common/searchBarUtil'
+// import { changeNumberOfPost } from '@utils/common/searchBarUtil'
+import useSearchBar from '@hooks/useSearchBar'
+import { Pagination } from '@mui/material'
 
 const SearchBar = () => {
-  const [keyword, setKeyword] = useState('')
-  const [items] = useState([
-    { key: 1, name: '카페', posts: 1000 },
-    { key: 2, name: '카페', posts: 1000 },
-    { key: 3, name: '카페', posts: 1000 },
-  ])
-  const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.currentTarget.value)
-  }
+  const {
+    categoryList,
+    totalPages,
+    isDrop,
+    dropRef,
+    setIsDrop,
+    onChangeKeyword,
+    onClickCategoryPage,
+    onClickCategory,
+  } = useSearchBar()
 
   return (
-    <S.SearchBarContainer>
+    <S.SearchBarContainer ref={dropRef}>
       <img src={images.common.searchBar.search} alt="검색" />
-      <S.Search value={keyword} onChange={onChangeKeyword} />
-      {items.length > 0 && keyword && (
+      <S.Search onChange={onChangeKeyword} onFocus={() => setIsDrop(true)} />
+      {isDrop && (
         <S.SearchResultContainer>
-          <S.SearchResultWrap>
-            {items.map((item) => (
-              <S.SearchResult key={item.key}>
-                {item.name}({changeNumberOfPost(item.posts)})
-              </S.SearchResult>
-            ))}
-          </S.SearchResultWrap>
+          {categoryList.length > 0 ? (
+            <S.SearchResultWrap>
+              {categoryList.map((category) => (
+                <S.SearchResult
+                  key={category.id}
+                  onClick={() => onClickCategory(category.id)}
+                >
+                  {category.name}
+                </S.SearchResult>
+              ))}
+            </S.SearchResultWrap>
+          ) : (
+            <S.EmptyResult>검색 결과가 없습니다.</S.EmptyResult>
+          )}
+
+          {categoryList.length > 0 && (
+            <Pagination
+              count={totalPages}
+              size="small"
+              onChange={onClickCategoryPage}
+            />
+          )}
         </S.SearchResultContainer>
       )}
     </S.SearchBarContainer>

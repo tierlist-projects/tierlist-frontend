@@ -27,15 +27,23 @@ export const Search = styled.input`
 
 export const SearchResultContainer = styled.div`
   z-index: 3;
+  min-height: 100px;
   width: 300px;
   background-color: white;
   position: absolute;
   top: 50px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 12px;
 `
 
 export const SearchResultWrap = styled.ul`
+  width: 100%;
   max-height: 300px;
   overflow: auto;
 
@@ -57,14 +65,19 @@ export const SearchResult = styled.li`
     border-radius: 20px 20px 0px 0px;
   }
 
-  :last-of-type {
-    padding-bottom: 24px;
-    border-radius: 0px 0px 20px 20px;
-  }
-
   &:hover {
     cursor: pointer;
     background-color: ${colors.primary[50]};
     transition: all 150ms ease-in-out;
   }
+`
+
+export const EmptyResult = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${colors.grey.primary};
 `
