@@ -11,13 +11,28 @@ export type TopicType = {
   category: CategoryType
 }
 
-export type CategoryErrorType = {
+export type TierlistErrorType = {
   errorCode: string
   message: string
 }
 
+export type ResponseCreateCategory = {
+  headers: {
+    'category-id': number
+  }
+}
+
 export type ResponseCategoryType = {
   content: CategoryType[]
+  numberOfElements: number
+  pageNumber: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}
+
+export type ResponseTopicType = {
+  content: TopicType[]
   numberOfElements: number
   pageNumber: number
   pageSize: number
