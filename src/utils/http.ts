@@ -70,6 +70,7 @@ authAxios.interceptors.response.use(
           `${newToken.tokenType} ${newToken.refreshToken}`,
           {
             path: '/',
+            maxAge: newToken.refreshTokenExpiresIn * 1000,
           },
         )
 
