@@ -36,6 +36,7 @@ const useLogin = (closeModal: () => void) => {
               `${data.tokenType} ${data.refreshToken}`,
               {
                 path: '/',
+                maxAge: data.refreshTokenExpiresIn * 1000,
               },
             )
             authHttp
