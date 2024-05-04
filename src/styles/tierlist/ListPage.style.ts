@@ -84,3 +84,13 @@ export const Search = styled.input`
   font-size: 14px;
   margin-right: 10px;
 `
+
+export const EmptyContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.grey.primary};
+  font-size: 24px;
+`

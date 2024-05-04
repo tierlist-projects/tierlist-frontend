@@ -18,6 +18,7 @@ const RootRouter = () => {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
           <Route path="/tierlist/:categoryId" element={<ListPage />} />
+          <Route path="/tierlist/:categoryId/:topicId" element={<ListPage />} />
           <Route path="/tierlist-detail/:id" element={<TierlistDetail />} />
         </Route>
       </Routes>

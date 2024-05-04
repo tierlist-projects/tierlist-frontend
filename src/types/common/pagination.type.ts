@@ -1,4 +1,4 @@
-export type FILTER = 'HOT' | 'NONE'
+export type FILTER = 'HOT' | 'NONE' | 'RECENT'
 
 export type PaginationType = {
   pageCount: number
