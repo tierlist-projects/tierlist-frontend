@@ -21,6 +21,7 @@ const useCreateModal = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([])
   const [isDropCategories, setIsDropCategories] = useState(false)
   const [categoryPages, setCategoryPages] = useState(0)
+  const [categoryTotalPages, setCategoryTotalPages] = useState(0)
   const [selectedCategoryId, setSelectedCategoryId] = useState(0)
   const [isSelectCategory, setIsSelectCategory] = useState(false)
 
@@ -28,6 +29,7 @@ const useCreateModal = () => {
   const [topicList, setTopicList] = useState<TopicType[]>([])
   const [isDropTopics, setIsDropTopics] = useState(false)
   const [topicPages, setTopicPages] = useState(0)
+  const [topicTotalPages, setTopicTotalPages] = useState(0)
   const [selectedTopicId, setSelectedTopicId] = useState(0)
   const [isSelectTopic, setIsSelectTopic] = useState(false)
 
@@ -56,7 +58,7 @@ const useCreateModal = () => {
       .then((res) => {
         setIsDropCategories(true)
         setCategoryList(res.content)
-        setCategoryPages(res.totalPages)
+        setCategoryTotalPages(res.totalPages)
       })
       .catch((err) => {
         console.log(err)
@@ -66,7 +68,7 @@ const useCreateModal = () => {
           alert(data.message)
         }
       })
-  }, [debouncedCategory, categoryPages])
+  }, [debouncedCategory, categoryPages, isDropCategories])
 
   useEffect(() => {
     if (!debouncedTopic) {
@@ -89,7 +91,7 @@ const useCreateModal = () => {
       .then((res) => {
         setIsDropTopics(true)
         setTopicList(res.content)
-        setTopicPages(res.totalPages)
+        setTopicTotalPages(res.totalPages)
       })
       .catch((err) => {
         console.log(err)
@@ -209,8 +211,8 @@ const useCreateModal = () => {
     topicList,
     isDropCategories,
     isDropTopics,
-    categoryPages,
-    topicPages,
+    categoryTotalPages,
+    topicTotalPages,
     titleRef,
     onChangeCategory,
     onChangeTopic,
