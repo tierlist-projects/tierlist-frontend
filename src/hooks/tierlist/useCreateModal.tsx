@@ -48,8 +48,8 @@ const useCreateModal = () => {
     }
 
     getCategory({
-      pageCount: categoryPages,
-      pageSize: 5,
+      page: categoryPages,
+      size: 5,
       query: debouncedCategory,
       filter: 'NONE',
     })
@@ -81,8 +81,8 @@ const useCreateModal = () => {
     }
 
     getTopic(selectedCategoryId, {
-      pageCount: topicPages,
-      pageSize: 5,
+      page: topicPages,
+      size: 5,
       query: debouncedTopic,
       filter: 'NONE',
     })

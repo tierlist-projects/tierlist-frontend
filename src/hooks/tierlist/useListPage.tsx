@@ -25,7 +25,7 @@ const useListPage = () => {
 
   const getPost = (type: string, id: number, filter: FILTER) => {
     getTierlist(
-      `${type}/${id}/tierlist?pageCount=${page}&pageSize=${filter === 'HOT' ? 4 : 16}&query=${filter === 'HOT' ? '' : keyword}&filter=${filter}`,
+      `${type}/${id}/tierlist?page=${page}&size=${filter === 'HOT' ? 4 : 16}&query=${filter === 'HOT' ? '' : keyword}&filter=${filter}`,
     )
       .then((res) => {
         if (filter === 'RECENT') setRecentPostList(res)

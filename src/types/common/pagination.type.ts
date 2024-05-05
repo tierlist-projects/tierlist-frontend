@@ -1,8 +1,8 @@
 export type FILTER = 'HOT' | 'NONE' | 'RECENT'
 
 export type PaginationType = {
-  pageCount: number
-  pageSize: number
+  page: number
+  size: number
   query?: string
   filter: FILTER
 }

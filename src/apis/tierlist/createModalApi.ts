@@ -11,7 +11,7 @@ export async function createCategory(name: string) {
 
 export async function getCategory(pagination: PaginationType) {
   return authHttp.get<ResponseCategoryType>(
-    `category?pageCount=${pagination.pageCount}&pageSize=${pagination.pageSize}&query=${pagination.query}&filter=${pagination.filter}`,
+    `category?page=${pagination.page}&size=${pagination.size}&query=${pagination.query}&filter=${pagination.filter}`,
   )
 }
 
@@ -24,7 +24,7 @@ export async function createTopic(name: string, categoryId: number) {
 
 export async function getTopic(categoryId: number, pagination: PaginationType) {
   return authHttp.get<ResponseTopicType>(
-    `category/${categoryId}/topic?pageCount=${pagination.pageCount}&pageSize=${pagination.pageSize}&query=${pagination.query}&filter=${pagination.filter}`,
+    `category/${categoryId}/topic?page=${pagination.page}&size=${pagination.size}&query=${pagination.query}&filter=${pagination.filter}`,
   )
 }
 
