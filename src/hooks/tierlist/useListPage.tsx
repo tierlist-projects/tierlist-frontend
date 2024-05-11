@@ -9,10 +9,11 @@ const useListPage = () => {
   const searchRef = useRef<HTMLInputElement>(null)
   const { categoryId, topicId } = useParams()
   const [page, setPage] = useState(1)
-  //   const [totalPages, setTotalPages] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
   const [keyword, setKeyword] = useState('')
   const [recentPostList, setRecentPostList] = useState<PostType[]>([])
   const [hotPostList, setHotPostList] = useState<PostType[]>([])
+
   const onChangePage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
       if (value === undefined) return
@@ -25,11 +26,15 @@ const useListPage = () => {
 
   const getPost = (type: string, id: number, filter: FILTER) => {
     getTierlist(
-      `${type}/${id}/tierlist?page=${page}&size=${filter === 'HOT' ? 4 : 16}&query=${filter === 'HOT' ? '' : keyword}&filter=${filter}`,
+      `${type}/${id}/tierlist?page=${page - 1}&size=${filter === 'HOT' ? 4 : 16}&query=${filter === 'HOT' ? '' : keyword}&filter=${filter}`,
     )
       .then((res) => {
-        if (filter === 'RECENT') setRecentPostList(res)
-        else setHotPostList(res)
+        console.log(res)
+
+        if (filter === 'RECENT') {
+          setRecentPostList(res.content)
+          setTotalPages(res.totalPages)
+        } else setHotPostList(res.content)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
@@ -64,7 +69,7 @@ const useListPage = () => {
 
   return {
     searchRef,
-    page,
+    totalPages,
     recentPostList,
     hotPostList,
     onChangePage,

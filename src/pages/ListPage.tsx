@@ -8,7 +8,7 @@ import useListPage from '@hooks/tierlist/useListPage'
 const ListPage = () => {
   const {
     searchRef,
-    page,
+    totalPages,
     recentPostList,
     hotPostList,
     onChangePage,
@@ -51,7 +51,7 @@ const ListPage = () => {
         )}
         <S.BottomBlock>
           {recentPostList.length > 0 && (
-            <Pagination count={5} page={page} onChange={onChangePage} />
+            <Pagination count={5} page={totalPages} onChange={onChangePage} />
           )}
           <S.TierlistSearch>
             <select>

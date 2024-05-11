@@ -72,6 +72,15 @@ export type PostType = {
   writer: WriterType
 }
 
+export type ResponsePostType = {
+  pageSize: number
+  totalPages: number
+  pageNumber: number
+  totalElements: number
+  numberOfElements: number
+  content: PostType[]
+}
+
 export type PostDetailType = {
   id: number
   title: string
