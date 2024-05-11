@@ -19,7 +19,7 @@ export const PopularCategory = styled.li`
   display: flex;
   gap: 8px;
 
-  .lank {
+  .rank {
     width: 10%;
     text-align: right;
   }

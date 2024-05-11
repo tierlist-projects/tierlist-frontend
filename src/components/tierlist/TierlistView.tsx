@@ -1,19 +1,20 @@
 import React from 'react'
 import * as S from '@styles/tierlist/Tierlist.style'
-import { colors } from '@constants/colors'
 import { images } from '@constants/images'
+import { RANKSTR } from 'types/tierlist/tierlist.type'
+import Item from './Item'
 
 const TierlistView = () => {
-  const lankList = [
+  const rankList = [
     {
-      lank: 'S',
-      color: colors.tierlist.lank.S,
+      rank: 'S',
+      color: 'sranks',
       key: 'tierS',
       list: [],
     },
     {
-      lank: 'A',
-      color: colors.tierlist.lank.A,
+      rank: 'A',
+      color: 'aranks',
       key: 'tierA',
       list: [
         {
@@ -23,26 +24,26 @@ const TierlistView = () => {
       ],
     },
     {
-      lank: 'B',
-      color: colors.tierlist.lank.B,
+      rank: 'B',
+      color: 'branks',
       key: 'tierB',
       list: [],
     },
     {
-      lank: 'C',
-      color: colors.tierlist.lank.C,
+      rank: 'C',
+      color: 'cranks',
       key: 'tierC',
       list: [],
     },
     {
-      lank: 'D',
-      color: colors.tierlist.lank.D,
+      rank: 'D',
+      color: 'dranks',
       key: 'tierD',
       list: [],
     },
     {
-      lank: 'F',
-      color: colors.tierlist.lank.F,
+      rank: 'F',
+      color: 'franks',
       key: 'tierF',
       list: [],
     },
@@ -50,19 +51,14 @@ const TierlistView = () => {
   return (
     <S.Container>
       <S.Table>
-        {lankList.map((lank) => (
-          <S.Tr key={lank.key}>
-            <S.Lank backgroundColor={lank.color}>{lank.lank}</S.Lank>
-            <S.LankCotent>
-              {lank.list.map((item) => (
-                <S.Item
-                  src={item.url}
-                  alt={item.key}
-                  key={item.key}
-                  title={item.key}
-                />
+        {rankList.map((rank) => (
+          <S.Tr key={rank.key}>
+            <S.Rank backgroundColor={rank.color as RANKSTR}>{rank.rank}</S.Rank>
+            <S.RankCotent>
+              {rank.list.map((item) => (
+                <Item itemRankImage={item.url} name={item.key} key={item.key} />
               ))}
-            </S.LankCotent>
+            </S.RankCotent>
           </S.Tr>
         ))}
       </S.Table>

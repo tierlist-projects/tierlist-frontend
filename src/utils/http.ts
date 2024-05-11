@@ -56,6 +56,7 @@ authAxios.interceptors.response.use(
       const newToken = await http
         .post<ResponseTokenType>('reissue', null, {
           'Refresh-Token': refreshToken,
+          'Content-Type': 'application/json',
         })
         .catch(() => {
           alert('로그인 해주세요.')

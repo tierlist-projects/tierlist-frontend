@@ -1,8 +1,9 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
+import { RANKSTR } from 'types/tierlist/tierlist.type'
 
-interface LankProps {
-  backgroundColor: string
+interface RankProps {
+  backgroundColor: RANKSTR
 }
 
 export const Container = styled.div`
@@ -12,13 +13,6 @@ export const Container = styled.div`
   gap: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid ${colors.primary[200]};
-`
-
-export const Item = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-  object-fit: cover;
 `
 
 export const Table = styled.table`
@@ -34,14 +28,14 @@ export const Tr = styled.tr`
   display: flex;
 `
 
-export const Lank = styled.td<LankProps>`
+export const Rank = styled.td<RankProps>`
   width: 70px;
   min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => colors.tierlist.rank[props.backgroundColor]};
   -webkit-text-stroke: 1px black;
   font-size: 28px;
   color: white;
@@ -50,7 +44,7 @@ export const Lank = styled.td<LankProps>`
   border: 1px solid black;
 `
 
-export const LankCotent = styled.td`
+export const RankCotent = styled.td`
   flex: 1;
   padding: 10px 5px;
   align-items: center;
@@ -58,7 +52,7 @@ export const LankCotent = styled.td`
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  place-items: center;
+  place-items: start;
   gap: 10px;
 `
 

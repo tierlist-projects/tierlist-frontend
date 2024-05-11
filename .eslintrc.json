@@ -50,7 +50,8 @@
     "import/no-extraneous-dependencies": "off",
     "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "consistent-return": "off"
   }
 }
 

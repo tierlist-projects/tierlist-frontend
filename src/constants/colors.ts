@@ -19,14 +19,14 @@ export const colors = {
   error: '#FA7070',
   correct: '#4AB963',
   tierlist: {
-    lank: {
-      S: '#FF7F7F',
-      A: '#FFBF7E',
-      B: '#FEFF7F',
-      C: '#BFFF7F',
-      D: '#99C6DE',
-      F: '#8B8B8B',
+    rank: {
+      sranks: '#FF7F7F',
+      aranks: '#FFBF7E',
+      branks: '#FEFF7F',
+      cranks: '#BFFF7F',
+      dranks: '#99C6DE',
+      franks: '#8B8B8B',
     },
-    background: '#2D2D2D',
+    background: 'white',
   },
 }

@@ -1,30 +1,56 @@
-import React from 'react'
 import * as S from '@styles/tierlist/TierlistModifyPage.style'
 import Tierlist from '@components/tierlist/Tierlist'
 import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
-import { useNavigate } from 'react-router-dom'
 import UploadImage from '@components/tierlist/UploadImage'
+import useModify from '@hooks/tierlist/useModify'
 
 const TierlistModifyPage = () => {
-  const navigate = useNavigate()
+  const {
+    navigate,
+    postDetail,
+    ranks,
+    contentRef,
+    titleRef,
+    setRanks,
+    setThumbnail,
+    savePost,
+  } = useModify()
+
   return (
     <S.Container>
       <S.TitleBlock>
-        <p className="category">카테고리 / 토픽</p>
-        <p className="title">제목</p>
+        <p className="category">
+          {postDetail?.topic.category.name} / {postDetail?.topic.name}
+        </p>
+        <input
+          type="text"
+          className="title"
+          defaultValue={postDetail?.title}
+          ref={titleRef}
+        />
       </S.TitleBlock>
-      <Tierlist />
+      <Tierlist ranks={ranks} setRanks={setRanks} />
       <S.ContentBlock>
         <S.SubTitle>글</S.SubTitle>
-        <textarea placeholder="내용을 입력하세요." />
+        <textarea
+          placeholder="내용을 입력하세요."
+          defaultValue={postDetail?.content || ''}
+          ref={contentRef}
+        />
       </S.ContentBlock>
       <S.ThumbnailBlock>
         <S.SubTitle>썸네일</S.SubTitle>
-        <UploadImage />
+        <UploadImage setFile={setThumbnail} />
       </S.ThumbnailBlock>
       <S.ButtonBlock>
-        <CButton text="저장" fontSize={20} hPadding={12} vPadding={36} />
+        <CButton
+          text="저장"
+          fontSize={20}
+          hPadding={12}
+          vPadding={36}
+          onClick={savePost}
+        />
         <CButton
           text="취소"
           fontSize={20}

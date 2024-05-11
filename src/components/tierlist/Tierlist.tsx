@@ -1,6 +1,7 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-else-return */
 /* eslint-disable no-useless-return */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react'
 import * as S from '@styles/tierlist/Tierlist.style'
 import {
   DragDropContext,
@@ -8,116 +9,89 @@ import {
   DropResult,
   Droppable,
 } from 'react-beautiful-dnd'
+import { RANKSTR, RankType } from 'types/tierlist/tierlist.type'
 import { colors } from '@constants/colors'
-import { images } from '@constants/images'
 import CButton from '@components/common/CButton'
+import { StringToRank } from '@utils/tierlist/tierlistUtil'
 import useModal from '@hooks/useModal'
 import ItemRegistModal from './ItemRegistModal'
+import Item from './Item'
 
-const Tierlist = () => {
-  const lankList = [
-    {
-      lank: 'S',
-      color: colors.tierlist.lank.S,
-      key: 'tierS',
-      list: [],
-    },
-    {
-      lank: 'A',
-      color: colors.tierlist.lank.A,
-      key: 'tierA',
-      list: [
-        {
-          url: images.cat,
-          key: 'cat',
-        },
-      ],
-    },
-    {
-      lank: 'B',
-      color: colors.tierlist.lank.B,
-      key: 'tierB',
-      list: [],
-    },
-    {
-      lank: 'C',
-      color: colors.tierlist.lank.C,
-      key: 'tierC',
-      list: [],
-    },
-    {
-      lank: 'D',
-      color: colors.tierlist.lank.D,
-      key: 'tierD',
-      list: [],
-    },
-    {
-      lank: 'F',
-      color: colors.tierlist.lank.F,
-      key: 'tierF',
-      list: [],
-    },
-  ]
+type Props = {
+  ranks: RankType
+  setRanks: React.Dispatch<React.SetStateAction<RankType>>
+}
 
-  const itemList = [{ url: images.cat, key: 'waitingCat' }]
-
+const Tierlist = ({ ranks, setRanks }: Props) => {
   const onDragEnd = (result: DropResult) => {
     console.log(result)
+
+    if (!result.destination) return null
+
+    const curRanks = { ...ranks }
+    const draggingRank = result.source.droppableId as RANKSTR
+    const draggingItemIndex = result.source.index
+    const dropRank = result.destination.droppableId as RANKSTR
+    const dropItemIndex = result.destination.index
+
+    // 드래그 한 요소를 기존 배열에서 삭제
+    const removedItem = curRanks[draggingRank].splice(draggingItemIndex, 1)
+    // 드롭한 위치에 드래그한 요소를 추가
+    curRanks[dropRank].splice(dropItemIndex, 0, removedItem[0])
+    setRanks(curRanks)
   }
 
   const { Modal, isOpen, openModal, closeModal } = useModal()
-  const [isActive] = useState(false)
 
   return (
     <S.Container>
       <DragDropContext onDragEnd={onDragEnd}>
         <S.Table>
           <tbody>
-            {lankList.map((lank) => (
-              <S.Tr key={lank.key}>
-                <S.Lank backgroundColor={lank.color}>{lank.lank}</S.Lank>
-                <Droppable droppableId={lank.lank} direction="horizontal">
-                  {(provided) => (
-                    <S.LankCotent
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                    >
-                      {lank.list.map((item) => (
-                        <Draggable
-                          draggableId={item.key}
-                          key={item.key}
-                          index={0}
+            {Object.entries(ranks).map(([rank, list], index) => {
+              if (index === 0) return null
+              else {
+                return (
+                  <S.Tr key={rank}>
+                    <S.Rank backgroundColor={rank as RANKSTR}>
+                      {StringToRank(rank)}
+                    </S.Rank>
+                    <Droppable droppableId={rank} direction="horizontal">
+                      {(provided) => (
+                        <S.RankCotent
+                          ref={provided.innerRef}
+                          {...provided.droppableProps}
                         >
-                          {(dragProvided) => (
-                            <S.Item
-                              src={item.url}
-                              title="고양이"
-                              alt="고양이"
-                              ref={dragProvided.innerRef}
-                              {...dragProvided.dragHandleProps}
-                              {...dragProvided.draggableProps}
-                            />
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </S.LankCotent>
-                  )}
-                </Droppable>
-              </S.Tr>
-            ))}
+                          {list.map((item, idx) => (
+                            <Draggable
+                              draggableId={rank + idx}
+                              key={rank + idx}
+                              index={idx}
+                            >
+                              {(dragProvided) => (
+                                <div
+                                  ref={dragProvided.innerRef}
+                                  {...dragProvided.dragHandleProps}
+                                  {...dragProvided.draggableProps}
+                                >
+                                  <Item
+                                    itemRankImage={item.itemRankImage}
+                                    name={item.name}
+                                  />
+                                </div>
+                              )}
+                            </Draggable>
+                          ))}
+                          {provided.placeholder}
+                        </S.RankCotent>
+                      )}
+                    </Droppable>
+                  </S.Tr>
+                )
+              }
+            })}
           </tbody>
         </S.Table>
-        <S.ItemSearch>
-          <p>아이템 검색</p>
-          <S.InputWithDrop>
-            <img src={images.common.searchBar.search} alt="아이템 검색" />
-            <S.Search type="text" placeholder="검색어를 입력하세요." />
-            {isActive && (
-              <S.SearchResultContainer>gkdlgkdl</S.SearchResultContainer>
-            )}
-          </S.InputWithDrop>
-        </S.ItemSearch>
         <S.ButtonBlock>
           <CButton
             text="아이템 등록"
@@ -137,26 +111,36 @@ const Tierlist = () => {
             radius={5}
           />
           <Modal isOpen={isOpen} closeModal={closeModal}>
-            <ItemRegistModal closeModal={closeModal} />
+            <ItemRegistModal
+              closeModal={closeModal}
+              ranks={ranks}
+              setRanks={setRanks}
+            />
           </Modal>
         </S.ButtonBlock>
-        <Droppable droppableId="waitingItem" direction="horizontal">
+        <Droppable droppableId="noneRanks" direction="horizontal">
           {(provided) => (
             <S.WaitingItemBlock
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {itemList.map((item, index) => (
-                <Draggable draggableId={item.key} key={item.key} index={index}>
+              {ranks.noneRanks.map((item, index) => (
+                <Draggable
+                  draggableId={item.rank + index}
+                  key={item.rank + index}
+                  index={index}
+                >
                   {(dragProvided) => (
-                    <S.Item
-                      src={item.url}
-                      title="고양이"
-                      alt="고양이"
+                    <div
                       ref={dragProvided.innerRef}
                       {...dragProvided.dragHandleProps}
                       {...dragProvided.draggableProps}
-                    />
+                    >
+                      <Item
+                        itemRankImage={item.itemRankImage}
+                        name={item.name}
+                      />
+                    </div>
                   )}
                 </Draggable>
               ))}

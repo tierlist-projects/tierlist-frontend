@@ -2,7 +2,11 @@ import React, { ChangeEventHandler, DragEventHandler, useState } from 'react'
 import * as S from '@styles/tierlist/UploadImage.style'
 import { images } from '@constants/images'
 
-const UploadImage = () => {
+type Props = {
+  setFile: React.Dispatch<React.SetStateAction<File | null>>
+}
+
+const UploadImage = ({ setFile }: Props) => {
   const [isActive, setIsActive] = useState(false)
   const [uploadedInfo, setUploadedInfo] = useState<File | null>(null)
   const [imageUrl, setImageUrl] = useState('')
@@ -25,6 +29,7 @@ const UploadImage = () => {
     const file = event.dataTransfer.files[0]
     setUploadedInfo(file)
     setImageUrl(URL.createObjectURL(file))
+    setFile(file)
   }
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -36,6 +41,7 @@ const UploadImage = () => {
     const file = event.target.files[0]
     setUploadedInfo(file)
     setImageUrl(URL.createObjectURL(file))
+    setFile(file)
   }
 
   return (

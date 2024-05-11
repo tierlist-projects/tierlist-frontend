@@ -1,11 +1,29 @@
+import { TopicType } from './category.type'
+
+export type RANK = 'S' | 'A' | 'B' | 'C' | 'D' | 'F' | 'NONE'
+
+export type RANKSTR =
+  | 'sranks'
+  | 'aranks'
+  | 'branks'
+  | 'cranks'
+  | 'dranks'
+  | 'franks'
+
 export type ItemType = {
-  itemId: number
+  id: number
+  name: string
   itemRankImage: string
+  orderIdx: number
+  rank: RANK
 }
 
-export type ResponseTierListType = {
-  title: string
-  content: string
+export type SearchedItemType = {
+  id: number
+  name: string
+}
+
+export type RankType = {
   noneRanks: ItemType[]
   sranks: ItemType[]
   aranks: ItemType[]
@@ -15,7 +33,24 @@ export type ResponseTierListType = {
   franks: ItemType[]
 }
 
-export type TopicType = {
+export type PutItemType = {
+  itemId: number
+  itemRankImage: string
+}
+
+export type PutTierlistType = {
+  title: string
+  content: string
+  noneRanks: PutItemType[]
+  sranks: PutItemType[]
+  aranks: PutItemType[]
+  branks: PutItemType[]
+  cranks: PutItemType[]
+  dranks: PutItemType[]
+  franks: PutItemType[]
+}
+
+export type SimpleTopicType = {
   id: number
   name: string
 }
@@ -29,10 +64,34 @@ export type WriterType = {
 export type PostType = {
   id: number
   title: string
-  topic: TopicType
+  topic: SimpleTopicType
   createAt: string
   likesCount: number
   commentsCount: number
   viewCount: number
   writer: WriterType
+}
+
+export type PostDetailType = {
+  id: number
+  title: string
+  content: string
+  createdAt: string
+  ranks: RankType
+  liked: boolean
+  likesCount: number
+  myTierlist: boolean
+  commentsCount: number
+  published: boolean
+  writer: WriterType
+  topic: TopicType
+}
+
+export type ResponseSearchItems = {
+  pageSize: number
+  totalPages: number
+  pageNumber: number
+  totalElements: number
+  numberOfElements: number
+  content: ItemType[]
 }

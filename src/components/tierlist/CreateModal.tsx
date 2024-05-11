@@ -122,8 +122,7 @@ const CreateModal = ({ closeModal }: Props) => {
           text="생성"
           fontSize={20}
           onClick={() => {
-            onClickTierlistCreate()
-            // closeModal()
+            onClickTierlistCreate(closeModal)
           }}
         />
         <CButton

@@ -183,25 +183,31 @@ const useCreateModal = () => {
     [],
   )
 
-  const onClickTierlistCreate = useCallback(() => {
-    console.log(selectedCategoryId, selectedTopicId, titleRef.current?.value)
+  const onClickTierlistCreate = useCallback(
+    (closeModal: () => void) => {
+      console.log(selectedCategoryId, selectedTopicId, titleRef.current?.value)
 
-    if (titleRef.current?.value) {
-      createTierlist(selectedTopicId, titleRef.current.value)
-        .then(() => {})
-        .catch((err) => {
-          const data = err.response.data as TierlistErrorType
+      if (titleRef.current?.value) {
+        createTierlist(selectedTopicId, titleRef.current.value)
+          .then(() => {
+            navigate('tierlist-modify/1')
+            closeModal()
+          })
+          .catch((err) => {
+            const data = err.response.data as TierlistErrorType
 
-          if (data.errorCode === 'NF-002') {
-            alert(data.message)
-          } else if (data.errorCode === 'IR-004') {
-            alert(
-              '티어리스트 제목은 2자 이상 25자 이하, 영어, 숫자 한글 또는 스페이스로 구성되어야 하고 특수문자, 자음, 모음을 포함할 수 없습니다.',
-            )
-          }
-        })
-    }
-  }, [selectedCategoryId, selectedTopicId, titleRef.current])
+            if (data.errorCode === 'NF-002') {
+              alert(data.message)
+            } else if (data.errorCode === 'IR-004') {
+              alert(
+                '티어리스트 제목은 2자 이상 25자 이하, 영어, 숫자 한글 또는 스페이스로 구성되어야 하고 특수문자, 자음, 모음을 포함할 수 없습니다.',
+              )
+            }
+          })
+      }
+    },
+    [selectedCategoryId, selectedTopicId, titleRef.current],
+  )
 
   return {
     navigate,
