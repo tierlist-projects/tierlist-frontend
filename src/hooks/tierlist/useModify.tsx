@@ -85,8 +85,6 @@ const useModify = () => {
     if (tierlistId) {
       getModifyingTierlist(tierlistId)
         .then((res) => {
-          console.log(res)
-
           setPostDetail(res)
           setRanks(res.ranks)
         })
