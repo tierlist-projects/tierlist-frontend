@@ -37,7 +37,7 @@ const useSearchBar = () => {
 
   useEffect(() => {
     getCategory({
-      page: categoryPages,
+      page: categoryPages - 1,
       size: 3,
       query: debouncedKeyword,
       filter: 'NONE',
