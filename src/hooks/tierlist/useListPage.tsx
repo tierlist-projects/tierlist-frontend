@@ -1,6 +1,8 @@
-import { getTierlist } from '@apis/tierlist/listPageApi'
+import { getTierlist, toggleFavorite } from '@apis/tierlist/listPageApi'
+import { userState } from '@atom/userAtom'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import { FILTER } from 'types/common/pagination.type'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { PostType } from 'types/tierlist/tierlist.type'
@@ -13,16 +15,34 @@ const useListPage = () => {
   const [keyword, setKeyword] = useState('')
   const [recentPostList, setRecentPostList] = useState<PostType[]>([])
   const [hotPostList, setHotPostList] = useState<PostType[]>([])
+  const user = useRecoilValue(userState)
 
   const onChangePage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
       if (value === undefined) return
-      console.log(value)
-
       setPage(value)
     },
     [],
   )
+
+  const onClickFavorite = useCallback(() => {
+    if (!user) {
+      alert('로그인이 필요합니다.')
+      return null
+    }
+
+    if (topicId) {
+      toggleFavorite('topic', Number(topicId)).catch((err) => {
+        const data = err.response.data as TierlistErrorType
+        alert(data.message)
+      })
+    } else {
+      toggleFavorite('category', Number(categoryId)).catch((err) => {
+        const data = err.response.data as TierlistErrorType
+        alert(data.message)
+      })
+    }
+  }, [user, topicId, categoryId])
 
   const getPost = (type: string, id: number, filter: FILTER) => {
     getTierlist(
@@ -69,11 +89,13 @@ const useListPage = () => {
 
   return {
     searchRef,
+    page,
     totalPages,
     recentPostList,
     hotPostList,
     onChangePage,
     onClickSearch,
+    onClickFavorite,
   }
 }
 

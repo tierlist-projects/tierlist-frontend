@@ -2,12 +2,14 @@ export type CategoryType = {
   id: number
   name: string
   isFavorite: boolean
+  favoriteCount: number
 }
 
 export type TopicType = {
   id: number
   name: string
   isFavorite: boolean
+  favoriteCount: number
   category: CategoryType
 }
 

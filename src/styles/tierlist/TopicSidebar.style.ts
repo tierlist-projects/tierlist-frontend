@@ -3,21 +3,23 @@ import styled from '@emotion/styled'
 
 export const Container = styled.div`
   width: 200px;
-  height: 500px;
+  height: 450px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   padding: 10px;
   background-color: white;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 150px;
+  top: 100px;
   right: -220px;
 `
 
 export const Title = styled.p`
   font-size: 14px;
   font-weight: bold;
+  width: 100%;
 `
 
 export const SearchBarContainer = styled.div`

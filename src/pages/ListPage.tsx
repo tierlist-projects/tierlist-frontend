@@ -8,16 +8,18 @@ import useListPage from '@hooks/tierlist/useListPage'
 const ListPage = () => {
   const {
     searchRef,
+    page,
     totalPages,
     recentPostList,
     hotPostList,
     onChangePage,
     onClickSearch,
+    onClickFavorite,
   } = useListPage()
   return (
     <S.Container>
       <S.TitleBlock>
-        <button type="button">
+        <button type="button" onClick={onClickFavorite}>
           <img
             src={images.common.favorites.emptyStar}
             alt="즐겨찾기"
@@ -51,7 +53,11 @@ const ListPage = () => {
         )}
         <S.BottomBlock>
           {recentPostList.length > 0 && (
-            <Pagination count={5} page={totalPages} onChange={onChangePage} />
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={onChangePage}
+            />
           )}
           <S.TierlistSearch>
             <select>
