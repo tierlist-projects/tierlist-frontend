@@ -20,5 +20,9 @@ export const images = {
   cat: '/images/cat.jpg',
   tierlist: {
     image: '/images/tierlist/ic-image.png',
+    like: {
+      fullHeart: '/images/tierlist/ic-full-heart.png',
+      emptyHeart: '/images/tierlist/ic-empty-heart.png',
+    },
   },
 }

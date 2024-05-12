@@ -1,67 +1,46 @@
 import React from 'react'
 import * as S from '@styles/tierlist/Tierlist.style'
-import { images } from '@constants/images'
-import { RANKSTR } from 'types/tierlist/tierlist.type'
+import { RANKSTR, RankType } from 'types/tierlist/tierlist.type'
+import { StringToRank } from '@utils/tierlist/tierlistUtil'
 import Item from './Item'
 
-const TierlistView = () => {
-  const rankList = [
-    {
-      rank: 'S',
-      color: 'sranks',
-      key: 'tierS',
-      list: [],
-    },
-    {
-      rank: 'A',
-      color: 'aranks',
-      key: 'tierA',
-      list: [
-        {
-          url: images.cat,
-          key: 'cat',
-        },
-      ],
-    },
-    {
-      rank: 'B',
-      color: 'branks',
-      key: 'tierB',
-      list: [],
-    },
-    {
-      rank: 'C',
-      color: 'cranks',
-      key: 'tierC',
-      list: [],
-    },
-    {
-      rank: 'D',
-      color: 'dranks',
-      key: 'tierD',
-      list: [],
-    },
-    {
-      rank: 'F',
-      color: 'franks',
-      key: 'tierF',
-      list: [],
-    },
-  ]
+type Props = {
+  ranks: RankType
+}
+
+const TierlistView = ({ ranks }: Props) => {
   return (
     <S.Container>
       <S.Table>
-        {rankList.map((rank) => (
-          <S.Tr key={rank.key}>
-            <S.Rank backgroundColor={rank.color as RANKSTR}>{rank.rank}</S.Rank>
-            <S.RankCotent>
-              {rank.list.map((item) => (
-                <Item itemRankImage={item.url} name={item.key} key={item.key} />
-              ))}
-            </S.RankCotent>
-          </S.Tr>
-        ))}
+        {Object.entries(ranks).map(([rank, list], index) => {
+          if (index === 0) return null
+          return (
+            <S.Tr key={rank}>
+              <S.Rank backgroundColor={rank as RANKSTR}>
+                {StringToRank(rank)}
+              </S.Rank>
+              <S.RankCotent>
+                {list.map((item) => (
+                  <Item
+                    itemRankImage={item.itemRankImage}
+                    name={item.name}
+                    key={item.id}
+                  />
+                ))}
+              </S.RankCotent>
+            </S.Tr>
+          )
+        })}
       </S.Table>
+      <S.WaitingItemBlock>
+        {ranks.noneRanks.map((item) => (
+          <Item
+            itemRankImage={item.itemRankImage}
+            name={item.name}
+            key={item.id}
+          />
+        ))}
+      </S.WaitingItemBlock>
     </S.Container>
   )
 }

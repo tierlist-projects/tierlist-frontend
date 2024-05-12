@@ -3,7 +3,7 @@ import * as S from '@styles/tierlist/TopicSidebar.style'
 import { images } from '@constants/images'
 import useTopicSideBar from '@hooks/tierlist/useTopicSideBar'
 import { Pagination } from '@mui/material'
-import { changeNumberOfPost } from '@utils/common/searchBarUtil'
+import { abbreviateNumber } from '@utils/common/searchBarUtil'
 
 const TopicSidebar = () => {
   const {
@@ -25,7 +25,7 @@ const TopicSidebar = () => {
         {topicList.length > 0 &&
           topicList.map((topic) => (
             <S.TopicItem key={topic.id} onClick={() => onClickTopic(topic.id)}>
-              {topic.name}({changeNumberOfPost(topic.favoriteCount)})
+              {topic.name}({abbreviateNumber(topic.favoriteCount)})
             </S.TopicItem>
           ))}
       </S.TopicList>

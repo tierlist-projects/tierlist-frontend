@@ -1,5 +1,5 @@
 // 게시글 수를 K, M 등을 붙여 표시하기 위한 함수
-export function changeNumberOfPost(number: number) {
+export function abbreviateNumber(number: number) {
   const size = [
     { value: 1, symbol: '' },
     { value: 1e3, symbol: 'K' },
