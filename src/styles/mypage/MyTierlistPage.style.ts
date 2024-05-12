@@ -14,6 +14,14 @@ export const Title = styled.p`
 `
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+`
+
+export const List = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;

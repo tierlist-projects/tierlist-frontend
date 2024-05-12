@@ -1,3 +1,4 @@
+import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const HeaderContainer = styled.div`
@@ -45,4 +46,40 @@ export const RightArea = styled.div`
 export const LoginMyPageButton = styled.button`
   font-size: 20px;
   font-weight: bold;
+`
+
+export const Menu = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  .nickname {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`
+
+export const DropMenu = styled.ul`
+  position: absolute;
+  top: 130%;
+  left: 0;
+  width: 130px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+
+  li {
+    :hover {
+      background-color: ${colors.primary[50]};
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    button {
+      width: 100%;
+      font-size: 16px;
+      padding: 10px;
+    }
+  }
 `

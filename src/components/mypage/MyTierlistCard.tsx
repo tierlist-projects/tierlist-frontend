@@ -1,27 +1,40 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef } from 'react'
+import useDetectClose from '@hooks/common/useDetectClose'
 import * as S from '@styles/mypage/MyTierlistCard.style'
 import { images } from '@constants/images'
 import { useNavigate } from 'react-router-dom'
+import { PostType } from 'types/tierlist/tierlist.type'
+import { abbreviateNumber } from '@utils/common/searchBarUtil'
 import Toggle from './Toggle'
 
-const MyTierlistCard = () => {
+type Props = {
+  post: PostType
+}
+
+const MyTierlistCard = ({ post }: Props) => {
   const navigate = useNavigate()
-  const [isActive, setIsActive] = useState(false)
-  const onClickMenu = useCallback(() => {
-    setIsActive((prev) => !prev)
-  }, [])
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [isDrop, setIsDrop] = useDetectClose(menuRef, false)
 
   const onClickRemove = () => {
     console.log('삭제')
   }
 
+  const onClickMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      setIsDrop((prev) => !prev)
+    },
+    [isDrop],
+  )
+
   return (
-    <S.Container>
-      <S.Menu>
+    <S.Container onClick={() => navigate(`/tierlist-detail/${post.id}`)}>
+      <S.Menu ref={menuRef}>
         <button type="button" onClick={onClickMenu}>
           <img src={images.common.dotMenu} alt="메뉴" />
         </button>
-        {isActive && (
+        {isDrop && (
           <S.DropMenu>
             <li>
               <button
@@ -44,21 +57,23 @@ const MyTierlistCard = () => {
         alt="티어리스트 썸네일"
       />
       <S.PostInfoContainer>
-        <S.Title>제목입니다.</S.Title>
-        <S.CategoryAndAuthor>카테고리 / 토픽</S.CategoryAndAuthor>
+        <S.Title>{post.title}</S.Title>
+        <S.CategoryAndAuthor>
+          {post.topic.category.name} / {post.topic.name}
+        </S.CategoryAndAuthor>
         <S.BottomBlock>
           <S.NumericalInfo>
             <S.NumberWithIcon>
               <img src={images.common.postCard.heart} alt="좋아요" />
-              <p>24</p>
+              <p>{abbreviateNumber(post.likesCount)}</p>
             </S.NumberWithIcon>
             <S.NumberWithIcon>
               <img src={images.common.postCard.comment} alt="댓글" />
-              <p>24</p>
+              <p>{abbreviateNumber(post.commentsCount)}</p>
             </S.NumberWithIcon>
             <S.NumberWithIcon>
               <img src={images.common.postCard.views} alt="조회수" />
-              <p>24</p>
+              <p>{abbreviateNumber(post.viewCount)}</p>
             </S.NumberWithIcon>
           </S.NumericalInfo>
           <Toggle />

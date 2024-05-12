@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import * as S from '@styles/common/Header.style'
 import { useNavigate } from 'react-router-dom'
 import useModal from '@hooks/useModal'
@@ -8,6 +8,7 @@ import { userState } from '@atom/userAtom'
 import { authHttp } from '@utils/http'
 import { UserInformationType } from 'types/user/user.type'
 import { getCookie } from '@utils/cookie'
+import useDetectClose from '@hooks/common/useDetectClose'
 import SearchBar from './SearchBar'
 
 const Header = () => {
@@ -16,6 +17,9 @@ const Header = () => {
   const { Modal, isOpen, openModal, closeModal } = useModal()
   const [user, setUser] = useRecoilState(userState)
   const refresh = getCookie('refresh-token')
+
+  const dropRef = useRef<HTMLDivElement>(null)
+  const [isActive, setIsActive] = useDetectClose(dropRef, false)
 
   useEffect(() => {
     if (refresh) {
@@ -39,7 +43,30 @@ const Header = () => {
               로그인
             </S.LoginMyPageButton>
           ) : (
-            <div>{user.nickname}</div>
+            <S.Menu ref={dropRef}>
+              <button
+                type="button"
+                className="nickname"
+                onClick={() => setIsActive((prev) => !prev)}
+              >
+                {user.nickname}
+              </button>
+              {isActive && (
+                <S.DropMenu>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigate(`/my-tierlist`)
+                        setIsActive(false)
+                      }}
+                    >
+                      내 티어리스트
+                    </button>
+                  </li>
+                </S.DropMenu>
+              )}
+            </S.Menu>
           )}
         </S.RightArea>
       </S.ContentBlock>

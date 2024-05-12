@@ -50,9 +50,13 @@ export type PutTierlistType = {
   franks: PutItemType[]
 }
 
-export type SimpleTopicType = {
+export type PostTopicType = {
   id: number
   name: string
+  category: {
+    id: number
+    name: string
+  }
 }
 
 export type WriterType = {
@@ -64,7 +68,7 @@ export type WriterType = {
 export type PostType = {
   id: number
   title: string
-  topic: SimpleTopicType
+  topic: PostTopicType
   createAt: string
   likesCount: number
   commentsCount: number

@@ -4,9 +4,13 @@ import * as S from '@styles/mypage/Toggle.style'
 const Toggle = () => {
   const [isPublic, setIsPublic] = useState(false)
 
-  const onClickToggle = useCallback(() => {
-    setIsPublic(!isPublic)
-  }, [isPublic])
+  const onClickToggle: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      setIsPublic(!isPublic)
+    },
+    [isPublic],
+  )
 
   return (
     <S.Container isPublic={isPublic} onClick={onClickToggle}>
