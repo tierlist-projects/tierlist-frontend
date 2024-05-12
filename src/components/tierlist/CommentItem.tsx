@@ -1,10 +1,15 @@
 import React, { useCallback, useState } from 'react'
 import * as S from '@styles/tierlist/CommentItem.style'
-import { images } from '@constants/images'
 import { colors } from '@constants/colors'
-import ReplyItem from './ReplyItem'
+import { CommentType } from 'types/tierlist/comment.type'
+import { formatDate } from '@utils/tierlist/tierlistUtil'
+// import ReplyItem from './ReplyItem'
 
-const CommentItem = () => {
+type Props = {
+  comment: CommentType
+}
+
+const CommentItem = ({ comment }: Props) => {
   const [isActiveReply, setIsActiveReply] = useState(false)
   const onClickReplyButton = useCallback(() => {
     setIsActiveReply((prev) => !prev)
@@ -13,12 +18,15 @@ const CommentItem = () => {
   return (
     <S.Container>
       <S.OriginComment>
-        <S.ProfileImg src={images.cat} alt="프로필사진" />
+        <S.ProfileImg
+          src={`https://image.tierlist.site/tierlist/${comment.writer.profileImage}`}
+          alt="프로필사진"
+        />
         <S.Content>
           <S.TopBlock>
             <S.CommentInfo>
-              <p className="nickname">닉네임</p>
-              <p className="date">2024.03.31 10:22</p>
+              <p className="nickname">{comment.writer.nickname}</p>
+              <p className="date">{formatDate(comment.createdAt)}</p>
             </S.CommentInfo>
             <S.ButtonBlock>
               <S.Button
@@ -28,15 +36,19 @@ const CommentItem = () => {
               >
                 답글
               </S.Button>
-              <S.Button type="button" color={colors.primary[400]}>
-                수정
-              </S.Button>
-              <S.Button type="button" color={colors.error}>
-                삭제
-              </S.Button>
+              {comment.myComment && (
+                <>
+                  <S.Button type="button" color={colors.primary[400]}>
+                    수정
+                  </S.Button>
+                  <S.Button type="button" color={colors.error}>
+                    삭제
+                  </S.Button>
+                </>
+              )}
             </S.ButtonBlock>
           </S.TopBlock>
-          <S.CommentText>댓글내용입니다.</S.CommentText>
+          <S.CommentText>{comment.content}</S.CommentText>
         </S.Content>
       </S.OriginComment>
       {isActiveReply && (
@@ -45,9 +57,9 @@ const CommentItem = () => {
           <button type="button">등록</button>
         </S.Input>
       )}
-      <S.ReplyList>
+      {/* <S.ReplyList>
         <ReplyItem />
-      </S.ReplyList>
+      </S.ReplyList> */}
     </S.Container>
   )
 }
