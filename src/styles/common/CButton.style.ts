@@ -23,4 +23,6 @@ export const Button = styled.button<ButtonProps>`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : colors.primary[300]};
   border-radius: ${(props) => (props.radius ? props.radius : 20)}px;
+  width: fit-content;
+  height: fit-content;
 `

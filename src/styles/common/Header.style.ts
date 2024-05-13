@@ -20,7 +20,7 @@ export const ContentBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 500px;
+  width: 80%;
 
   @media screen and (max-width: 800px) {
     gap: 200px;
@@ -36,7 +36,7 @@ export const RightArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 80px;
+  width: 50%;
 
   @media screen and (max-width: 800px) {
     gap: 20px;
@@ -44,7 +44,7 @@ export const RightArea = styled.div`
 `
 
 export const LoginMyPageButton = styled.button`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
 `
 
@@ -55,7 +55,7 @@ export const Menu = styled.div`
   align-items: end;
 
   .nickname {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
   }
 `
@@ -63,11 +63,11 @@ export const Menu = styled.div`
 export const DropMenu = styled.ul`
   position: absolute;
   top: 130%;
-  left: 0;
+  right: 0;
   width: 130px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 
   li {
     :hover {

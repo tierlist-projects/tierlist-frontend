@@ -7,3 +7,15 @@ export function getMyTierlist(pagination: PaginationType) {
     `me/tierlist?kpage=${pagination.page}&size=${pagination.size}&query=${pagination.query}&filter=${pagination.filter}`,
   )
 }
+
+export function changeProfileImage(profileImageName: string) {
+  return authHttp.patch(`member/me/profile-image`, { profileImageName })
+}
+
+export function changeNickname(nickname: string) {
+  return authHttp.patch(`member/me/nickname`, { nickname })
+}
+
+export function changePassword(password: string, newPassword: string) {
+  return authHttp.patch(`member/me/password`, { password, newPassword })
+}

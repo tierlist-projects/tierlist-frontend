@@ -64,6 +64,28 @@ const Header = () => {
                       내 티어리스트
                     </button>
                   </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigate(`/mypage`)
+                        setIsActive(false)
+                      }}
+                    >
+                      마이페이지
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigate(`/my-tierlist`)
+                        setIsActive(false)
+                      }}
+                    >
+                      로그아웃
+                    </button>
+                  </li>
                 </S.DropMenu>
               )}
             </S.Menu>

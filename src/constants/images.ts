@@ -16,6 +16,7 @@ export const images = {
     plusBlack: '/images/common/ic-plus-black.png',
     close: '/images/common/ic-close.png',
     dotMenu: '/images/common/ic-menu-dot.png',
+    defaultProfile: '/images/common/default-profile.png',
   },
   cat: '/images/cat.jpg',
   tierlist: {
