@@ -39,7 +39,7 @@ const MyTierlistCard = ({ post }: Props) => {
             <li>
               <button
                 type="button"
-                onClick={() => navigate('/tierlist-modify/1')}
+                onClick={() => navigate(`/tierlist-modify/${post.id}`)}
               >
                 수정
               </button>
@@ -76,7 +76,7 @@ const MyTierlistCard = ({ post }: Props) => {
               <p>{abbreviateNumber(post.viewCount)}</p>
             </S.NumberWithIcon> */}
           </S.NumericalInfo>
-          <Toggle />
+          <Toggle tierlistId={post.id} initialState={false} />
         </S.BottomBlock>
       </S.PostInfoContainer>
     </S.Container>

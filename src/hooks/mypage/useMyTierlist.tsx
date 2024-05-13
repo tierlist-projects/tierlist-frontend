@@ -28,8 +28,6 @@ const useMyTierlist = () => {
       filter: 'RECENT',
     })
       .then((res) => {
-        console.log(res)
-
         setMyList(res.content)
         setTotalPages(res.totalPages)
       })

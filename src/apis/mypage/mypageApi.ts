@@ -19,3 +19,7 @@ export function changeNickname(nickname: string) {
 export function changePassword(password: string, newPassword: string) {
   return authHttp.patch(`member/me/password`, { password, newPassword })
 }
+
+export function togglePublic(tierlistId: number) {
+  return authHttp.patch(`tierlist/${tierlistId}/publish/toggle`)
+}
