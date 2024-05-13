@@ -49,8 +49,6 @@ const useListPage = () => {
       `${type}/${id}/tierlist?page=${page - 1}&size=${filter === 'HOT' ? 4 : 16}&query=${filter === 'HOT' ? '' : keyword}&filter=${filter}`,
     )
       .then((res) => {
-        console.log(res)
-
         if (filter === 'RECENT') {
           setRecentPostList(res.content)
           setTotalPages(res.totalPages)

@@ -54,9 +54,9 @@ export const BottomBlock = styled.div`
 `
 
 export const NumericalInfo = styled.div`
-  width: 120px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 `
 
 export const NumberWithIcon = styled.div`
