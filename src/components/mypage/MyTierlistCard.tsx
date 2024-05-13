@@ -71,10 +71,10 @@ const MyTierlistCard = ({ post }: Props) => {
               <img src={images.common.postCard.comment} alt="댓글" />
               <p>{abbreviateNumber(post.commentsCount)}</p>
             </S.NumberWithIcon>
-            <S.NumberWithIcon>
+            {/* <S.NumberWithIcon>
               <img src={images.common.postCard.views} alt="조회수" />
               <p>{abbreviateNumber(post.viewCount)}</p>
-            </S.NumberWithIcon>
+            </S.NumberWithIcon> */}
           </S.NumericalInfo>
           <Toggle />
         </S.BottomBlock>

@@ -44,10 +44,10 @@ const TierlistDetail = () => {
         <S.PostInfo>
           <div className="left">
             <p>{postDetail.writer.nickname}</p>
-            <div className="view">
+            {/* <div className="view">
               <img src={images.common.postCard.views} alt="조회수" />
               <p>{abbreviateNumber(1000)}</p>
-            </div>
+            </div> */}
           </div>
           <p>{formatDate(postDetail.createdAt)}</p>
         </S.PostInfo>
