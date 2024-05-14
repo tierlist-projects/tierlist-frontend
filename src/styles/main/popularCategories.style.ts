@@ -5,7 +5,7 @@ export const PopularList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 200px;
+  width: 250px;
   max-height: 400px;
   overflow: auto;
   ::-webkit-scrollbar {
