@@ -1,4 +1,9 @@
-import { getTierlist, toggleFavorite } from '@apis/tierlist/listPageApi'
+import {
+  getSingleCategory,
+  getSingleTopic,
+  getTierlist,
+  toggleFavorite,
+} from '@apis/tierlist/listPageApi'
 import { userState } from '@atom/userAtom'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -10,6 +15,9 @@ import { PostType } from 'types/tierlist/tierlist.type'
 const useListPage = () => {
   const searchRef = useRef<HTMLInputElement>(null)
   const { categoryId, topicId } = useParams()
+  const [categoryName, setCategoryName] = useState('')
+  const [topicName, setTopicName] = useState('')
+  const [isFavorite, setIsFavorite] = useState(false)
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [keyword, setKeyword] = useState('')
@@ -32,15 +40,23 @@ const useListPage = () => {
     }
 
     if (topicId) {
-      toggleFavorite('topic', Number(topicId)).catch((err) => {
-        const data = err.response.data as TierlistErrorType
-        alert(data.message)
-      })
+      toggleFavorite('topic', Number(topicId))
+        .then(() => {
+          setIsFavorite((prev) => !prev)
+        })
+        .catch((err) => {
+          const data = err.response.data as TierlistErrorType
+          alert(data.message)
+        })
     } else {
-      toggleFavorite('category', Number(categoryId)).catch((err) => {
-        const data = err.response.data as TierlistErrorType
-        alert(data.message)
-      })
+      toggleFavorite('category', Number(categoryId))
+        .then(() => {
+          setIsFavorite((prev) => !prev)
+        })
+        .catch((err) => {
+          const data = err.response.data as TierlistErrorType
+          alert(data.message)
+        })
     }
   }, [user, topicId, categoryId])
 
@@ -77,7 +93,40 @@ const useListPage = () => {
     } else {
       getPost('category', Number(categoryId), 'HOT')
     }
-  }, [])
+  }, [categoryId, topicId])
+
+  // 카테고리, 토픽 이름
+  useEffect(() => {
+    let auth = true
+    if (!user) {
+      auth = false
+    }
+
+    if (topicId) {
+      getSingleTopic(Number(topicId), auth)
+        .then((res) => {
+          setCategoryName(res.category.name)
+          setTopicName(res.name)
+          setIsFavorite(res.isFavorite)
+        })
+        .catch((err) => {
+          const data = err.response.data as TierlistErrorType
+
+          alert(data.message)
+        })
+    } else {
+      getSingleCategory(Number(categoryId), auth)
+        .then((res) => {
+          setCategoryName(res.name)
+          setIsFavorite(res.isFavorite)
+        })
+        .catch((err) => {
+          const data = err.response.data as TierlistErrorType
+
+          alert(data.message)
+        })
+    }
+  }, [topicId, categoryId])
 
   const onClickSearch = useCallback(() => {
     if (searchRef.current) {
@@ -91,6 +140,9 @@ const useListPage = () => {
     totalPages,
     recentPostList,
     hotPostList,
+    categoryName,
+    topicName,
+    isFavorite,
     onChangePage,
     onClickSearch,
     onClickFavorite,

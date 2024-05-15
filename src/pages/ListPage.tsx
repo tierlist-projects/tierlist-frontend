@@ -12,6 +12,9 @@ const ListPage = () => {
     totalPages,
     recentPostList,
     hotPostList,
+    categoryName,
+    topicName,
+    isFavorite,
     onChangePage,
     onClickSearch,
     onClickFavorite,
@@ -21,12 +24,19 @@ const ListPage = () => {
       <S.TitleBlock>
         <button type="button" onClick={onClickFavorite}>
           <img
-            src={images.common.favorites.emptyStar}
+            src={
+              isFavorite
+                ? images.common.favorites.fullStar
+                : images.common.favorites.emptyStar
+            }
             alt="즐겨찾기"
             className="favorite"
           />
         </button>
-        <S.Title>카테고리 이름</S.Title>
+        <S.Title>
+          {categoryName}
+          {topicName && ` / ${topicName}`}
+        </S.Title>
       </S.TitleBlock>
       <S.TierlistBlock>
         <S.Title>인기 티어리스트</S.Title>
