@@ -50,3 +50,10 @@ export const Star = styled.img`
   height: 20px;
   margin-right: 8px;
 `
+
+export const EmptyText = styled.div`
+  width: 100%;
+  padding-top: 10px;
+  color: ${colors.grey.primary};
+  font-size: 16px;
+`
