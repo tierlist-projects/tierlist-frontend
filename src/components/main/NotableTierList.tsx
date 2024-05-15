@@ -10,20 +10,23 @@ const NotableTierList = () => {
   return (
     <ContentsContainer>
       <ContentsTitle>주목할만한 티어리스트</ContentsTitle>
-      <S.TierList>
-        {notableList.length > 0 ? (
-          notableList.map((post) => <PostCard post={post} key={post.id} />)
-        ) : (
-          <div>없음</div>
-        )}
-      </S.TierList>
-      {notableList.length > 0 && (
-        <Pagination
-          count={totalPages}
-          page={page}
-          size="small"
-          onChange={onChangePage}
-        />
+
+      {notableList.length > 0 ? (
+        <>
+          <S.TierList>
+            {notableList.map((post) => (
+              <PostCard post={post} key={post.id} />
+            ))}
+          </S.TierList>
+          <Pagination
+            count={totalPages}
+            page={page}
+            size="small"
+            onChange={onChangePage}
+          />
+        </>
+      ) : (
+        <S.EmptyText>주목할만한 티어리스트가 없습니다.</S.EmptyText>
       )}
     </ContentsContainer>
   )

@@ -1,3 +1,4 @@
+import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const TierList = styled.div`
@@ -12,4 +13,10 @@ export const TierList = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`
+
+export const EmptyText = styled.div`
+  width: 600px;
+  font-size: 16px;
+  color: ${colors.grey.primary};
 `
