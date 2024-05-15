@@ -28,6 +28,11 @@ const MyTierlistCard = ({ post }: Props) => {
     [isDrop],
   )
 
+  const onClickModify = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    navigate(`/tierlist-modify/${post.id}`)
+  }, [])
+
   return (
     <S.Container onClick={() => navigate(`/tierlist-detail/${post.id}`)}>
       <S.Menu ref={menuRef}>
@@ -37,10 +42,7 @@ const MyTierlistCard = ({ post }: Props) => {
         {isDrop && (
           <S.DropMenu>
             <li>
-              <button
-                type="button"
-                onClick={() => navigate(`/tierlist-modify/${post.id}`)}
-              >
+              <button type="button" onClick={onClickModify}>
                 수정
               </button>
             </li>

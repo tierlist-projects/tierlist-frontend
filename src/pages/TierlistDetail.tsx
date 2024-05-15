@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import * as S from '@styles/tierlist/TierlistDetail.style'
 import { images } from '@constants/images'
 import TierlistView from '@components/tierlist/TierlistView'
@@ -6,11 +6,13 @@ import Comment from '@components/tierlist/Comment'
 import useTierlistDetail from '@hooks/tierlist/useTierlistDetail'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
 import { formatDate } from '@utils/tierlist/tierlistUtil'
+import useDetectClose from '@hooks/common/useDetectClose'
 
 const TierlistDetail = () => {
-  const { postDetail, onClickLikeButton } = useTierlistDetail()
+  const { navigate, postDetail, onClickLikeButton } = useTierlistDetail()
 
-  const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [isOpenMenu, setIsOpenMenu] = useDetectClose(menuRef, false)
   const onClickMenu = useCallback(() => {
     setIsOpenMenu((prev) => !prev)
   }, [])
@@ -20,14 +22,19 @@ const TierlistDetail = () => {
   return (
     <S.Container>
       {postDetail.myTierlist && (
-        <S.Menu>
+        <S.Menu ref={menuRef}>
           <button type="button" onClick={onClickMenu}>
             <img src={images.common.dotMenu} alt="메뉴" />
           </button>
           {isOpenMenu && (
             <S.DropMenu>
               <li>
-                <button type="button">수정</button>
+                <button
+                  type="button"
+                  onClick={() => navigate(`/tierlist-modify/${postDetail.id}`)}
+                >
+                  수정
+                </button>
               </li>
               <li>
                 <button type="button">삭제</button>
