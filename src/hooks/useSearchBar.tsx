@@ -36,6 +36,7 @@ const useSearchBar = () => {
   }, [isDrop, setIsDrop, dropRef])
 
   useEffect(() => {
+    if (!isDrop) return
     getCategory({
       page: categoryPages - 1,
       size: 3,
@@ -45,7 +46,7 @@ const useSearchBar = () => {
       setCategoryList(res.content)
       setTotalPages(res.totalPages)
     })
-  }, [debouncedKeyword])
+  }, [debouncedKeyword, isDrop])
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value)
