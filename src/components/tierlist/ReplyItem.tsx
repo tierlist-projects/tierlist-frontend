@@ -1,30 +1,33 @@
-import React from 'react'
 import * as S from '@styles/tierlist/CommentItem.style'
 import { images } from '@constants/images'
-import { colors } from '@constants/colors'
+import { CommentType } from 'types/tierlist/comment.type'
+import { formatDate } from '@utils/tierlist/tierlistUtil'
 
-const ReplyItem = () => {
+type Props = {
+  comment: CommentType
+}
+
+const ReplyItem = ({ comment }: Props) => {
   return (
-    <S.OriginComment>
-      <S.ProfileImg src={images.cat} alt="프로필사진" />
+    <S.ReplyList>
+      <S.ProfileImg
+        src={
+          comment.writer.profileImage
+            ? `https://image.tierlist.site/tierlist/${comment.writer.profileImage}`
+            : images.common.defaultProfile
+        }
+        alt="프로필사진"
+      />
       <S.Content>
         <S.TopBlock>
           <S.CommentInfo>
-            <p className="nickname">닉네임</p>
-            <p className="date">2024.03.31 10:22</p>
+            <p className="nickname">{comment.writer.nickname}</p>
+            <p className="date">{formatDate(comment.createdAt)}</p>
           </S.CommentInfo>
-          <S.ButtonBlock>
-            <S.Button type="button" color={colors.primary[400]}>
-              수정
-            </S.Button>
-            <S.Button type="button" color={colors.error}>
-              삭제
-            </S.Button>
-          </S.ButtonBlock>
         </S.TopBlock>
-        <S.CommentText>댓글내용입니다.</S.CommentText>
+        <S.CommentText>{comment.content}</S.CommentText>
       </S.Content>
-    </S.OriginComment>
+    </S.ReplyList>
   )
 }
 

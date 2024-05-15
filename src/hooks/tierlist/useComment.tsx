@@ -1,5 +1,11 @@
 import { getComments, postComment } from '@apis/tierlist/tierlistDetailApi'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useParams } from 'react-router-dom'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { CommentType } from 'types/tierlist/comment.type'
@@ -16,8 +22,10 @@ const useComment = () => {
   const getCommentList = useCallback(() => {
     if (!tierlistId) return
 
-    getComments(tierlistId, page, 10)
+    getComments(tierlistId, page - 1, 10)
       .then((res) => {
+        console.log(res)
+
         setCommentList(res.content)
         setTotalPages(res.totalPages)
         setTotalElements(res.totalElements)
@@ -35,24 +43,27 @@ const useComment = () => {
     [],
   )
 
-  const onClickRegist = useCallback(() => {
-    if (!commentRef.current || commentRef.current.value === '') {
-      alert('댓글을 입력해주세요.')
-      return null
-    }
+  const onClickRegist = useCallback(
+    (elem: RefObject<HTMLTextAreaElement>, parentId: number | null) => {
+      if (!elem.current || elem.current.value === '') {
+        alert('댓글을 입력해주세요.')
+        return null
+      }
 
-    postComment(tierlistId, {
-      content: commentRef.current.value,
-      parentCommentId: null,
-    })
-      .then(() => {
-        getCommentList()
+      postComment(tierlistId, {
+        content: elem.current.value,
+        parentCommentId: parentId,
       })
-      .catch((err) => {
-        const data = err.response.data as TierlistErrorType
-        alert(data.message)
-      })
-  }, [])
+        .then(() => {
+          getCommentList()
+        })
+        .catch((err) => {
+          const data = err.response.data as TierlistErrorType
+          alert(data.message)
+        })
+    },
+    [],
+  )
 
   useEffect(() => {
     getCommentList()

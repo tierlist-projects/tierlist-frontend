@@ -113,6 +113,6 @@ export const Input = styled.div`
 export const ReplyList = styled.div`
   width: 700px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  min-height: 140px;
+  border-bottom: 1px solid ${colors.primary[200]};
 `
