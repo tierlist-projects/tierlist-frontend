@@ -18,12 +18,6 @@ export type TierlistErrorType = {
   message: string
 }
 
-export type ResponseCreateCategory = {
-  headers: {
-    'category-id': number
-  }
-}
-
 export type ResponseCategoryType = {
   content: CategoryType[]
   numberOfElements: number
@@ -40,4 +34,16 @@ export type ResponseTopicType = {
   pageSize: number
   totalElements: number
   totalPages: number
+}
+
+export type ResponseCreateCategoryType = {
+  categoryId: number
+}
+
+export type ResponseCreateTopicType = {
+  topicId: number
+}
+
+export type ResponseCreateTierlistType = {
+  tierlistId: number
 }

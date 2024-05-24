@@ -116,9 +116,8 @@ const useCreateModal = () => {
   const onClickCreateCategory = useCallback(() => {
     if (category === debouncedCategory) {
       createCategory(category)
-        .then(() => {
-          // const selected = res.headers['category-id']
-          // setSelectedCategoryId(selected)
+        .then((res) => {
+          setSelectedCategoryId(res.categoryId)
           setIsDropCategories(false)
         })
         .catch((err) => {
@@ -138,8 +137,8 @@ const useCreateModal = () => {
   const onClickCreateTopic = useCallback(() => {
     if (topic === debouncedTopic) {
       createTopic(topic, selectedCategoryId)
-        .then(() => {
-          // setSelectedTopicId(res.headers['topic-id'])
+        .then((res) => {
+          setSelectedTopicId(res.topicId)
           setIsDropTopics(false)
         })
         .catch((err) => {
@@ -189,8 +188,8 @@ const useCreateModal = () => {
 
       if (titleRef.current?.value) {
         createTierlist(selectedTopicId, titleRef.current.value)
-          .then(() => {
-            navigate('tierlist-modify/1')
+          .then((res) => {
+            navigate(`tierlist-modify/${res.tierlistId}`)
             closeModal()
           })
           .catch((err) => {
@@ -217,6 +216,8 @@ const useCreateModal = () => {
     topicList,
     isDropCategories,
     isDropTopics,
+    categoryPages,
+    topicPages,
     categoryTotalPages,
     topicTotalPages,
     titleRef,
@@ -224,7 +225,6 @@ const useCreateModal = () => {
     onChangeTopic,
     onClickCategory,
     onClickTopic,
-    setIsDropCategories,
     onClickCreateCategory,
     onClickCategoryPage,
     onClickTopicPage,

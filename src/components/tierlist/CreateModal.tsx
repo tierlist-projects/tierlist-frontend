@@ -17,6 +17,8 @@ const CreateModal = ({ closeModal }: Props) => {
     topicList,
     isDropCategories,
     isDropTopics,
+    categoryPages,
+    topicPages,
     categoryTotalPages,
     topicTotalPages,
     titleRef,
@@ -64,6 +66,7 @@ const CreateModal = ({ closeModal }: Props) => {
                 {categoryTotalPages > 0 && (
                   <Pagination
                     count={categoryTotalPages}
+                    page={categoryPages}
                     size="small"
                     onChange={onClickCategoryPage}
                   />
@@ -100,6 +103,7 @@ const CreateModal = ({ closeModal }: Props) => {
                 {topicTotalPages > 0 && (
                   <Pagination
                     count={topicTotalPages}
+                    page={topicPages}
                     size="small"
                     onChange={onClickTopicPage}
                   />
