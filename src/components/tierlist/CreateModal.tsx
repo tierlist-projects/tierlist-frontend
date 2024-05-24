@@ -17,11 +17,11 @@ const CreateModal = ({ closeModal }: Props) => {
     topicList,
     isDropCategories,
     isDropTopics,
-    categoryPages,
-    topicPages,
     categoryTotalPages,
     topicTotalPages,
     titleRef,
+    categoryRef,
+    topicRef,
     onChangeCategory,
     onChangeTopic,
     onClickCategory,
@@ -31,6 +31,8 @@ const CreateModal = ({ closeModal }: Props) => {
     onClickTopicPage,
     onClickTierlistCreate,
     onClickCreateTopic,
+    setIsDropCategories,
+    setIsDropTopics,
   } = useCreateModal()
 
   return (
@@ -39,12 +41,13 @@ const CreateModal = ({ closeModal }: Props) => {
       <S.Content>
         <S.InputBlock>
           <p>카테고리</p>
-          <S.InputWithDrop>
+          <S.InputWithDrop ref={categoryRef}>
             <S.Input
               type="text"
               placeholder="카테고리를 입력하세요."
               value={category}
               onChange={onChangeCategory}
+              onFocus={() => setIsDropCategories(true)}
             />
             {isDropCategories && (
               <S.Drop>
@@ -66,7 +69,6 @@ const CreateModal = ({ closeModal }: Props) => {
                 {categoryTotalPages > 0 && (
                   <Pagination
                     count={categoryTotalPages}
-                    page={categoryPages}
                     size="small"
                     onChange={onClickCategoryPage}
                   />
@@ -77,12 +79,13 @@ const CreateModal = ({ closeModal }: Props) => {
         </S.InputBlock>
         <S.InputBlock>
           <p>토픽</p>
-          <S.InputWithDrop>
+          <S.InputWithDrop ref={topicRef}>
             <S.Input
               type="text"
               placeholder="토픽을 입력하세요."
               value={topic}
               onChange={onChangeTopic}
+              onFocus={() => setIsDropTopics(true)}
             />
             {isDropTopics && (
               <S.Drop>
@@ -103,7 +106,6 @@ const CreateModal = ({ closeModal }: Props) => {
                 {topicTotalPages > 0 && (
                   <Pagination
                     count={topicTotalPages}
-                    page={topicPages}
                     size="small"
                     onChange={onClickTopicPage}
                   />

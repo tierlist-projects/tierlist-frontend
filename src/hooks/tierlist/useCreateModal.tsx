@@ -5,6 +5,7 @@ import {
   getCategory,
   getTopic,
 } from '@apis/tierlist/createModalApi'
+import useDetectCloseInModal from '@hooks/common/useDetectCloseInModal'
 import useDebounce from '@hooks/useDebounce'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -19,19 +20,22 @@ const useCreateModal = () => {
 
   const [category, setCategory] = useState('')
   const [categoryList, setCategoryList] = useState<CategoryType[]>([])
-  const [isDropCategories, setIsDropCategories] = useState(false)
+  const categoryRef = useRef<HTMLDivElement>(null)
+  const [isDropCategories, setIsDropCategories] = useDetectCloseInModal(
+    categoryRef,
+    false,
+  )
   const [categoryPages, setCategoryPages] = useState(0)
   const [categoryTotalPages, setCategoryTotalPages] = useState(0)
   const [selectedCategoryId, setSelectedCategoryId] = useState(0)
-  const [isSelectCategory, setIsSelectCategory] = useState(false)
 
   const [topic, setTopic] = useState('')
   const [topicList, setTopicList] = useState<TopicType[]>([])
-  const [isDropTopics, setIsDropTopics] = useState(false)
+  const topicRef = useRef<HTMLDivElement>(null)
+  const [isDropTopics, setIsDropTopics] = useDetectCloseInModal(topicRef, false)
   const [topicPages, setTopicPages] = useState(0)
   const [topicTotalPages, setTopicTotalPages] = useState(0)
   const [selectedTopicId, setSelectedTopicId] = useState(0)
-  const [isSelectTopic, setIsSelectTopic] = useState(false)
 
   const debouncedCategory = useDebounce(category, 500)
   const debouncedTopic = useDebounce(topic, 500)
@@ -39,15 +43,7 @@ const useCreateModal = () => {
   const titleRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (!debouncedCategory) {
-      setIsDropCategories(false)
-      setCategoryList([])
-      return
-    }
-    if (isSelectCategory) {
-      setIsSelectCategory(false)
-      return
-    }
+    if (!isDropCategories) return
 
     getCategory({
       page: categoryPages,
@@ -56,7 +52,6 @@ const useCreateModal = () => {
       filter: 'NONE',
     })
       .then((res) => {
-        setIsDropCategories(true)
         setCategoryList(res.content)
         setCategoryTotalPages(res.totalPages)
       })
@@ -71,16 +66,7 @@ const useCreateModal = () => {
   }, [debouncedCategory, categoryPages, isDropCategories])
 
   useEffect(() => {
-    if (!debouncedTopic) {
-      setIsDropTopics(false)
-      setTopicList([])
-      return
-    }
-
-    if (isSelectTopic) {
-      setIsSelectTopic(false)
-      return
-    }
+    if (!isDropTopics) return
 
     getTopic(selectedCategoryId, {
       page: topicPages,
@@ -89,7 +75,6 @@ const useCreateModal = () => {
       filter: 'NONE',
     })
       .then((res) => {
-        setIsDropTopics(true)
         setTopicList(res.content)
         setTopicTotalPages(res.totalPages)
       })
@@ -156,13 +141,11 @@ const useCreateModal = () => {
     setCategory(name)
     setTopic('')
     setIsDropCategories(false)
-    setIsSelectCategory(true)
   }, [])
 
   const onClickTopic = useCallback((topicId: number, name: string) => {
     setSelectedTopicId(topicId)
     setTopic(name)
-    setIsSelectTopic(true)
     setIsDropTopics(false)
   }, [])
 
@@ -221,6 +204,8 @@ const useCreateModal = () => {
     categoryTotalPages,
     topicTotalPages,
     titleRef,
+    categoryRef,
+    topicRef,
     onChangeCategory,
     onChangeTopic,
     onClickCategory,
@@ -230,6 +215,8 @@ const useCreateModal = () => {
     onClickTopicPage,
     onClickTierlistCreate,
     onClickCreateTopic,
+    setIsDropCategories,
+    setIsDropTopics,
   }
 }
 
