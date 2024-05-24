@@ -3,6 +3,7 @@ import { PaginationType } from 'types/common/pagination.type'
 import {
   PostDetailType,
   PutTierlistType,
+  ResponseCreateItemType,
   ResponseSearchItems,
 } from 'types/tierlist/tierlist.type'
 
@@ -20,7 +21,7 @@ export function getItemsInCategory(
 }
 
 export function createItem(categoryId: number, name: string) {
-  return authHttp.post(`item`, { categoryId, name })
+  return authHttp.post<ResponseCreateItemType>(`item`, { categoryId, name })
 }
 
 export function modifyTierlist(

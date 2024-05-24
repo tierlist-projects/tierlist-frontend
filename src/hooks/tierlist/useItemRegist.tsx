@@ -9,7 +9,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { ItemType, SearchedItemType } from 'types/tierlist/tierlist.type'
 
-const useItemRegist = () => {
+type Props = {
+  categoryId: number
+}
+
+const useItemRegist = ({ categoryId }: Props) => {
   // 아이템
   const [itemName, setItemName] = useState('')
   const [isDropItems, setIsDropItems] = useState(false)
@@ -47,8 +51,9 @@ const useItemRegist = () => {
   }, [])
 
   const onClickCreateItem = useCallback(() => {
-    createItem(1, debouncedItemName)
-      .then(() => {
+    createItem(categoryId, debouncedItemName)
+      .then((res) => {
+        setSelectedItem(res.itemId)
         setIsDropItems(false)
       })
       .catch((err) => {

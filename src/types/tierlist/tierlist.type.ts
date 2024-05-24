@@ -108,3 +108,7 @@ export type ResponseSearchItems = {
   numberOfElements: number
   content: ItemType[]
 }
+
+export type ResponseCreateItemType = {
+  itemId: number
+}

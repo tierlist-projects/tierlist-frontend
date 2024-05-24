@@ -11,9 +11,15 @@ type Props = {
   closeModal: () => void
   ranks: RankType
   setRanks: React.Dispatch<React.SetStateAction<RankType>>
+  categoryId: number
 }
 
-const ItemRegistModal = ({ closeModal, ranks, setRanks }: Props) => {
+const ItemRegistModal = ({
+  closeModal,
+  ranks,
+  setRanks,
+  categoryId,
+}: Props) => {
   const {
     itemName,
     isDropItems,
@@ -26,7 +32,7 @@ const ItemRegistModal = ({ closeModal, ranks, setRanks }: Props) => {
     setIsDropItems,
     setItemImage,
     registItem,
-  } = useItemRegist()
+  } = useItemRegist({ categoryId })
 
   return (
     <S.Container>

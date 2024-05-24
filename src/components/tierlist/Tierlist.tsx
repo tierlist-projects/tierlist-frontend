@@ -20,9 +20,10 @@ import Item from './Item'
 type Props = {
   ranks: RankType
   setRanks: React.Dispatch<React.SetStateAction<RankType>>
+  categoryId: number
 }
 
-const Tierlist = ({ ranks, setRanks }: Props) => {
+const Tierlist = ({ ranks, setRanks, categoryId }: Props) => {
   const onDragEnd = (result: DropResult) => {
     console.log(result)
 
@@ -115,6 +116,7 @@ const Tierlist = ({ ranks, setRanks }: Props) => {
               closeModal={closeModal}
               ranks={ranks}
               setRanks={setRanks}
+              categoryId={categoryId}
             />
           </Modal>
         </S.ButtonBlock>
