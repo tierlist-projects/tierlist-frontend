@@ -55,7 +55,11 @@ const MyTierlistCard = ({ post }: Props) => {
         )}
       </S.Menu>
       <img
-        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20120222_75%2Fjhn_01_1329865502587f7ug7_JPEG%2Fd1.jpg&type=a340"
+        src={
+          post.thumbnailImage
+            ? `https://image.tierlist.site/tierlist/${post.thumbnailImage}`
+            : images.common.noImage
+        }
         alt="티어리스트 썸네일"
       />
       <S.PostInfoContainer>
@@ -78,7 +82,7 @@ const MyTierlistCard = ({ post }: Props) => {
               <p>{abbreviateNumber(post.viewCount)}</p>
             </S.NumberWithIcon> */}
           </S.NumericalInfo>
-          <Toggle tierlistId={post.id} initialState={false} />
+          <Toggle tierlistId={post.id} initialState={post.isPublished} />
         </S.BottomBlock>
       </S.PostInfoContainer>
     </S.Container>

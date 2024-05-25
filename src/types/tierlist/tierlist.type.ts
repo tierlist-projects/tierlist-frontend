@@ -74,6 +74,8 @@ export type PostType = {
   commentsCount: number
   viewCount: number
   writer: WriterType
+  thumbnailImage: string
+  isPublished: boolean
 }
 
 export type ResponsePostType = {
