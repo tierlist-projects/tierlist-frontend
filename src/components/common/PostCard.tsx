@@ -52,4 +52,4 @@ const PostCard = ({ post }: Props) => {
   )
 }
 
-export default PostCard
+export default React.memo(PostCard)
