@@ -4,8 +4,9 @@ import {
   createItem,
   getItemsInCategory,
 } from '@apis/tierlist/tierlistModifyPageApi'
+import useDetectCloseInModal from '@hooks/common/useDetectCloseInModal'
 import useDebounce from '@hooks/useDebounce'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { ItemType, SearchedItemType } from 'types/tierlist/tierlist.type'
 
@@ -16,7 +17,8 @@ type Props = {
 const useItemRegist = ({ categoryId }: Props) => {
   // 아이템
   const [itemName, setItemName] = useState('')
-  const [isDropItems, setIsDropItems] = useState(false)
+  const listRef = useRef<HTMLDivElement>(null)
+  const [isDropItems, setIsDropItems] = useDetectCloseInModal(listRef, false)
   const [searchedItemList, setSearchedItemList] = useState<SearchedItemType[]>(
     [],
   )
@@ -128,6 +130,7 @@ const useItemRegist = ({ categoryId }: Props) => {
     isDropItems,
     searchedItemList,
     itemTotalPages,
+    listRef,
     onChangeItemName,
     onClickItemPage,
     onClickItem,

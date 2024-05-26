@@ -25,6 +25,7 @@ const ItemRegistModal = ({
     isDropItems,
     searchedItemList,
     itemTotalPages,
+    listRef,
     onChangeItemName,
     onClickItemPage,
     onClickItem,
@@ -40,7 +41,7 @@ const ItemRegistModal = ({
       <S.Content>
         <S.InputBlock>
           <p>이름</p>
-          <S.InputWithDrop>
+          <S.InputWithDrop ref={listRef}>
             <S.Input
               type="text"
               placeholder="토픽을 입력하세요."
