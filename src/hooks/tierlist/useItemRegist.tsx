@@ -60,7 +60,11 @@ const useItemRegist = ({ categoryId }: Props) => {
         const data = err.response.data as TierlistErrorType
 
         if (data) {
-          alert(data.message)
+          if (data.errorCode === 'IR-004') {
+            alert(
+              '아이템 이름은 2자 이상 10자 이하, 영어, 숫자 한글 또는 스페이스로 구성되어야 하고,특수문자, 자음, 모음을 포함할 수 없습니다.',
+            )
+          } else alert(data.message)
         }
       })
   }, [debouncedItemName])
