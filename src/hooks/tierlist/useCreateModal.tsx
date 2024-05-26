@@ -86,7 +86,7 @@ const useCreateModal = () => {
           alert(data.message)
         }
       })
-  }, [debouncedTopic, topicPages, selectedCategoryId])
+  }, [debouncedTopic, topicPages, selectedCategoryId, isDropTopics])
 
   const onChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value)
