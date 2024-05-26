@@ -1,4 +1,4 @@
-import { authHttp } from '@utils/http'
+import { authHttp, http } from '@utils/http'
 import { PaginationType } from 'types/common/pagination.type'
 import {
   ResponseCategoryType,
@@ -13,7 +13,7 @@ export async function createCategory(name: string) {
 }
 
 export async function getCategory(pagination: PaginationType) {
-  return authHttp.get<ResponseCategoryType>(
+  return http.get<ResponseCategoryType>(
     `category?page=${pagination.page}&size=${pagination.size}&query=${pagination.query}&filter=${pagination.filter}`,
   )
 }
