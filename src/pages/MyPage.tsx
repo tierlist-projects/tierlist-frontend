@@ -11,6 +11,7 @@ const MyPage = () => {
     nicknameRef,
     pwRef,
     pwCheckRef,
+    curPwRef,
     pwErrorText,
     setIsEdit,
     onChangeProfile,
@@ -71,12 +72,17 @@ const MyPage = () => {
           <S.InputBlock>
             <input
               type="password"
-              placeholder="비밀번호를 입력해주세요."
+              placeholder="현재 비밀번호를 입력해주세요."
+              ref={curPwRef}
+            />
+            <input
+              type="password"
+              placeholder="변경할 비밀번호를 입력해주세요."
               ref={pwRef}
             />
             <input
               type="password"
-              placeholder="비밀번호를 재입력해주세요."
+              placeholder="변경할 비밀번호를 재입력해주세요."
               ref={pwCheckRef}
             />
             <S.ErrorText>{pwErrorText}</S.ErrorText>

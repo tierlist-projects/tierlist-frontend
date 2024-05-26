@@ -11,14 +11,21 @@ type Props = {
   closeModal: () => void
   ranks: RankType
   setRanks: React.Dispatch<React.SetStateAction<RankType>>
+  categoryId: number
 }
 
-const ItemRegistModal = ({ closeModal, ranks, setRanks }: Props) => {
+const ItemRegistModal = ({
+  closeModal,
+  ranks,
+  setRanks,
+  categoryId,
+}: Props) => {
   const {
     itemName,
     isDropItems,
     searchedItemList,
     itemTotalPages,
+    listRef,
     onChangeItemName,
     onClickItemPage,
     onClickItem,
@@ -26,7 +33,7 @@ const ItemRegistModal = ({ closeModal, ranks, setRanks }: Props) => {
     setIsDropItems,
     setItemImage,
     registItem,
-  } = useItemRegist()
+  } = useItemRegist({ categoryId })
 
   return (
     <S.Container>
@@ -34,7 +41,7 @@ const ItemRegistModal = ({ closeModal, ranks, setRanks }: Props) => {
       <S.Content>
         <S.InputBlock>
           <p>이름</p>
-          <S.InputWithDrop>
+          <S.InputWithDrop ref={listRef}>
             <S.Input
               type="text"
               placeholder="토픽을 입력하세요."

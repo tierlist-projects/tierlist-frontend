@@ -17,6 +17,7 @@ const useMyPage = () => {
   const nicknameRef = useRef<HTMLInputElement>(null)
   const pwRef = useRef<HTMLInputElement>(null)
   const pwCheckRef = useRef<HTMLInputElement>(null)
+  const curPwRef = useRef<HTMLInputElement>(null)
 
   const onChangeNickname = useCallback(() => {
     if (!nicknameRef.current) return
@@ -67,11 +68,15 @@ const useMyPage = () => {
   }
 
   const onClickPwChange = useCallback(() => {
-    if (!pwRef.current || !pwCheckRef.current) return
+    if (!pwRef.current || !pwCheckRef.current || !curPwRef.current) return
 
     const lenRegex = /^.{8,20}$/
     const pwRegex = /^[!_@$%^&+=A-Za-z0-9]{8,20}$/
-    if (pwRef.current!.value === '' || pwCheckRef.current.value === '') {
+    if (
+      pwRef.current!.value === '' ||
+      pwCheckRef.current.value === '' ||
+      curPwRef.current.value === ''
+    ) {
       setPwErrorText('* 비밀번호를 입력해주세요.')
     } else if (!lenRegex.test(pwRef.current!.value)) {
       setPwErrorText('* 비밀번호는 8 ~ 20자여야 합니다.')
@@ -83,7 +88,7 @@ const useMyPage = () => {
       setPwErrorText('* 비밀번호가 일치하지 않습니다.')
     } else {
       setPwErrorText('')
-      changePassword(pwRef.current.value, pwCheckRef.current.value)
+      changePassword(curPwRef.current.value, pwRef.current.value)
         .then(() => {
           alert('비밀번호를 변경하였습니다. 재로그인해주세요.')
           removeCookie('refresh-token')
@@ -102,6 +107,7 @@ const useMyPage = () => {
     nicknameRef,
     pwRef,
     pwCheckRef,
+    curPwRef,
     pwErrorText,
     setIsEdit,
     onChangeProfile,

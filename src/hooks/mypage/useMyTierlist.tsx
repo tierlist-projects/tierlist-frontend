@@ -36,7 +36,7 @@ const useMyTierlist = () => {
 
         alert(data.message)
       })
-  }, [user])
+  }, [user, page])
 
   return { myList, totalPages, page, onClickPage }
 }

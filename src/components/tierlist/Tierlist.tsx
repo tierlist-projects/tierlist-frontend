@@ -3,6 +3,7 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable react/jsx-props-no-spreading */
 import * as S from '@styles/tierlist/Tierlist.style'
+import { useCallback, useState } from 'react'
 import {
   DragDropContext,
   Draggable,
@@ -20,9 +21,10 @@ import Item from './Item'
 type Props = {
   ranks: RankType
   setRanks: React.Dispatch<React.SetStateAction<RankType>>
+  categoryId: number
 }
 
-const Tierlist = ({ ranks, setRanks }: Props) => {
+const Tierlist = ({ ranks, setRanks, categoryId }: Props) => {
   const onDragEnd = (result: DropResult) => {
     console.log(result)
 
@@ -40,6 +42,16 @@ const Tierlist = ({ ranks, setRanks }: Props) => {
     curRanks[dropRank].splice(dropItemIndex, 0, removedItem[0])
     setRanks(curRanks)
   }
+
+  const [removeMode, setRemoveMode] = useState(false)
+  const onClickRemove = useCallback(
+    (index: number) => {
+      const curRanks = { ...ranks }
+      curRanks.noneRanks.splice(index, 1)
+      setRanks(curRanks)
+    },
+    [ranks],
+  )
 
   const { Modal, isOpen, openModal, closeModal } = useModal()
 
@@ -103,18 +115,20 @@ const Tierlist = ({ ranks, setRanks }: Props) => {
             onClick={openModal}
           />
           <CButton
-            text="아이템 삭제"
-            backgroundColor={colors.error}
+            text={removeMode ? '아이템 이동' : '아이템 삭제'}
+            backgroundColor={removeMode ? colors.grey.primary : colors.error}
             medium
             hPadding={8}
             vPadding={12}
             radius={5}
+            onClick={() => setRemoveMode((prev) => !prev)}
           />
           <Modal isOpen={isOpen} closeModal={closeModal}>
             <ItemRegistModal
               closeModal={closeModal}
               ranks={ranks}
               setRanks={setRanks}
+              categoryId={categoryId}
             />
           </Modal>
         </S.ButtonBlock>
@@ -129,6 +143,7 @@ const Tierlist = ({ ranks, setRanks }: Props) => {
                   draggableId={item.rank + index}
                   key={item.rank + index}
                   index={index}
+                  isDragDisabled={removeMode}
                 >
                   {(dragProvided) => (
                     <div
@@ -139,6 +154,9 @@ const Tierlist = ({ ranks, setRanks }: Props) => {
                       <Item
                         itemRankImage={item.itemRankImage}
                         name={item.name}
+                        removeMode={removeMode}
+                        onClickRemove={onClickRemove}
+                        index={index}
                       />
                     </div>
                   )}

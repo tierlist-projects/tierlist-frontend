@@ -13,6 +13,7 @@ import {
 } from 'types/tierlist/tierlist.type'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@atom/userAtom'
+import { uploadImage } from '@apis/common/imageApi'
 
 const useModify = () => {
   const navigate = useNavigate()
@@ -34,8 +35,29 @@ const useModify = () => {
   const contentRef = useRef<HTMLTextAreaElement>(null)
   const titleRef = useRef<HTMLInputElement>(null)
 
-  const savePost = useCallback(() => {
+  const savePost = useCallback(async () => {
     if (!titleRef.current || !contentRef.current) return null
+
+    let thumbnailImage = ''
+
+    // 썸네일이 있다면 이미지 등록
+    if (thumbnail) {
+      const formData = new FormData()
+      formData.append('image', thumbnail)
+
+      try {
+        await uploadImage(formData).then((res) => {
+          ;[thumbnailImage] = res.imageNames
+        })
+      } catch (err) {
+        console.log(err)
+
+        alert('썸네일 등록에 실패하였습니다.')
+
+        return
+      }
+    }
+
     const newRanks = {
       noneRanks: [] as PutItemType[],
       sranks: [] as PutItemType[],
@@ -61,6 +83,7 @@ const useModify = () => {
       title: titleRef.current.value,
       content: contentRef.current.value,
       noneRanks: newRanks.noneRanks,
+      thumbnailImage,
       sranks: newRanks.sranks,
       aranks: newRanks.aranks,
       branks: newRanks.branks,
@@ -78,7 +101,7 @@ const useModify = () => {
 
         alert(data.message)
       })
-  }, [ranks, thumbnail, contentRef.current, titleRef.current])
+  }, [ranks, thumbnail, contentRef.current, titleRef.current, tierlistId])
 
   useEffect(() => {
     if (!user) return

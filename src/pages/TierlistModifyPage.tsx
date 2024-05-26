@@ -17,11 +17,13 @@ const TierlistModifyPage = () => {
     savePost,
   } = useModify()
 
+  if (!postDetail) return null
+
   return (
     <S.Container>
       <S.TitleBlock>
         <p className="category">
-          {postDetail?.topic.category.name} / {postDetail?.topic.name}
+          {postDetail.topic.category.name} / {postDetail.topic.name}
         </p>
         <input
           type="text"
@@ -30,12 +32,16 @@ const TierlistModifyPage = () => {
           ref={titleRef}
         />
       </S.TitleBlock>
-      <Tierlist ranks={ranks} setRanks={setRanks} />
+      <Tierlist
+        ranks={ranks}
+        setRanks={setRanks}
+        categoryId={postDetail.topic.category.id}
+      />
       <S.ContentBlock>
         <S.SubTitle>글</S.SubTitle>
         <textarea
           placeholder="내용을 입력하세요."
-          defaultValue={postDetail?.content || ''}
+          defaultValue={postDetail.content || ''}
           ref={contentRef}
         />
       </S.ContentBlock>

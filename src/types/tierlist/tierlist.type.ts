@@ -74,6 +74,8 @@ export type PostType = {
   commentsCount: number
   viewCount: number
   writer: WriterType
+  thumbnailImage: string
+  isPublished: boolean
 }
 
 export type ResponsePostType = {
@@ -107,4 +109,8 @@ export type ResponseSearchItems = {
   totalElements: number
   numberOfElements: number
   content: ItemType[]
+}
+
+export type ResponseCreateItemType = {
+  itemId: number
 }

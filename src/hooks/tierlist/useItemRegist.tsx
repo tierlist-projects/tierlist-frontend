@@ -4,15 +4,21 @@ import {
   createItem,
   getItemsInCategory,
 } from '@apis/tierlist/tierlistModifyPageApi'
+import useDetectCloseInModal from '@hooks/common/useDetectCloseInModal'
 import useDebounce from '@hooks/useDebounce'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { ItemType, SearchedItemType } from 'types/tierlist/tierlist.type'
 
-const useItemRegist = () => {
+type Props = {
+  categoryId: number
+}
+
+const useItemRegist = ({ categoryId }: Props) => {
   // 아이템
   const [itemName, setItemName] = useState('')
-  const [isDropItems, setIsDropItems] = useState(false)
+  const listRef = useRef<HTMLDivElement>(null)
+  const [isDropItems, setIsDropItems] = useDetectCloseInModal(listRef, false)
   const [searchedItemList, setSearchedItemList] = useState<SearchedItemType[]>(
     [],
   )
@@ -47,15 +53,20 @@ const useItemRegist = () => {
   }, [])
 
   const onClickCreateItem = useCallback(() => {
-    createItem(1, debouncedItemName)
-      .then(() => {
+    createItem(categoryId, debouncedItemName)
+      .then((res) => {
+        setSelectedItem(res.itemId)
         setIsDropItems(false)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
 
         if (data) {
-          alert(data.message)
+          if (data.errorCode === 'IR-004') {
+            alert(
+              '아이템 이름은 2자 이상 10자 이하, 영어, 숫자 한글 또는 스페이스로 구성되어야 하고,특수문자, 자음, 모음을 포함할 수 없습니다.',
+            )
+          } else alert(data.message)
         }
       })
   }, [debouncedItemName])
@@ -119,6 +130,7 @@ const useItemRegist = () => {
     isDropItems,
     searchedItemList,
     itemTotalPages,
+    listRef,
     onChangeItemName,
     onClickItemPage,
     onClickItem,
