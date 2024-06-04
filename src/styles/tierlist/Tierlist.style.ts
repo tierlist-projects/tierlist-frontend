@@ -50,9 +50,8 @@ export const RankCotent = styled.td`
   align-items: center;
   border: 1px solid black;
 
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  place-items: start;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 `
 
@@ -116,10 +115,10 @@ export const WaitingItemBlock = styled.div`
   border: 1px solid ${colors.primary[200]};
   border-radius: 15px;
 
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  place-items: center;
-  gap: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   overflow: auto;
 
   ::-webkit-scrollbar {

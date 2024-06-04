@@ -78,7 +78,7 @@ const useItemRegist = ({ categoryId }: Props) => {
       return
     }
 
-    getItemsInCategory(1, {
+    getItemsInCategory(categoryId, {
       page: itemPage,
       size: 5,
       query: debouncedItemName,
