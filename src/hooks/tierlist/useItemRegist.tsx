@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-useless-return */
 import { uploadImage } from '@apis/common/imageApi'
 import {
@@ -8,7 +9,11 @@ import useDetectCloseInModal from '@hooks/common/useDetectCloseInModal'
 import useDebounce from '@hooks/useDebounce'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TierlistErrorType } from 'types/tierlist/category.type'
-import { ItemType, SearchedItemType } from 'types/tierlist/tierlist.type'
+import {
+  ItemType,
+  RankType,
+  SearchedItemType,
+} from 'types/tierlist/tierlist.type'
 
 type Props = {
   categoryId: number
@@ -94,36 +99,57 @@ const useItemRegist = ({ categoryId }: Props) => {
       })
   }, [isDropItems, debouncedItemName])
 
-  const registItem = useCallback(async () => {
-    if (!debouncedItemName) return null
+  const checkItemDuplicate = useCallback((id: number, ranks: RankType) => {
+    const rankList = Object.entries(ranks)
 
-    let itemRankImage = ''
+    for (let i = 0; i < rankList.length; i += 1) {
+      const rank = rankList[i][1]
 
-    if (itemImage) {
-      const formData = new FormData()
-      formData.append('image', itemImage)
+      for (let j = 0; j < rank.length; j += 1) {
+        if (rank[j].id === id) return false
+      }
+    }
 
-      await uploadImage(formData)
-        .then((res) => {
+    return true
+  }, [])
+
+  const registItem = useCallback(
+    async (ranks: RankType) => {
+      if (!debouncedItemName) return null
+      // 아이템 중복 확인
+      if (!checkItemDuplicate(selectedItem, ranks)) {
+        alert('중복된 아이템입니다.')
+        return
+      }
+
+      let itemRankImage = ''
+
+      if (itemImage) {
+        const formData = new FormData()
+        formData.append('image', itemImage)
+
+        try {
+          const res = await uploadImage(formData)
           ;[itemRankImage] = res.imageNames
-        })
-        .catch((err) => {
+        } catch (err: any) {
           const data = err.response.data as TierlistErrorType
           console.log(err)
 
           alert(data.message)
           return null
-        })
-    }
+        }
+      }
 
-    return {
-      id: selectedItem,
-      name: itemName,
-      itemRankImage,
-      orderIdx: 0,
-      rank: 'NONE',
-    } as ItemType
-  }, [itemImage, debouncedItemName])
+      return {
+        id: selectedItem,
+        name: itemName,
+        itemRankImage,
+        orderIdx: 0,
+        rank: 'NONE',
+      } as ItemType
+    },
+    [itemImage, debouncedItemName, selectedItem],
+  )
 
   return {
     itemName,
