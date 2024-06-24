@@ -1,12 +1,14 @@
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
+  width: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
   position: relative;
+  cursor: pointer;
 `
 
 export const Item = styled.img`
