@@ -17,6 +17,23 @@ export const Title = styled.p`
 
 export const FavoritesList = styled.ul`
   width: 100%;
+  max-height: 150px;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background-color: ${colors.primary[200]}; /* 스크롤바의 색상 */
+
+    border-radius: 15px;
+    /* border: 12px solid white; */
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 15px;
+    background: rgba(202, 222, 252, 0.4);
+  }
 `
 
 export const Favorite = styled.li`
