@@ -39,7 +39,7 @@ const useSearchBar = () => {
     if (!isDrop) return
     getCategory({
       page: categoryPages - 1,
-      size: 3,
+      size: 7,
       query: debouncedKeyword,
       filter: 'NONE',
     }).then((res) => {
