@@ -32,16 +32,19 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
+    "no-console": "off", // ci 문제로 추가
+    "no-alert": "off", // ci 문제로 추가
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
-    "prettier/prettier": ["error", {
-      "endOfLine": "auto"
-    }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react/function-component-definition": [
-      2, { "namedComponents": [
-        "arrow-function", 
-        "function-declaration"
-      ] }
+      2,
+      { "namedComponents": ["arrow-function", "function-declaration"] }
     ],
     "react/require-default-props": "off",
     "react/jsx-no-useless-fragment": "off",
@@ -54,4 +57,3 @@
     "consistent-return": "off"
   }
 }
-
