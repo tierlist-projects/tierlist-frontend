@@ -11,11 +11,11 @@ const SignUpPage = () => {
     pwRef,
     pwCheckRef,
     nicknameRef,
-    emailErrorText,
-    pwErrorText,
-    certErrorText,
-    pwCheckErrorText,
-    nicknameErrorText,
+    emailNoticeText,
+    pwNoticeText,
+    certNoticeText,
+    pwCheckNoticeText,
+    nicknameNoticeText,
     onClickCancel,
     onClickSignup,
     onClickSendCert,
@@ -29,7 +29,7 @@ const SignUpPage = () => {
       <S.InputBlock>
         <S.TextBlock>
           <p className="title">이메일</p>
-          <p className="notice">{emailErrorText}</p>
+          <p className="email-notice-text">{emailNoticeText}</p>
         </S.TextBlock>
         <S.InputWithButton>
           <input type="email" placeholder="이메일 입력" ref={emailRef} />
@@ -41,7 +41,7 @@ const SignUpPage = () => {
       <S.InputBlock>
         <S.TextBlock>
           <p className="title">이메일 인증</p>
-          <p className="notice">{certErrorText}</p>
+          <p className="email-cert-notice-text">{certNoticeText}</p>
         </S.TextBlock>
         <S.InputWithButton>
           <input type="text" placeholder="인증번호 입력" ref={certRef} />
@@ -53,7 +53,7 @@ const SignUpPage = () => {
       <S.InputBlock>
         <S.TextBlock>
           <p className="title">비밀번호</p>
-          <p className="notice">{pwErrorText}</p>
+          <p className="password-notice-text">{pwNoticeText}</p>
         </S.TextBlock>
         <S.Input
           type="password"
@@ -64,7 +64,9 @@ const SignUpPage = () => {
       <S.InputBlock>
         <S.TextBlock>
           <p className="title">비밀번호 확인</p>
-          <p className="notice">{pwCheckErrorText}</p>
+          <p className="password-check-notice-text error">
+            {pwCheckNoticeText}
+          </p>
         </S.TextBlock>
         <S.InputWithButton>
           <input
@@ -80,7 +82,7 @@ const SignUpPage = () => {
       <S.InputBlock>
         <S.TextBlock>
           <p className="title">닉네임</p>
-          <p className="notice">{nicknameErrorText}</p>
+          <p className="nickname-notice-text">{nicknameNoticeText}</p>
         </S.TextBlock>
         <S.InputWithButton>
           <input

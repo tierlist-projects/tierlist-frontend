@@ -1,6 +1,6 @@
 /* eslint-disable no-else-return */
 import { http } from '@utils/http'
-import { useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ResponseErrorSignup } from 'types/signup/signup.type'
 
@@ -12,11 +12,11 @@ const useSignup = () => {
   const pwCheckRef = useRef<HTMLInputElement>(null)
   const nicknameRef = useRef<HTMLInputElement>(null)
 
-  const [emailErrorText, setEmailErrorText] = useState('')
-  const [certErrorText, setCertErrorText] = useState('')
-  const [pwErrorText, setPwErrorText] = useState('')
-  const [pwCheckErrorText, setPwCheckErrorText] = useState('')
-  const [nicknameErrorText, setNicknameErrorText] = useState('')
+  const [emailNoticeText, setEmailNoticeText] = useState('')
+  const [certNoticeText, setCertNoticeText] = useState('')
+  const [pwNoticeText, setPwNoticeText] = useState('')
+  const [pwCheckNoticeText, setPwCheckNoticeText] = useState('')
+  const [nicknameNoticeText, setNicknameNoticeText] = useState('')
 
   const [certEmail, setCertEmail] = useState('')
   const [certPw, setCertPw] = useState('')
@@ -25,6 +25,26 @@ const useSignup = () => {
   const [isCert, setIsCert] = useState(false)
   const [isPwCheck, setIsPwCheck] = useState(false)
   const [isNicknameCheck, setIsNicknameCheck] = useState(false)
+
+  const EMAIL_NOTICE_TEXT = 'email-notice-text'
+  const EMAIL_CERT_NOTICE_TEXT = 'email-cert-notice-text'
+  const PASSWOAD_NOTICE_TEXT = 'password-notice-text'
+  const PASSWOAD_CHECK_NOTICE_TEXT = 'password-check-notice-text'
+  const NICKNAME_NOTICE_TEXT = 'nickname-notice-text'
+
+  const setCorrectColor = useCallback((text: string) => {
+    const element = document.querySelector(`.${text}`)
+    if (!element) return
+    element.classList.remove('error')
+    element.classList.add('correct')
+  }, [])
+
+  const setErrorColor = useCallback((text: string) => {
+    const element = document.querySelector(`.${text}`)
+    if (!element) return
+    element.classList.remove('correct')
+    element.classList.add('error')
+  }, [])
 
   const onClickSignup = () => {
     if (
@@ -35,82 +55,94 @@ const useSignup = () => {
       nicknameRef.current
     ) {
       if (emailRef.current.value === '') {
-        setEmailErrorText('* 이메일을 입력해주세요.')
+        setErrorColor(EMAIL_NOTICE_TEXT)
+        setEmailNoticeText('* 이메일을 입력해주세요.')
         return
       } else {
-        setEmailErrorText('')
+        setEmailNoticeText('')
       }
       if (certRef.current.value === '') {
-        setCertErrorText('* 이메일 인증을 해주세요.')
+        setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+        setCertNoticeText('* 이메일 인증을 해주세요.')
         return
       } else {
-        setCertErrorText('')
+        setCertNoticeText('')
       }
       if (pwRef.current.value === '') {
-        setPwErrorText('* 비밀번호를 입력해주세요.')
+        setErrorColor(PASSWOAD_NOTICE_TEXT)
+        setPwNoticeText('* 비밀번호를 입력해주세요.')
         return
       } else {
-        setPwErrorText('')
+        setPwNoticeText('')
       }
       if (pwCheckRef.current.value === '') {
-        setPwCheckErrorText('* 비밀번호 확인을 해주세요')
+        setErrorColor(PASSWOAD_CHECK_NOTICE_TEXT)
+        setPwCheckNoticeText('* 비밀번호 확인을 해주세요')
         return
       } else {
-        setPwCheckErrorText('')
+        setPwCheckNoticeText('')
       }
       if (nicknameRef.current.value === '') {
-        setNicknameErrorText('* 닉네임을 입력해주세요.')
+        setErrorColor(NICKNAME_NOTICE_TEXT)
+        setNicknameNoticeText('* 닉네임을 입력해주세요.')
         return
       } else {
-        setNicknameErrorText('')
+        setNicknameNoticeText('')
       }
       if (certEmail !== emailRef.current.value) {
-        setEmailErrorText('* 인증된 이메일이 아닙니다.')
+        setErrorColor(EMAIL_NOTICE_TEXT)
+        setEmailNoticeText('* 인증된 이메일이 아닙니다.')
         return
       } else {
-        setEmailErrorText('')
+        setEmailNoticeText('')
       }
       if (!isCert) {
-        setCertErrorText('* 이메일 인증을 해주세요.')
+        setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+        setCertNoticeText('* 이메일 인증을 해주세요.')
         return
       } else {
-        setCertErrorText('')
+        setCertNoticeText('')
       }
       if (
         emailRef.current!.value !== certEmail ||
         certRef.current!.value !== certCode
       ) {
-        setCertErrorText('* 이메일 인증을 해주세요.')
+        setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+        setCertNoticeText('* 이메일 인증을 해주세요.')
         setIsCert(false)
         return
       } else {
-        setCertErrorText('')
+        setCertNoticeText('')
       }
       if (!isPwCheck) {
-        setPwCheckErrorText('* 비밀번호 확인을 해주세요.')
+        setErrorColor(PASSWOAD_CHECK_NOTICE_TEXT)
+        setPwCheckNoticeText('* 비밀번호 확인을 해주세요.')
         return
       } else {
-        setPwCheckErrorText('')
+        setPwCheckNoticeText('')
       }
       if (pwRef.current!.value !== certPw) {
-        setPwCheckErrorText('* 비밀번호 확인을 해주세요.')
+        setErrorColor(PASSWOAD_CHECK_NOTICE_TEXT)
+        setPwCheckNoticeText('* 비밀번호 확인을 해주세요.')
         setIsPwCheck(false)
         return
       } else {
-        setPwCheckErrorText('')
+        setPwCheckNoticeText('')
       }
       if (!isNicknameCheck) {
-        setNicknameErrorText('* 닉네임 중복 확인을 해주세요.')
+        setErrorColor(NICKNAME_NOTICE_TEXT)
+        setNicknameNoticeText('* 닉네임 중복 확인을 해주세요.')
         return
       } else {
-        setNicknameErrorText('')
+        setNicknameNoticeText('')
       }
       if (nicknameRef.current!.value !== certNickname) {
-        setNicknameErrorText('* 닉네임 중복 확인을 해주세요.')
+        setErrorColor(NICKNAME_NOTICE_TEXT)
+        setNicknameNoticeText('* 닉네임 중복 확인을 해주세요.')
         setIsNicknameCheck(false)
         return
       } else {
-        setNicknameErrorText('')
+        setNicknameNoticeText('')
       }
 
       http
@@ -128,7 +160,8 @@ const useSignup = () => {
           const data = err.response.data as ResponseErrorSignup
 
           if (data.errorCode === 'IR-002') {
-            setCertErrorText('* 이메일 인증을 해주세요.')
+            setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+            setCertNoticeText('* 이메일 인증을 해주세요.')
             setIsCert(false)
             setCertEmail('')
             setCertCode('')
@@ -150,13 +183,15 @@ const useSignup = () => {
           email: emailRef.current.value,
         })
         .then(() => {
-          setCertErrorText('* 인증 번호가 전송되었습니다.')
+          setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+          setCertNoticeText('* 인증 번호가 전송되었습니다.')
         })
         .catch((err) => {
           const data = err.response.data as ResponseErrorSignup
 
           if (data.errorCode === 'IR-004') {
-            setEmailErrorText('* 올바르지 않은 이메일 형식입니다.')
+            setErrorColor(EMAIL_NOTICE_TEXT)
+            setEmailNoticeText('* 올바르지 않은 이메일 형식입니다.')
           }
         })
     }
@@ -165,9 +200,10 @@ const useSignup = () => {
   const onClickSendCert = () => {
     if (emailRef.current) {
       if (emailRef.current.value === '') {
-        setEmailErrorText('* 이메일을 입력해주세요.')
+        setErrorColor(EMAIL_NOTICE_TEXT)
+        setEmailNoticeText('* 이메일을 입력해주세요.')
       } else {
-        setEmailErrorText('')
+        setEmailNoticeText('')
 
         http
           .get(`member/email/unique?email=${emailRef.current.value}`)
@@ -178,9 +214,11 @@ const useSignup = () => {
             const data = err.response.data as ResponseErrorSignup
 
             if (data.errorCode === 'IR-004') {
-              setEmailErrorText('* 올바르지 않은 이메일 형식입니다.')
+              setErrorColor(EMAIL_NOTICE_TEXT)
+              setEmailNoticeText('* 올바르지 않은 이메일 형식입니다.')
             } else if (data.errorCode === 'D-004') {
-              setEmailErrorText('* 중복된 이메일입니다.')
+              setErrorColor(EMAIL_NOTICE_TEXT)
+              setEmailNoticeText('* 중복된 이메일입니다.')
             }
           })
       }
@@ -189,12 +227,14 @@ const useSignup = () => {
 
   const onClickCertCheck = () => {
     if (certRef.current!.value === '') {
-      setCertErrorText('* 인증번호를 입력해주세요.')
+      setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+      setCertNoticeText('* 인증번호를 입력해주세요.')
     } else if (emailRef.current!.value === '') {
-      setEmailErrorText('* 이메일을 입력해주세요.')
+      setErrorColor(EMAIL_NOTICE_TEXT)
+      setEmailNoticeText('* 이메일을 입력해주세요.')
     } else {
-      setCertErrorText('')
-      setEmailErrorText('')
+      setCertNoticeText('')
+      setEmailNoticeText('')
 
       http
         .post(`member/email/verification/confirm`, {
@@ -202,7 +242,8 @@ const useSignup = () => {
           code: certRef.current!.value,
         })
         .then(() => {
-          setCertErrorText('')
+          setCorrectColor(EMAIL_CERT_NOTICE_TEXT)
+          setCertNoticeText('* 인증되었습니다.')
           setCertEmail(emailRef.current!.value)
           setCertCode(certRef.current!.value)
           setIsCert(true)
@@ -210,9 +251,11 @@ const useSignup = () => {
         .catch((err) => {
           const data = err.response.data as ResponseErrorSignup
           if (err.response.status === 404) {
-            setCertErrorText('* 인증 번호가 일치하지 않습니다.')
+            setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+            setCertNoticeText('* 인증 번호가 일치하지 않습니다.')
           } else if (data.errorCode === 'IR-004') {
-            setCertErrorText('* 유효하지 않은 인증 번호입니다.')
+            setErrorColor(EMAIL_CERT_NOTICE_TEXT)
+            setCertNoticeText('* 유효하지 않은 인증 번호입니다.')
           }
         })
     }
@@ -222,25 +265,31 @@ const useSignup = () => {
     const lenRegex = /^.{8,20}$/
     const pwRegex = /^[!_@$%^&+=A-Za-z0-9]{8,20}$/
     if (pwRef.current!.value === '') {
-      setPwErrorText('* 비밀번호를 입력해주세요.')
+      setErrorColor(PASSWOAD_NOTICE_TEXT)
+      setPwNoticeText('* 비밀번호를 입력해주세요.')
     } else if (!lenRegex.test(pwRef.current!.value)) {
-      setPwErrorText('* 비밀번호는 8 ~ 20자여야 합니다.')
+      setErrorColor(PASSWOAD_NOTICE_TEXT)
+      setPwNoticeText('* 비밀번호는 8 ~ 20자여야 합니다.')
     } else if (!pwRegex.test(pwRef.current!.value)) {
-      setPwErrorText(
+      setErrorColor(PASSWOAD_NOTICE_TEXT)
+      setPwNoticeText(
         '* 영문 대문자, 소문자, 숫자, 특수문자 ! _ @ $ % ^ & + = 만 허용합니다',
       )
     } else if (pwCheckRef.current!.value === '') {
-      setPwErrorText('')
-      setPwCheckErrorText('* 비밀번호를 재입력해주세요.')
+      setPwNoticeText('')
+      setErrorColor(PASSWOAD_CHECK_NOTICE_TEXT)
+      setPwCheckNoticeText('* 비밀번호를 재입력해주세요.')
     } else {
-      setPwErrorText('')
+      setPwNoticeText('')
 
       if (pwRef.current!.value !== pwCheckRef.current!.value) {
-        setPwCheckErrorText('* 비밀번호가 일치하지 않습니다.')
+        setErrorColor(PASSWOAD_CHECK_NOTICE_TEXT)
+        setPwCheckNoticeText('* 비밀번호가 일치하지 않습니다.')
       } else {
         setIsPwCheck(true)
         setCertPw(pwRef.current!.value)
-        setPwCheckErrorText('')
+        setCorrectColor(PASSWOAD_CHECK_NOTICE_TEXT)
+        setPwCheckNoticeText('* 비밀번호가 일치합니다.')
       }
     }
   }
@@ -250,19 +299,24 @@ const useSignup = () => {
     const nicknameRegex = /^[a-zA-Z0-9가-힣]{2,10}$/
 
     if (nicknameRef.current!.value === '') {
-      setNicknameErrorText('* 닉네임을 입력해주세요.')
+      setErrorColor(NICKNAME_NOTICE_TEXT)
+      setNicknameNoticeText('* 닉네임을 입력해주세요.')
     } else if (!lenRegex.test(nicknameRef.current!.value)) {
-      setNicknameErrorText('* 닉네임은 2 ~ 10자여야 합니다.')
+      setErrorColor(NICKNAME_NOTICE_TEXT)
+      setNicknameNoticeText('* 닉네임은 2 ~ 10자여야 합니다.')
     } else if (!nicknameRegex.test(nicknameRef.current!.value)) {
-      setNicknameErrorText(
+      setErrorColor(NICKNAME_NOTICE_TEXT)
+      setNicknameNoticeText(
         '* 닉네임에 공백, 특수 문자, 자음, 모음을 포함할 수 없습니다.',
       )
     } else {
-      setNicknameErrorText('')
+      setNicknameNoticeText('')
 
       http
         .get(`member/nickname/unique?nickname=${nicknameRef.current!.value}`)
         .then(() => {
+          setCorrectColor(NICKNAME_NOTICE_TEXT)
+          setNicknameNoticeText('* 사용할 수 있는 닉네임입니다.')
           setCertNickname(nicknameRef.current!.value)
           setIsNicknameCheck(true)
         })
@@ -270,7 +324,8 @@ const useSignup = () => {
           const data = err.response.data as ResponseErrorSignup
 
           if (data.errorCode === 'D-003') {
-            setNicknameErrorText('* 중복된 닉네임입니다.')
+            setErrorColor(NICKNAME_NOTICE_TEXT)
+            setNicknameNoticeText('* 중복된 닉네임입니다.')
           }
         })
     }
@@ -282,11 +337,11 @@ const useSignup = () => {
     pwRef,
     pwCheckRef,
     nicknameRef,
-    emailErrorText,
-    pwErrorText,
-    certErrorText,
-    pwCheckErrorText,
-    nicknameErrorText,
+    emailNoticeText,
+    pwNoticeText,
+    certNoticeText,
+    pwCheckNoticeText,
+    nicknameNoticeText,
     onClickCancel,
     onClickSignup,
     onClickSendCert,

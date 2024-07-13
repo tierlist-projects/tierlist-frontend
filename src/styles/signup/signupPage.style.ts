@@ -30,9 +30,14 @@ export const TextBlock = styled.div`
     font-weight: bold;
   }
 
-  .notice {
+  .error {
     font-size: 12px;
     color: ${colors.error};
+  }
+
+  .correct {
+    font-size: 12px;
+    color: ${colors.correct};
   }
 `
 
