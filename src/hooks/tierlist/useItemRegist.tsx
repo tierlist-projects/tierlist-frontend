@@ -29,7 +29,6 @@ const useItemRegist = ({ categoryId }: Props) => {
   )
   const [itemTotalPages, setItemTotalPages] = useState(0)
   const [itemPage, setItemPage] = useState(0)
-  const [selectItem, setSelectItem] = useState(false)
   const [itemImage, setItemImage] = useState<File | null>(null)
   const [selectedItem, setSelectedItem] = useState(0)
 
@@ -52,7 +51,6 @@ const useItemRegist = ({ categoryId }: Props) => {
 
   const onClickItem = useCallback((name: string, id: number) => {
     setItemName(name)
-    setSelectItem(true)
     setIsDropItems(false)
     setSelectedItem(id)
   }, [])
@@ -78,10 +76,6 @@ const useItemRegist = ({ categoryId }: Props) => {
 
   useEffect(() => {
     if (!isDropItems) return
-    if (selectItem) {
-      setSelectItem(false)
-      return
-    }
 
     getItemsInCategory(categoryId, {
       page: itemPage,
