@@ -8,7 +8,7 @@ export const TierList = styled.div`
   gap: 20px;
   max-height: 400px;
   overflow: auto;
-  width: 600px;
+  width: 650px;
 
   ::-webkit-scrollbar {
     display: none;
