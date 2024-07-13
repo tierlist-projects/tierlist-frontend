@@ -60,7 +60,7 @@ const TierlistDetail = () => {
         </S.PostInfo>
       </S.TitleBlock>
       <TierlistView ranks={postDetail.ranks} />
-      <S.Cotent>{postDetail.content}</S.Cotent>
+      <S.Cotent className="allow-drag">{postDetail.content}</S.Cotent>
       <S.LikeButton onClick={onClickLikeButton}>
         <img
           src={

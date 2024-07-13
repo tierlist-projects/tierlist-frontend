@@ -25,7 +25,7 @@ const ReplyItem = ({ comment }: Props) => {
             <p className="date">{formatDate(comment.createdAt)}</p>
           </S.CommentInfo>
         </S.TopBlock>
-        <S.CommentText>{comment.content}</S.CommentText>
+        <S.CommentText className="allow-drag">{comment.content}</S.CommentText>
       </S.Content>
     </S.ReplyList>
   )

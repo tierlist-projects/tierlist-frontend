@@ -48,7 +48,9 @@ const CommentItem = ({ comment, onClickRegist }: Props) => {
               </S.Button>
             </S.ButtonBlock>
           </S.TopBlock>
-          <S.CommentText>{comment.content}</S.CommentText>
+          <S.CommentText className="allow-drag">
+            {comment.content}
+          </S.CommentText>
         </S.Content>
       </S.OriginComment>
       {isActiveReply && (

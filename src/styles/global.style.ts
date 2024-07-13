@@ -16,6 +16,17 @@ const GlobalStyle = css`
 
   body {
     overflow-x: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
+  }
+
+  .allow-drag {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-use-select: text;
+    user-select: text;
   }
 
   body #portal {
