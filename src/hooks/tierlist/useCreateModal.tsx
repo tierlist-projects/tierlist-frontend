@@ -167,12 +167,10 @@ const useCreateModal = () => {
 
   const onClickTierlistCreate = useCallback(
     (closeModal: () => void) => {
-      console.log(selectedCategoryId, selectedTopicId, titleRef.current?.value)
-
       if (titleRef.current?.value) {
         createTierlist(selectedTopicId, titleRef.current.value)
-          .then((res) => {
-            navigate(`tierlist-modify/${res.tierlistId}`)
+          .then(() => {
+            navigate(`my-tierlist`)
             closeModal()
           })
           .catch((err) => {
