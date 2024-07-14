@@ -3,11 +3,11 @@ import * as S from '@styles/common/Header.style'
 import { useNavigate } from 'react-router-dom'
 import useModal from '@hooks/useModal'
 import LoginModal from '@components/login/LoginModal'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { userState } from '@atom/userAtom'
 import { authHttp } from '@utils/http'
 import { UserInformationType } from 'types/user/user.type'
-import { getCookie } from '@utils/cookie'
+import { getCookie, removeCookie } from '@utils/cookie'
 import useDetectClose from '@hooks/common/useDetectClose'
 import SearchBar from './SearchBar'
 
@@ -16,6 +16,7 @@ const Header = () => {
 
   const { Modal, isOpen, openModal, closeModal } = useModal()
   const [user, setUser] = useRecoilState(userState)
+  const resetUser = useResetRecoilState(userState)
   const refresh = getCookie('refresh-token')
 
   const dropRef = useRef<HTMLDivElement>(null)
@@ -79,7 +80,9 @@ const Header = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        navigate(`/my-tierlist`)
+                        removeCookie('refresh-token')
+                        resetUser()
+                        navigate(`/`)
                         setIsActive(false)
                       }}
                     >
