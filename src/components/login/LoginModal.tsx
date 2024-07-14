@@ -10,7 +10,7 @@ type Props = {
 
 const LoginModal = ({ closeModal }: Props) => {
   const navigate = useNavigate()
-  const { emailRef, pwRef, errorMsg, onClickLogin } = useLogin(closeModal)
+  const { emailRef, pwRef, errorMsg, onLogin } = useLogin(closeModal)
   return (
     <S.Container>
       <S.CloseButton onClick={closeModal}>
@@ -22,7 +22,7 @@ const LoginModal = ({ closeModal }: Props) => {
         <S.Input type="password" placeholder="비밀번호" ref={pwRef} />
         <S.errorText>{errorMsg}</S.errorText>
       </S.InputBlock>
-      <S.LoginButton onClick={onClickLogin}>로그인</S.LoginButton>
+      <S.LoginButton onClick={onLogin}>로그인</S.LoginButton>
       <S.SignUpButton
         onClick={() => {
           navigate('/sign-up')

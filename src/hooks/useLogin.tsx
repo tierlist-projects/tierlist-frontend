@@ -1,7 +1,7 @@
 import { accessTokenState, userState } from '@atom/userAtom'
 import { setCookie } from '@utils/cookie'
 import { authHttp, http } from '@utils/http'
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { ResponseTokenType } from 'types/auth.type'
 import { useSetRecoilState } from 'recoil'
 import { UserInformationType } from 'types/user/user.type'
@@ -13,7 +13,7 @@ const useLogin = (closeModal: () => void) => {
   const setAccessToken = useSetRecoilState(accessTokenState)
   const setUser = useSetRecoilState(userState)
 
-  const onClickLogin = async () => {
+  const onLogin = async () => {
     if (emailRef.current && pwRef.current) {
       if (emailRef.current.value === '') {
         setErrorMsg('* 아이디를 입력해주세요.')
@@ -36,7 +36,7 @@ const useLogin = (closeModal: () => void) => {
               `${data.tokenType} ${data.refreshToken}`,
               {
                 path: '/',
-                maxAge: data.refreshTokenExpiresIn * 1000,
+                maxAge: data.refreshTokenExpiresIn,
               },
             )
             authHttp
@@ -45,7 +45,6 @@ const useLogin = (closeModal: () => void) => {
               })
               .then((user) => {
                 setUser(user)
-                console.log(user)
               })
             closeModal()
           })
@@ -56,7 +55,21 @@ const useLogin = (closeModal: () => void) => {
     }
   }
 
-  return { emailRef, pwRef, errorMsg, onClickLogin }
+  const onPressEnter = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'Enter') onLogin()
+    },
+    [onLogin],
+  )
+
+  useEffect(() => {
+    window.addEventListener('keydown', onPressEnter)
+    return () => {
+      window.removeEventListener('keydown', onPressEnter)
+    }
+  }, [])
+
+  return { emailRef, pwRef, errorMsg, onLogin }
 }
 
 export default useLogin
