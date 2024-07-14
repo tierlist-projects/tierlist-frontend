@@ -36,7 +36,7 @@ export const RightArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 55%;
 
   @media screen and (max-width: 800px) {
     gap: 20px;
@@ -54,15 +54,25 @@ export const Menu = styled.div`
   flex-direction: column;
   align-items: end;
 
-  .nickname {
+  .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     font-size: 16px;
     font-weight: bold;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   }
 `
 
 export const DropMenu = styled.ul`
   position: absolute;
-  top: 130%;
+  top: 120%;
   right: 0;
   width: 130px;
   background-color: white;

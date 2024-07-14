@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as S from '@styles/common/Header.style'
+import { images } from '@constants/images'
 import { useNavigate } from 'react-router-dom'
 import useModal from '@hooks/useModal'
 import LoginModal from '@components/login/LoginModal'
@@ -47,9 +48,17 @@ const Header = () => {
             <S.Menu ref={dropRef}>
               <button
                 type="button"
-                className="nickname"
+                className="user-info"
                 onClick={() => setIsActive((prev) => !prev)}
               >
+                <img
+                  src={
+                    user.profilImage
+                      ? `https://image.tierlist.site/tierlist/${user.profilImage}`
+                      : images.common.defaultProfile
+                  }
+                  alt="프로필 이미지"
+                />
                 {user.nickname}
               </button>
               {isActive && (
