@@ -24,8 +24,6 @@ const useComment = () => {
 
     getComments(tierlistId, page - 1, 10)
       .then((res) => {
-        console.log(res)
-
         setCommentList(res.content)
         setTotalPages(res.totalPages)
         setTotalElements(res.totalElements)
