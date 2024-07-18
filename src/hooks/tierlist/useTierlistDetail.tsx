@@ -11,33 +11,37 @@ const useTierlistDetail = () => {
   const tierlistId = Number(useParams().id)
   const user = useRecoilValue(userState)
   const [postDetail, setPostDetail] = useState<PostDetailType | null>(null)
-  const [liked, setLiked] = useState(false)
+
+  const getPostDetail = useCallback(() => {
+    getTierlistDetail(tierlistId)
+      .then((res) => {
+        console.log(res)
+
+        setPostDetail(res)
+      })
+      .catch((err) => {
+        const data = err.response.data as TierlistErrorType
+        alert(data.message)
+      })
+  }, [tierlistId, postDetail])
 
   const onClickLikeButton = useCallback(() => {
     toggleLike(tierlistId)
       .then(() => {
-        setLiked((prev) => !prev)
+        getPostDetail()
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
 
         alert(data.message)
       })
-  }, [tierlistId, liked])
+  }, [tierlistId])
 
   useEffect(() => {
     if (!tierlistId || !user) return
 
-    getTierlistDetail(tierlistId)
-      .then((res) => {
-        setPostDetail(res)
-        setLiked(res.liked)
-      })
-      .catch((err) => {
-        const data = err.response.data as TierlistErrorType
-        alert(data.message)
-      })
-  }, [tierlistId, user, liked])
+    getPostDetail()
+  }, [tierlistId, user])
 
   return { navigate, postDetail, onClickLikeButton }
 }
