@@ -57,12 +57,3 @@ export const CommentList = styled.div`
   justify-content: center;
   gap: 16px;
 `
-
-export const EmptyText = styled.div`
-  width: 100%;
-  height: 200px;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: ${colors.grey.second};
-`

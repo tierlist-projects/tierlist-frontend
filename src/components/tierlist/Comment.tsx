@@ -42,7 +42,7 @@ const Comment = () => {
           <Pagination count={totalPages} page={page} onChange={onChangePage} />
         </>
       ) : (
-        <S.EmptyText>댓글이 없습니다.</S.EmptyText>
+        <></>
       )}
     </S.Container>
   )
