@@ -84,7 +84,7 @@ const useListPage = () => {
     } else {
       getPost('category', Number(categoryId), 'RECENT')
     }
-  }, [keyword, page])
+  }, [keyword, page, categoryId, topicId])
 
   // 인기 티어리스트 가져오기
   useEffect(() => {
