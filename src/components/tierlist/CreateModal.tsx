@@ -67,11 +67,13 @@ const CreateModal = ({ closeModal }: Props) => {
                     </S.DropContent>
                   ))}
                 {categoryTotalPages > 0 && (
-                  <Pagination
-                    count={categoryTotalPages}
-                    size="small"
-                    onChange={onClickCategoryPage}
-                  />
+                  <S.Pagination>
+                    <Pagination
+                      count={categoryTotalPages}
+                      size="small"
+                      onChange={onClickCategoryPage}
+                    />
+                  </S.Pagination>
                 )}
               </S.Drop>
             )}

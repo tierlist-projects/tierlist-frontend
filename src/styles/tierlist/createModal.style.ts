@@ -96,6 +96,10 @@ export const DropContent = styled.li`
   }
 `
 
+export const Pagination = styled.div`
+  padding: 5px 0px;
+`
+
 export const ButtonBlock = styled.div`
   display: flex;
   gap: 20px;
