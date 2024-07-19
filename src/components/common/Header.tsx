@@ -91,7 +91,7 @@ const Header = () => {
                       onClick={() => {
                         removeCookie('refresh-token')
                         resetUser()
-                        navigate(`/`)
+                        window.location.replace('/')
                         setIsActive(false)
                       }}
                     >
