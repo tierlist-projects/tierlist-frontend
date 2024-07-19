@@ -23,6 +23,10 @@ export const TitleBlock = styled.div`
 export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
+
+  a {
+    color: black;
+  }
 `
 
 export const TierlistBlock = styled.div`

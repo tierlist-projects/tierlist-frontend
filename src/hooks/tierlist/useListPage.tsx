@@ -6,13 +6,14 @@ import {
 } from '@apis/tierlist/listPageApi'
 import { userState } from '@atom/userAtom'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { FILTER } from 'types/common/pagination.type'
 import { TierlistErrorType } from 'types/tierlist/category.type'
 import { PostType } from 'types/tierlist/tierlist.type'
 
 const useListPage = () => {
+  const navigate = useNavigate()
   const searchRef = useRef<HTMLInputElement>(null)
   const { categoryId, topicId } = useParams()
   const [categoryName, setCategoryName] = useState('')
@@ -77,6 +78,15 @@ const useListPage = () => {
       })
   }
 
+  const moveToCategory = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      e.preventDefault()
+      setTopicName('')
+      navigate(`/tierlist/${categoryId}`)
+    },
+    [categoryId],
+  )
+
   // 티어리스트 가져오기
   useEffect(() => {
     if (topicId) {
@@ -135,6 +145,7 @@ const useListPage = () => {
   }, [searchRef.current])
 
   return {
+    categoryId,
     searchRef,
     page,
     totalPages,
@@ -146,6 +157,7 @@ const useListPage = () => {
     onChangePage,
     onClickSearch,
     onClickFavorite,
+    moveToCategory,
   }
 }
 

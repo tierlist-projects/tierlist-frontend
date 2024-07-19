@@ -4,9 +4,11 @@ import PostCard from '@components/common/PostCard'
 import Pagination from '@mui/material/Pagination'
 import TopicSidebar from '@components/tierlist/TopicSidebar'
 import useListPage from '@hooks/tierlist/useListPage'
+import { Link } from 'react-router-dom'
 
 const ListPage = () => {
   const {
+    categoryId,
     searchRef,
     page,
     totalPages,
@@ -18,6 +20,7 @@ const ListPage = () => {
     onChangePage,
     onClickSearch,
     onClickFavorite,
+    moveToCategory,
   } = useListPage()
   return (
     <S.Container>
@@ -34,7 +37,9 @@ const ListPage = () => {
           />
         </button>
         <S.Title>
-          {categoryName}
+          <Link to={`/tierlist/${categoryId}`} onClick={moveToCategory}>
+            {categoryName}
+          </Link>
           {topicName && ` / ${topicName}`}
         </S.Title>
       </S.TitleBlock>
