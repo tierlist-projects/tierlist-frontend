@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 export const PostCardContainer = styled.div`
   width: 200px;
-  height: 240px;
+  height: 270px;
   border-radius: 15px;
   box-shadow: 2px 2px 4px rgba(187, 187, 187, 0.5);
   display: flex;
@@ -25,7 +25,13 @@ export const PostInfoContainer = styled.div`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px;
+  padding: 10px;
+`
+
+export const TagBlock = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 4px;
 `
 
 export const Title = styled.p`
@@ -43,7 +49,11 @@ export const Title = styled.p`
   font-size: 16px;
 `
 
-export const CategoryAndAuthor = styled.p`
+export const CategoryAndTopic = styled.p`
+  font-size: 12px;
+`
+
+export const Author = styled.p`
   font-size: 12px;
   color: ${colors.grey.primary};
 `
@@ -51,7 +61,7 @@ export const CategoryAndAuthor = styled.p`
 export const BottomBlock = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 `
 
 export const NumericalInfo = styled.div`

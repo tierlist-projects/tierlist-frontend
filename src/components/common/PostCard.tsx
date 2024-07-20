@@ -4,6 +4,7 @@ import { images } from '@constants/images'
 import { PostType } from 'types/tierlist/tierlist.type'
 import { useNavigate } from 'react-router-dom'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
+import Tag from './Tag'
 
 type Props = {
   post: PostType
@@ -26,12 +27,22 @@ const PostCard = ({ post }: Props) => {
         alt="티어리스트"
       />
       <S.PostInfoContainer>
+        <S.TagBlock>
+          <Tag
+            type="category"
+            categoryId={post.topic.category.id}
+            name={post.topic.category.name}
+          />
+          <Tag
+            type="topic"
+            categoryId={post.topic.category.id}
+            topicId={post.topic.id}
+            name={post.topic.name}
+          />
+        </S.TagBlock>
         <S.Title>{post.title}</S.Title>
-        <S.CategoryAndAuthor>
-          {post.topic.category.name} / {post.topic.name}
-        </S.CategoryAndAuthor>
+        <S.Author>{post.writer.nickname}</S.Author>
         <S.BottomBlock>
-          <S.CategoryAndAuthor>{post.writer.nickname}</S.CategoryAndAuthor>
           <S.NumericalInfo>
             <S.NumberWithIcon>
               <img src={images.common.postCard.heart} alt="좋아요 수" />
