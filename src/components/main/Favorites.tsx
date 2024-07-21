@@ -30,7 +30,9 @@ const Favorites = () => {
             {favoriteTopics.map((topic) => (
               <S.Favorite
                 key={`favoriteTopic${topic.id}`}
-                onClick={() => navigate(`/tierlist/${topic.id}`)}
+                onClick={() =>
+                  navigate(`/tierlist/${topic.category.id}/${topic.id}`)
+                }
               >
                 <S.Star
                   src={images.common.favorites.fullStar}

@@ -21,8 +21,8 @@ export const Container = styled(Link)<LinkProps>`
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 
   a,
-  a:visited,
-  a:active {
+  &:visited,
+  &:active {
     color: white;
   }
 
