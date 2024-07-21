@@ -44,7 +44,7 @@ const ItemRegistModal = ({
           <S.InputWithDrop ref={listRef}>
             <S.Input
               type="text"
-              placeholder="토픽을 입력하세요."
+              placeholder="아이템 이름을 입력하세요."
               value={itemName}
               onChange={onChangeItemName}
               onFocus={() => setIsDropItems(true)}
