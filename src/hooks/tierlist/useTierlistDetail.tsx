@@ -38,7 +38,10 @@ const useTierlistDetail = () => {
   }, [tierlistId])
 
   useEffect(() => {
-    if (!tierlistId || !user) return
+    if (!tierlistId || !user) {
+      alert('로그인이 필요합니다.')
+      navigate(-1)
+    }
 
     getPostDetail()
   }, [tierlistId, user])
