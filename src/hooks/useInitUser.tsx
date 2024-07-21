@@ -13,7 +13,6 @@ const useInitUser = () => {
       })
       .then((res) => {
         setUser(res)
-        console.log(res)
       })
   }
 

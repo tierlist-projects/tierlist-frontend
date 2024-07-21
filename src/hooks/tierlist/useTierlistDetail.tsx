@@ -15,8 +15,6 @@ const useTierlistDetail = () => {
   const getPostDetail = useCallback(() => {
     getTierlistDetail(tierlistId)
       .then((res) => {
-        console.log(res)
-
         setPostDetail(res)
       })
       .catch((err) => {

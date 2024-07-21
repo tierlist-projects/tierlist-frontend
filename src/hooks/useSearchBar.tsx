@@ -61,7 +61,6 @@ const useSearchBar = () => {
   )
 
   const onClickCategory = useCallback((categoryId: number) => {
-    console.log(categoryId)
     setIsDrop(false)
     navigate(`/tierlist/${categoryId}`)
   }, [])

@@ -88,8 +88,6 @@ const ItemRegistModal = ({
           onClick={async () => {
             const newItem = await registItem(ranks)
             if (newItem && ranks) {
-              console.log(newItem)
-
               newItem.orderIdx = ranks.noneRanks.length
               const newNoneRanks = [...ranks.noneRanks]
               newNoneRanks[newNoneRanks.length] = newItem
