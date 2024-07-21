@@ -4,12 +4,16 @@ import Header from '@components/common/Header'
 import { Outlet } from 'react-router-dom'
 import TierCreate from '@components/tierlist/TierCreate'
 
-const LayoutPage = () => {
+type Props = {
+  modify: boolean
+}
+
+const LayoutPage = ({ modify }: Props) => {
   return (
     <S.LayoutContainer>
       <Header />
       <Outlet />
-      <TierCreate />
+      {!modify && <TierCreate />}
     </S.LayoutContainer>
   )
 }

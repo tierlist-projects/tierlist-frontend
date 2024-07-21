@@ -13,15 +13,17 @@ const RootRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<LayoutPage />}>
+        <Route element={<LayoutPage modify={false} />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/my-tierlist" element={<MyTierlistPage />} />
-          <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
           <Route path="/tierlist/:categoryId" element={<ListPage />} />
           <Route path="/tierlist/:categoryId/:topicId" element={<ListPage />} />
           <Route path="/tierlist-detail/:id" element={<TierlistDetail />} />
           <Route path="/mypage" element={<MyPage />} />
+        </Route>
+        <Route element={<LayoutPage modify />}>
+          <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
