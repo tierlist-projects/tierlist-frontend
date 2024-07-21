@@ -5,7 +5,7 @@ export const PostCardContainer = styled.div`
   width: 200px;
   height: 270px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
