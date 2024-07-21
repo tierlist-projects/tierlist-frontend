@@ -5,11 +5,6 @@ import { colors } from '@constants/colors'
 import UploadImage from '@components/tierlist/UploadImage'
 import useModify from '@hooks/tierlist/useModify'
 
-/**
- * TODO
- * [ ] : 게시글 수정에서 썸네일 있으면 미리보기에 추가
- */
-
 const TierlistModifyPage = () => {
   const {
     navigate,
@@ -52,7 +47,10 @@ const TierlistModifyPage = () => {
       </S.ContentBlock>
       <S.ThumbnailBlock>
         <S.SubTitle>썸네일</S.SubTitle>
-        <UploadImage setFile={setThumbnail} />
+        <UploadImage
+          thumbnail={postDetail.thumbnailImage}
+          setFile={setThumbnail}
+        />
       </S.ThumbnailBlock>
       <S.ButtonBlock>
         <CButton

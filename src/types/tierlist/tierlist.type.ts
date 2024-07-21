@@ -100,6 +100,7 @@ export type PostDetailType = {
   published: boolean
   writer: WriterType
   topic: TopicType
+  thumbnailImage: string
 }
 
 export type ResponseSearchItems = {

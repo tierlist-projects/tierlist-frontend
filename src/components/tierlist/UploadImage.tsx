@@ -3,13 +3,17 @@ import * as S from '@styles/tierlist/UploadImage.style'
 import { images } from '@constants/images'
 
 type Props = {
+  thumbnail?: string
   setFile: React.Dispatch<React.SetStateAction<File | null>>
 }
 
-const UploadImage = ({ setFile }: Props) => {
+const UploadImage = ({ thumbnail, setFile }: Props) => {
   const [isActive, setIsActive] = useState(false)
-  const [uploadedInfo, setUploadedInfo] = useState<File | null>(null)
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState(
+    thumbnail !== undefined && thumbnail !== null
+      ? `https://image.tierlist.site/tierlist/${thumbnail}`
+      : '',
+  )
   const onDragEnter: DragEventHandler<HTMLLabelElement> = () => {
     setIsActive(true)
   }
@@ -27,7 +31,6 @@ const UploadImage = ({ setFile }: Props) => {
     if (event.dataTransfer === null) return
 
     const file = event.dataTransfer.files[0]
-    setUploadedInfo(file)
     setImageUrl(URL.createObjectURL(file))
     setFile(file)
   }
@@ -39,7 +42,6 @@ const UploadImage = ({ setFile }: Props) => {
     if (event.target.files === null) return
 
     const file = event.target.files[0]
-    setUploadedInfo(file)
     setImageUrl(URL.createObjectURL(file))
     setFile(file)
   }
@@ -57,10 +59,8 @@ const UploadImage = ({ setFile }: Props) => {
         accept="image/png, image/jpeg"
         onChange={onChange}
       />
-      {uploadedInfo && (
-        <img className="preview" src={imageUrl} alt="미리보기" />
-      )}
-      {!uploadedInfo && (
+      {imageUrl && <img className="preview" src={imageUrl} alt="미리보기" />}
+      {!imageUrl && (
         <S.InnerDiv>
           <img src={images.tierlist.image} alt="이미지 업로드" />
           <p>이미지를 드래그하거나 클릭 후 등록해주세요.</p>
