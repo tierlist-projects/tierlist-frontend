@@ -1,8 +1,6 @@
-import React from 'react'
-import * as S from '@styles/common/Layout.style'
-import Header from '@components/common/Header'
-import { Outlet } from 'react-router-dom'
-import TierCreate from '@components/tierlist/TierCreate'
+import { Mobile, PC } from '@components/common/MediaQuery'
+import LayoutPageMobile from './mobile/LayoutPageMobile'
+import LayoutPagePC from './pc/LayoutPagePC'
 
 type Props = {
   modify: boolean
@@ -10,11 +8,14 @@ type Props = {
 
 const LayoutPage = ({ modify }: Props) => {
   return (
-    <S.LayoutContainer>
-      <Header />
-      <Outlet />
-      {!modify && <TierCreate />}
-    </S.LayoutContainer>
+    <>
+      <Mobile>
+        <LayoutPageMobile />
+      </Mobile>
+      <PC>
+        <LayoutPagePC modify={modify} />
+      </PC>
+    </>
   )
 }
 

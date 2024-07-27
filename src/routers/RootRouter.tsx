@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import LayoutPage from 'pages/LayoutPage'
 import SignUpPage from 'pages/SignUpPage'
 import MyTierlistPage from 'pages/MyTierlistPage'
 import TierlistModifyPage from 'pages/TierlistModifyPage'
@@ -8,6 +7,7 @@ import ListPage from 'pages/ListPage'
 import TierlistDetail from 'pages/TierlistDetail'
 import MyPage from 'pages/MyPage'
 import MainPage from 'pages/MainPage'
+import LayoutPage from 'pages/LayoutPage'
 
 const RootRouter = () => {
   return (
