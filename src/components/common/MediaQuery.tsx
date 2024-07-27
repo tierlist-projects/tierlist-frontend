@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const Mobile = ({ children }: Props) => {
+export const Mobile = ({ children }: Props) => {
   const isMobile = useMediaQuery({
     query: '(min-width: 360px) and (max-width:767px)',
   })
@@ -13,7 +13,7 @@ const Mobile = ({ children }: Props) => {
   return <>{isMobile && children}</>
 }
 
-const Tablet = ({ children }: Props) => {
+export const Tablet = ({ children }: Props) => {
   const isTablet = useMediaQuery({
     query: '(min-width: 768px) and (max-width:1023px)',
   })
@@ -21,12 +21,10 @@ const Tablet = ({ children }: Props) => {
   return <>{isTablet && children}</>
 }
 
-const PC = ({ children }: Props) => {
+export const PC = ({ children }: Props) => {
   const isPC = useMediaQuery({
-    query: 'min-width: 1024px',
+    query: '(min-width: 1024px)',
   })
 
   return <>{isPC && children}</>
 }
-
-export default { Mobile, Tablet, PC }
