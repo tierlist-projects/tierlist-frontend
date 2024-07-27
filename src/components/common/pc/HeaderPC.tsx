@@ -10,9 +10,9 @@ import { authHttp } from '@utils/http'
 import { UserInformationType } from 'types/user/user.type'
 import { getCookie, removeCookie } from '@utils/cookie'
 import useDetectClose from '@hooks/common/useDetectClose'
-import SearchBar from './SearchBar'
+import SearchBar from '../SearchBar'
 
-const Header = () => {
+const HeaderPC = () => {
   const navigate = useNavigate()
 
   const { Modal, isOpen, openModal, closeModal } = useModal()
@@ -112,4 +112,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default HeaderPC

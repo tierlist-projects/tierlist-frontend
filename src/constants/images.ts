@@ -2,6 +2,7 @@ export const images = {
   common: {
     searchBar: {
       search: '/images/common/ic-search.png',
+      searchBlack: '/images/common/ic-search-black.png',
     },
     postCard: {
       heart: '/images/common/ic-heart.png',
@@ -18,6 +19,7 @@ export const images = {
     dotMenu: '/images/common/ic-menu-dot.png',
     defaultProfile: '/images/common/default-profile.png',
     noImage: '/images/common/no-image.png',
+    user: '/images/common/ic-user.png',
   },
   cat: '/images/cat.jpg',
   tierlist: {
