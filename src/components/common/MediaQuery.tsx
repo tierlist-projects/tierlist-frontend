@@ -7,19 +7,19 @@ type Props = {
 
 export const Mobile = ({ children }: Props) => {
   const isMobile = useMediaQuery({
-    query: '(min-width: 360px) and (max-width:767px)',
+    query: '(min-width: 360px) and (max-width:1023px)',
   })
 
   return <>{isMobile && children}</>
 }
 
-export const Tablet = ({ children }: Props) => {
-  const isTablet = useMediaQuery({
-    query: '(min-width: 768px) and (max-width:1023px)',
-  })
+// export const Tablet = ({ children }: Props) => {
+//   const isTablet = useMediaQuery({
+//     query: '(min-width: 768px) and (max-width:1023px)',
+//   })
 
-  return <>{isTablet && children}</>
-}
+//   return <>{isTablet && children}</>
+// }
 
 export const PC = ({ children }: Props) => {
   const isPC = useMediaQuery({
