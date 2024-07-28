@@ -36,3 +36,9 @@ export const IconBlock = styled.div`
     }
   }
 `
+
+export const SidebarContainer = styled.div`
+  height: 100vh;
+  width: 280px;
+  background-color: white;
+`
