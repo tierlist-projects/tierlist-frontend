@@ -36,11 +36,7 @@ export const RightArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 55%;
-
-  @media screen and (max-width: 800px) {
-    gap: 20px;
-  }
+  gap: 30px;
 `
 
 export const LoginMyPageButton = styled.button`
@@ -53,6 +49,7 @@ export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  min-width: 150px;
 
   .user-info {
     display: flex;
