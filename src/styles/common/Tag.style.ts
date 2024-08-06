@@ -29,4 +29,9 @@ export const Container = styled(Link)<LinkProps>`
   &:hover {
     color: ${colors.primary[900]};
   }
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    font-size: 10px;
+    border-radius: 3px;
+  }
 `
