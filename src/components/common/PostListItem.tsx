@@ -1,6 +1,9 @@
 import { images } from '@constants/images'
 import * as S from '@styles/common/PostListItem.style'
 import { PostType } from 'types/tierlist/tierlist.type'
+import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { userState } from '@atom/userAtom'
 import Tag from './Tag'
 
 type Props = {
@@ -8,8 +11,20 @@ type Props = {
 }
 
 const PostListItem = ({ post }: Props) => {
+  const navigate = useNavigate()
+  const user = useRecoilValue(userState)
+
   return (
-    <S.Container>
+    <S.Container
+      onClick={() => {
+        if (!user) {
+          alert('로그인이 필요합니다.')
+          navigate('/login')
+        } else {
+          navigate(`/tierlist-detail/${post.id}`)
+        }
+      }}
+    >
       <img
         src={
           post.thumbnailImage
