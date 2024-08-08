@@ -2,7 +2,7 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
-  width: 303px;
+  width: 100%;
   display: flex;
 
   & > img {

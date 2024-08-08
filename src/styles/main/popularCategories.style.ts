@@ -1,12 +1,23 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
+export const ContentsContainer = styled.div`
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  gap: 20px;
+`
+
 export const PopularList = styled.ul`
+  width: 100%;
+  max-height: 430px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 200px;
-  max-height: 400px;
   overflow: auto;
   ::-webkit-scrollbar {
     display: none;
@@ -18,11 +29,6 @@ export const PopularCategory = styled.li`
   font-size: 16px;
   display: flex;
   gap: 8px;
-
-  .rank {
-    width: 10%;
-    text-align: right;
-  }
 
   .category {
     flex: 1;

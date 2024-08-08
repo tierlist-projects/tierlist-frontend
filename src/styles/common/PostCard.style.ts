@@ -2,7 +2,7 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const PostCardContainer = styled.div`
-  width: 200px;
+  width: 100%;
   height: 270px;
   border-radius: 15px;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);

@@ -2,13 +2,14 @@ import * as S from '@styles/main/favorites.style'
 import { images } from '@constants/images'
 import useFavorites from '@hooks/main/useFavorites'
 import React from 'react'
+import { ContentsTitle } from '@styles/main/mainPage.style'
 
 const Favorites = () => {
   const { navigate, favoriteCategories, favoriteTopics, onClick } =
     useFavorites()
   return (
     <S.FavoritesContainer>
-      <S.Title>즐겨찾기</S.Title>
+      <ContentsTitle>즐겨찾기</ContentsTitle>
       <S.FavoritesList>
         {favoriteCategories.length > 0 || favoriteTopics.length > 0 ? (
           <>

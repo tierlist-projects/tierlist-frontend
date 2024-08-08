@@ -6,7 +6,7 @@ import {
 import { ResponsePostType } from 'types/tierlist/tierlist.type'
 
 export function getPopularCategories() {
-  return http.get<ResponseCategoryType>(`category?page=0&size=10&filter=HOT`)
+  return http.get<ResponseCategoryType>(`category?page=0&size=20&filter=HOT`)
 }
 
 export function getNotableTierlist(page: number) {

@@ -10,29 +10,33 @@ export const FavoritesContainer = styled.div`
   border-radius: 15px;
 `
 
-export const Title = styled.p`
-  font-weight: bold;
-  font-size: 24px;
-`
-
 export const FavoritesList = styled.ul`
-  width: 100%;
-  max-height: 150px;
-  overflow: auto;
+  @media screen and ((min-width: 768px)) {
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
 
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-thumb {
-    height: 30%; /* 스크롤바의 길이 */
-    background-color: ${colors.primary[200]}; /* 스크롤바의 색상 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      height: 30%; /* 스크롤바의 길이 */
+      background-color: ${colors.primary[200]}; /* 스크롤바의 색상 */
 
-    border-radius: 15px;
-    /* border: 12px solid white; */
+      border-radius: 15px;
+      /* border: 12px solid white; */
+    }
+    ::-webkit-scrollbar-track {
+      border-radius: 15px;
+      background: rgba(202, 222, 252, 0.4);
+    }
   }
-  ::-webkit-scrollbar-track {
-    border-radius: 15px;
-    background: rgba(202, 222, 252, 0.4);
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
   }
 `
 
