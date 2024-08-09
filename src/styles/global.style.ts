@@ -62,12 +62,11 @@ const GlobalStyle = css`
     cursor: pointer;
   }
 
-  a {
+  a,
+  a:visited,
+  a:active {
     text-decoration: none;
-    :visited,
-    :active {
-      color: black;
-    }
+    color: black;
   }
 
   /* 
