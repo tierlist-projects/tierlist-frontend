@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@atom/userAtom'
+import { useMediaQuery } from 'react-responsive'
 import Tag from './Tag'
 
 type Props = {
@@ -15,11 +16,17 @@ type Props = {
 const PostCard = ({ post }: Props) => {
   const navigate = useNavigate()
   const user = useRecoilValue(userState)
+  const isTablet = useMediaQuery({
+    query: '(min-width: 768px) and (max-width:1023px)',
+  })
   return (
     <S.PostCardContainer
       onClick={() => {
-        if (!user) alert('로그인이 필요합니다.')
-        else navigate(`/tierlist-detail/${post.id}`)
+        if (!user) {
+          alert('로그인이 필요합니다.')
+
+          if (isTablet) navigate(`/login`)
+        } else navigate(`/tierlist-detail/${post.id}`)
       }}
     >
       <img

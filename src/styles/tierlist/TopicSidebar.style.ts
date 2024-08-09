@@ -2,7 +2,7 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
-  width: 200px;
+  width: 25%;
   height: 450px;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const Container = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 100px;
-  right: -220px;
+  right: -27%;
 `
 
 export const Title = styled.p`

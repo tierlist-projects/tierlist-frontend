@@ -6,6 +6,7 @@ import {
 } from '@apis/tierlist/listPageApi'
 import { userState } from '@atom/userAtom'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { FILTER } from 'types/common/pagination.type'
@@ -25,6 +26,12 @@ const useListPage = () => {
   const [recentPostList, setRecentPostList] = useState<PostType[]>([])
   const [hotPostList, setHotPostList] = useState<PostType[]>([])
   const user = useRecoilValue(userState)
+  const isTablet = useMediaQuery({
+    query: '(min-width: 768px) and (max-width:1023px)',
+  })
+  const isMobile = useMediaQuery({
+    query: '(min-width: 360px) and (max-width:767px)',
+  })
 
   const onChangePage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
@@ -37,6 +44,7 @@ const useListPage = () => {
   const onClickFavorite = useCallback(() => {
     if (!user) {
       alert('로그인이 필요합니다.')
+      if (isTablet || isMobile) navigate(`/login`)
       return null
     }
 

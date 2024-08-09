@@ -19,7 +19,7 @@ export const ContentsContainer = styled.div`
 
 export const TierList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   place-items: center;
   padding: 10px;
   gap: 16px;

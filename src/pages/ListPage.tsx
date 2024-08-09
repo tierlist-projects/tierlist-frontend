@@ -5,6 +5,8 @@ import Pagination from '@mui/material/Pagination'
 import TopicSidebar from '@components/tierlist/TopicSidebar'
 import useListPage from '@hooks/tierlist/useListPage'
 import { Link } from 'react-router-dom'
+import { Mobile, PC, Tablet } from '@components/common/MediaQuery'
+import PostListItem from '@components/common/PostListItem'
 
 const ListPage = () => {
   const {
@@ -46,11 +48,29 @@ const ListPage = () => {
       <S.TierlistBlock>
         <S.Title>인기 티어리스트</S.Title>
         {hotPostList.length > 0 ? (
-          <S.List>
-            {hotPostList.map((post) => (
-              <PostCard key={`hotPost${post.id}`} post={post} />
-            ))}
-          </S.List>
+          <>
+            <PC>
+              <S.List>
+                {hotPostList.map((post) => (
+                  <PostCard key={`hotPost${post.id}`} post={post} />
+                ))}
+              </S.List>
+            </PC>
+            <Tablet>
+              <S.List>
+                {hotPostList.map((post) => (
+                  <PostCard key={`hotPost${post.id}`} post={post} />
+                ))}
+              </S.List>
+            </Tablet>
+            <Mobile>
+              <S.ListMobile type="HOT">
+                {hotPostList.map((post) => (
+                  <PostListItem key={`hotPost${post.id}`} post={post} />
+                ))}
+              </S.ListMobile>
+            </Mobile>
+          </>
         ) : (
           <S.EmptyContainer>인기 티어리스트가 없습니다.</S.EmptyContainer>
         )}
@@ -58,11 +78,29 @@ const ListPage = () => {
       <S.TierlistBlock>
         <S.Title>티어리스트</S.Title>
         {recentPostList.length > 0 ? (
-          <S.List>
-            {recentPostList.map((post) => (
-              <PostCard key={`recentPost${post.id}`} post={post} />
-            ))}
-          </S.List>
+          <>
+            <PC>
+              <S.List>
+                {recentPostList.map((post) => (
+                  <PostCard key={`recentPost${post.id}`} post={post} />
+                ))}
+              </S.List>
+            </PC>
+            <Tablet>
+              <S.List>
+                {recentPostList.map((post) => (
+                  <PostCard key={`recentPost${post.id}`} post={post} />
+                ))}
+              </S.List>
+            </Tablet>
+            <Mobile>
+              <S.ListMobile type="NONE">
+                {recentPostList.map((post) => (
+                  <PostListItem key={`recentPost${post.id}`} post={post} />
+                ))}
+              </S.ListMobile>
+            </Mobile>
+          </>
         ) : (
           <S.EmptyContainer>티어리스트가 없습니다.</S.EmptyContainer>
         )}
@@ -96,7 +134,9 @@ const ListPage = () => {
           </S.TierlistSearch>
         </S.BottomBlock>
       </S.TierlistBlock>
-      <TopicSidebar />
+      <PC>
+        <TopicSidebar />
+      </PC>
     </S.Container>
   )
 }
