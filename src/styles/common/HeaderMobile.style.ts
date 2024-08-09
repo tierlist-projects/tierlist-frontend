@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.header`
   width: 100%;
@@ -14,9 +15,13 @@ export const Container = styled.header`
   position: sticky;
   top: 0;
   z-index: 5;
+
+  @media screen and ((min-width: 768px) and (max-width: 1023px)) {
+    padding: 0px 40px;
+  }
 `
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   font-size: 20px;
   font-weight: bold;
 `
@@ -35,10 +40,4 @@ export const IconBlock = styled.div`
       height: 24px;
     }
   }
-`
-
-export const SidebarContainer = styled.div`
-  height: 100vh;
-  width: 280px;
-  background-color: white;
 `
