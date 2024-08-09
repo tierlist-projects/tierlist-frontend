@@ -10,7 +10,7 @@ export const CreateButton = styled.button`
   justify-content: center;
   box-shadow: 0px 4px 4px rgba(99, 99, 99, 0.5);
   position: fixed;
-  right: 100px;
+  right: 50px;
   bottom: 50px;
 
   transition-duration: 0.3s;
@@ -22,5 +22,10 @@ export const CreateButton = styled.button`
 
   :active {
     transform: translateY(4px);
+  }
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    right: 20px;
+    bottom: 20px;
   }
 `
