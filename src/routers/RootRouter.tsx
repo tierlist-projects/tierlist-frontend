@@ -8,6 +8,7 @@ import TierlistDetail from 'pages/TierlistDetail'
 import MyPage from 'pages/MyPage'
 import LayoutPage from 'pages/LayoutPage'
 import MainPage from 'pages/MainPage'
+import LoginPage from 'pages/LoginPage'
 
 const RootRouter = () => {
   return (
@@ -23,6 +24,7 @@ const RootRouter = () => {
           <Route path="/mypage" element={<MyPage />} />
         </Route>
         <Route element={<LayoutPage modify />}>
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
         </Route>
       </Routes>
