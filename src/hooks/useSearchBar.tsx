@@ -4,7 +4,7 @@ import { getCategory } from '@apis/tierlist/createModalApi'
 import { useNavigate } from 'react-router-dom'
 import useDebounce from './useDebounce'
 
-const useSearchBar = () => {
+const useSearchBar = (size: number = 6) => {
   const navigate = useNavigate()
   const dropRef = useRef<HTMLDivElement>(null)
   const [isDrop, setIsDrop] = useState(false)
@@ -39,14 +39,14 @@ const useSearchBar = () => {
     if (!isDrop) return
     getCategory({
       page: categoryPages - 1,
-      size: 7,
+      size,
       query: debouncedKeyword,
       filter: 'NONE',
     }).then((res) => {
       setCategoryList(res.content)
       setTotalPages(res.totalPages)
     })
-  }, [debouncedKeyword, isDrop])
+  }, [debouncedKeyword, isDrop, categoryPages])
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value)

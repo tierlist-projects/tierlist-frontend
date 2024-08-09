@@ -9,6 +9,7 @@ import MyPage from 'pages/MyPage'
 import LayoutPage from 'pages/LayoutPage'
 import MainPage from 'pages/MainPage'
 import LoginPage from 'pages/LoginPage'
+import SearchPage from 'pages/SearchPage'
 
 const RootRouter = () => {
   return (
@@ -27,6 +28,7 @@ const RootRouter = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
         </Route>
+        <Route path="/search-category" element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   )
