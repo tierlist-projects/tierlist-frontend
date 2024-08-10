@@ -14,12 +14,23 @@ export const Container = styled.div`
   position: absolute;
   top: 100px;
   right: -27%;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    width: 270px;
+    height: calc(var(--vh, 1vh) * 100);
+    position: static;
+    padding: 16px;
+  }
 `
 
 export const Title = styled.p`
   font-size: 14px;
   font-weight: bold;
   width: 100%;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    font-size: 20px;
+  }
 `
 
 export const SearchBarContainer = styled.div`
@@ -28,9 +39,17 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   padding: 5px;
   border-bottom: 1px solid ${colors.grey.primary};
+
   img {
     width: 14px;
     height: 14px;
+  }
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `
 
@@ -39,6 +58,10 @@ export const Search = styled.input`
   height: 100%;
   font-size: 12px;
   margin-left: 5px;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    font-size: 14px;
+  }
 `
 
 export const TopicList = styled.ul`
@@ -74,5 +97,9 @@ export const TopicItem = styled.li`
     text-decoration: underline;
     text-underline-position: under;
     /* transition: all 0.1s ease-in-out; */
+  }
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    font-size: 14px;
   }
 `

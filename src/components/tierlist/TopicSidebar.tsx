@@ -5,7 +5,11 @@ import useTopicSideBar from '@hooks/tierlist/useTopicSideBar'
 import { Pagination } from '@mui/material'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
 
-const TopicSidebar = () => {
+type Props = {
+  closeSidebar?: () => void
+}
+
+const TopicSidebar = ({ closeSidebar }: Props) => {
   const {
     topicList,
     page,
@@ -24,7 +28,10 @@ const TopicSidebar = () => {
       <S.TopicList>
         {topicList.length > 0 &&
           topicList.map((topic) => (
-            <S.TopicItem key={topic.id} onClick={() => onClickTopic(topic.id)}>
+            <S.TopicItem
+              key={topic.id}
+              onClick={() => onClickTopic(topic.id, closeSidebar)}
+            >
               {topic.name}({abbreviateNumber(topic.favoriteCount)})
             </S.TopicItem>
           ))}

@@ -38,6 +38,7 @@ export const TitleBlock = styled.div`
 export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
+  flex: 1;
 
   a {
     color: black;

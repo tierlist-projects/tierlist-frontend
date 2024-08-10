@@ -5,8 +5,15 @@ import Pagination from '@mui/material/Pagination'
 import TopicSidebar from '@components/tierlist/TopicSidebar'
 import useListPage from '@hooks/tierlist/useListPage'
 import { Link } from 'react-router-dom'
-import { Mobile, PC, TabletAndPC } from '@components/common/MediaQuery'
+import {
+  Mobile,
+  MobileAndTablet,
+  PC,
+  TabletAndPC,
+} from '@components/common/MediaQuery'
 import PostListItem from '@components/common/PostListItem'
+import useSidebar from '@hooks/useSidebar'
+import CButton from '@components/common/CButton'
 
 const ListPage = () => {
   const {
@@ -24,6 +31,9 @@ const ListPage = () => {
     onClickFavorite,
     moveToCategory,
   } = useListPage()
+
+  const { Sidebar, isOpen, closeSidebar, openSidebar } = useSidebar()
+
   return (
     <S.Container>
       <S.TitleBlock>
@@ -44,6 +54,15 @@ const ListPage = () => {
           </Link>
           {topicName && ` / ${topicName}`}
         </S.Title>
+        <MobileAndTablet>
+          <CButton
+            text="토픽"
+            fontSize={14}
+            radius={5}
+            medium
+            onClick={openSidebar}
+          />
+        </MobileAndTablet>
       </S.TitleBlock>
       <S.TierlistBlock>
         <S.Title>인기 티어리스트</S.Title>
@@ -123,6 +142,12 @@ const ListPage = () => {
       <PC>
         <TopicSidebar />
       </PC>
+
+      <MobileAndTablet>
+        <Sidebar isOpen={isOpen} closeSidebar={closeSidebar}>
+          <TopicSidebar closeSidebar={closeSidebar} />
+        </Sidebar>
+      </MobileAndTablet>
     </S.Container>
   )
 }

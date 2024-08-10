@@ -30,8 +30,9 @@ const useTopicSideBar = () => {
   )
 
   const onClickTopic = useCallback(
-    (topicId: number) => {
+    (topicId: number, closeSidebar?: () => void) => {
       navigate(`/tierlist/${categoryId}/${topicId}`)
+      if (closeSidebar !== undefined) closeSidebar()
     },
     [categoryId],
   )
