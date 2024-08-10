@@ -28,3 +28,19 @@ export const PC = ({ children }: Props) => {
 
   return <>{isPC && children}</>
 }
+
+export const MobileAndTablet = ({ children }: Props) => {
+  const isMobileAndTablet = useMediaQuery({
+    query: '(min-width: 360px) and (max-width:1023px)',
+  })
+
+  return <>{isMobileAndTablet && children}</>
+}
+
+export const TabletAndPC = ({ children }: Props) => {
+  const isTabletAndPC = useMediaQuery({
+    query: '(min-width: 768px)',
+  })
+
+  return <>{isTabletAndPC && children}</>
+}

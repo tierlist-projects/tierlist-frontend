@@ -5,7 +5,7 @@ import Pagination from '@mui/material/Pagination'
 import TopicSidebar from '@components/tierlist/TopicSidebar'
 import useListPage from '@hooks/tierlist/useListPage'
 import { Link } from 'react-router-dom'
-import { Mobile, PC, Tablet } from '@components/common/MediaQuery'
+import { Mobile, PC, TabletAndPC } from '@components/common/MediaQuery'
 import PostListItem from '@components/common/PostListItem'
 
 const ListPage = () => {
@@ -49,20 +49,13 @@ const ListPage = () => {
         <S.Title>인기 티어리스트</S.Title>
         {hotPostList.length > 0 ? (
           <>
-            <PC>
+            <TabletAndPC>
               <S.List>
                 {hotPostList.map((post) => (
                   <PostCard key={`hotPost${post.id}`} post={post} />
                 ))}
               </S.List>
-            </PC>
-            <Tablet>
-              <S.List>
-                {hotPostList.map((post) => (
-                  <PostCard key={`hotPost${post.id}`} post={post} />
-                ))}
-              </S.List>
-            </Tablet>
+            </TabletAndPC>
             <Mobile>
               <S.ListMobile type="HOT">
                 {hotPostList.map((post) => (
@@ -79,20 +72,13 @@ const ListPage = () => {
         <S.Title>티어리스트</S.Title>
         {recentPostList.length > 0 ? (
           <>
-            <PC>
+            <TabletAndPC>
               <S.List>
                 {recentPostList.map((post) => (
                   <PostCard key={`recentPost${post.id}`} post={post} />
                 ))}
               </S.List>
-            </PC>
-            <Tablet>
-              <S.List>
-                {recentPostList.map((post) => (
-                  <PostCard key={`recentPost${post.id}`} post={post} />
-                ))}
-              </S.List>
-            </Tablet>
+            </TabletAndPC>
             <Mobile>
               <S.ListMobile type="NONE">
                 {recentPostList.map((post) => (
