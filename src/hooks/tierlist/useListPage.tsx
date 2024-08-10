@@ -137,6 +137,7 @@ const useListPage = () => {
         .then((res) => {
           setCategoryName(res.name)
           setIsFavorite(res.isFavorite)
+          setTopicName('')
         })
         .catch((err) => {
           const data = err.response.data as TierlistErrorType
