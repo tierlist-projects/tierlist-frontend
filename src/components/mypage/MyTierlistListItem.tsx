@@ -1,8 +1,11 @@
 import Tag from '@components/common/Tag'
 import { images } from '@constants/images'
-import * as S from '@styles/mypage/MyTierlistCard.style'
+import * as S from '@styles/mypage/MyTierlistListItem.style'
 import { PostType } from 'types/tierlist/tierlist.type'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
+import { useNavigate } from 'react-router-dom'
+import useDetectClose from '@hooks/common/useDetectClose'
+import { useCallback, useRef } from 'react'
 import Toggle from './Toggle'
 
 type Props = {
@@ -10,8 +13,48 @@ type Props = {
 }
 
 const MyTierlistListItem = ({ post }: Props) => {
+  const navigate = useNavigate()
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [isDrop, setIsDrop] = useDetectClose(menuRef, false)
+
+  const onClickRemove = () => {
+    console.log('삭제')
+  }
+
+  const onClickMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      setIsDrop((prev) => !prev)
+    },
+    [isDrop],
+  )
+
+  const onClickModify = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    navigate(`/tierlist-modify/${post.id}`)
+  }, [])
+
   return (
     <S.ListItemContainer>
+      <S.Menu ref={menuRef}>
+        <button type="button" onClick={onClickMenu}>
+          <img src={images.common.dotMenu} alt="메뉴" />
+        </button>
+        {isDrop && (
+          <S.DropMenu>
+            <li>
+              <button type="button" onClick={onClickModify}>
+                수정
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={onClickRemove}>
+                삭제
+              </button>
+            </li>
+          </S.DropMenu>
+        )}
+      </S.Menu>
       <img
         src={
           post.thumbnailImage

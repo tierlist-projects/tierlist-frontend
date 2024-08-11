@@ -7,8 +7,8 @@ export const Container = styled.div`
 
   & > img {
     width: 120px;
-    height: 110px;
     border-radius: 5px 0px 0px 5px;
+    object-fit: cover;
   }
 `
 
@@ -18,6 +18,7 @@ export const InfoBlock = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 8px;
+  gap: 8px;
 `
 
 export const Title = styled.p`
@@ -37,6 +38,7 @@ export const Title = styled.p`
 
 export const TagBlock = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 4px;
 `
 

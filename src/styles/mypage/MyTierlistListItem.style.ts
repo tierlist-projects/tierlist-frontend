@@ -1,26 +1,21 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
-export const Container = styled.div`
+export const ListItemContainer = styled.div`
   width: 100%;
-  border-radius: 15px;
-  box-shadow: 2px 2px 4px rgba(187, 187, 187, 0.5);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   position: relative;
   cursor: pointer;
 
   & > img {
-    width: 100%;
-    height: 140px;
-    border-radius: 15px 15px 0px 0px;
+    width: 40%;
+    border-radius: 5px 0px 0px 5px;
     object-fit: cover;
   }
 `
 
 export const PostInfoContainer = styled.div`
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -41,12 +36,13 @@ export const Title = styled.p`
   word-break: break-all;
 
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 `
 
 export const TagBlock = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 4px;
 `
 
@@ -81,10 +77,10 @@ export const NumberWithIcon = styled.div`
 export const Menu = styled.div`
   position: absolute;
   top: 12px;
-  right: 8px;
+  left: 8px;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: start;
 
   img {
     width: 20px;
