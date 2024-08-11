@@ -5,6 +5,7 @@ import { images } from '@constants/images'
 import { useNavigate } from 'react-router-dom'
 import { PostType } from 'types/tierlist/tierlist.type'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
+import Tag from '@components/common/Tag'
 import Toggle from './Toggle'
 
 type Props = {
@@ -63,27 +64,35 @@ const MyTierlistCard = ({ post }: Props) => {
         alt="티어리스트 썸네일"
       />
       <S.PostInfoContainer>
+        <S.TagBlock>
+          <Tag
+            categoryId={post.topic.category.id}
+            name={post.topic.category.name}
+            type="category"
+          />
+          <Tag
+            categoryId={post.topic.category.id}
+            name={post.topic.name}
+            type="topic"
+            topicId={post.topic.id}
+          />
+        </S.TagBlock>
         <S.Title>{post.title}</S.Title>
-        <S.CategoryAndAuthor>
-          {post.topic.category.name} / {post.topic.name}
-        </S.CategoryAndAuthor>
-        <S.BottomBlock>
-          <S.NumericalInfo>
-            <S.NumberWithIcon>
-              <img src={images.common.postCard.heart} alt="좋아요" />
-              <p>{abbreviateNumber(post.likesCount)}</p>
-            </S.NumberWithIcon>
-            <S.NumberWithIcon>
-              <img src={images.common.postCard.comment} alt="댓글" />
-              <p>{abbreviateNumber(post.commentsCount)}</p>
-            </S.NumberWithIcon>
-            {/* <S.NumberWithIcon>
+        <S.NumericalInfo>
+          <S.NumberWithIcon>
+            <img src={images.common.postCard.heart} alt="좋아요" />
+            <p>{abbreviateNumber(post.likesCount)}</p>
+          </S.NumberWithIcon>
+          <S.NumberWithIcon>
+            <img src={images.common.postCard.comment} alt="댓글" />
+            <p>{abbreviateNumber(post.commentsCount)}</p>
+          </S.NumberWithIcon>
+          {/* <S.NumberWithIcon>
               <img src={images.common.postCard.views} alt="조회수" />
               <p>{abbreviateNumber(post.viewCount)}</p>
             </S.NumberWithIcon> */}
-          </S.NumericalInfo>
-          <Toggle tierlistId={post.id} initialState={post.isPublished} />
-        </S.BottomBlock>
+        </S.NumericalInfo>
+        <Toggle tierlistId={post.id} initialState={post.isPublished} />
       </S.PostInfoContainer>
     </S.Container>
   )

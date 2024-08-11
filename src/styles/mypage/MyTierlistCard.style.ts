@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 
 export const Container = styled.div`
   width: 230px;
-  height: 240px;
   border-radius: 15px;
   box-shadow: 2px 2px 4px rgba(187, 187, 187, 0.5);
   display: flex;
@@ -23,10 +22,11 @@ export const Container = styled.div`
 export const PostInfoContainer = styled.div`
   width: 100%;
   display: flex;
-  flex: 1;
   flex-direction: column;
+  align-items: end;
   justify-content: space-between;
   padding: 12px;
+  gap: 8px;
 `
 
 export const Title = styled.p`
@@ -44,9 +44,10 @@ export const Title = styled.p`
   font-size: 16px;
 `
 
-export const CategoryAndAuthor = styled.p`
-  font-size: 12px;
-  color: ${colors.grey.primary};
+export const TagBlock = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 4px;
 `
 
 export const BottomBlock = styled.div`
@@ -56,6 +57,7 @@ export const BottomBlock = styled.div`
 `
 
 export const NumericalInfo = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 8px;
