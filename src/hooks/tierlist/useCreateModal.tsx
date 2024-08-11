@@ -46,7 +46,7 @@ const useCreateModal = () => {
     if (!isDropCategories) return
 
     getCategory({
-      page: categoryPages,
+      page: categoryPages - 1,
       size: 5,
       query: debouncedCategory,
       filter: 'NONE',
@@ -69,7 +69,7 @@ const useCreateModal = () => {
     if (!isDropTopics) return
 
     getTopic(selectedCategoryId, {
-      page: topicPages,
+      page: topicPages - 1,
       size: 5,
       query: debouncedTopic,
       filter: 'NONE',
@@ -87,6 +87,14 @@ const useCreateModal = () => {
         }
       })
   }, [debouncedTopic, topicPages, selectedCategoryId, isDropTopics])
+
+  useEffect(() => {
+    setCategoryPages(1)
+  }, [debouncedCategory])
+
+  useEffect(() => {
+    setTopicPages(1)
+  }, [debouncedTopic])
 
   const onChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value)
