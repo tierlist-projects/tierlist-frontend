@@ -18,6 +18,18 @@ export const Container = styled.div`
     object-fit: cover;
   }
 `
+export const ListItemContainer = styled.div`
+  width: 100%;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+
+  & > img {
+    width: 130px;
+    border-radius: 5px 0px 0px 5px;
+    object-fit: cover;
+  }
+`
 
 export const PostInfoContainer = styled.div`
   width: 100%;
