@@ -42,6 +42,12 @@ export const Rank = styled.td<RankProps>`
   font-weight: bold;
 
   border: 1px solid black;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    width: 50px;
+    min-height: 50px;
+    font-size: 20px;
+  }
 `
 
 export const RankCotent = styled.td`

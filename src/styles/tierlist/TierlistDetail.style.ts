@@ -8,6 +8,10 @@ export const Container = styled.div`
   align-items: center;
   gap: 20px;
   position: relative;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    width: 90%;
+  }
 `
 
 export const TitleBlock = styled.div`
@@ -19,11 +23,19 @@ export const TitleBlock = styled.div`
   .category {
     font-size: 16px;
     color: ${colors.primary[300]};
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 14px;
+    }
   }
 
   .title {
     font-size: 20px;
     font-weight: bold;
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 16px;
+    }
   }
 `
 
@@ -85,6 +97,11 @@ export const Menu = styled.div`
   img {
     width: 24px;
     height: 24px;
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      width: 20px;
+      height: 20px;
+    }
   }
 `
 

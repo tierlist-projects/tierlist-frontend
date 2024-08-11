@@ -31,6 +31,11 @@ export const ProfileImg = styled.img`
   height: 65px;
   object-fit: cover;
   border-radius: 15px;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    width: 55px;
+    height: 55px;
+  }
 `
 
 export const Content = styled.div`
@@ -55,6 +60,10 @@ export const CommentInfo = styled.div`
   .nickname {
     font-size: 16px;
     font-weight: bold;
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 14px;
+    }
   }
 
   .date {
@@ -77,10 +86,14 @@ export const Button = styled.button<ButtonProps>`
 export const CommentText = styled.p`
   font-size: 16px;
   line-height: 1.5;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    font-size: 14px;
+  }
 `
 
 export const Input = styled.div`
-  width: 700px;
+  width: 100%;
   height: 80px;
   display: flex;
   border-radius: 10px;
@@ -111,7 +124,7 @@ export const Input = styled.div`
 `
 
 export const ReplyList = styled.div`
-  width: 700px;
+  width: 90%;
   display: flex;
   min-height: 140px;
   border-bottom: 1px solid ${colors.primary[200]};

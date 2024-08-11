@@ -16,6 +16,10 @@ export const Title = styled.p`
   width: 100%;
   font-size: 20px;
   font-weight: bold;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    font-size: 16px;
+  }
 `
 
 export const Input = styled.div`
