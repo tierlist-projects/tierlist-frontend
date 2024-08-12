@@ -4,6 +4,7 @@ import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
 import UploadImage from '@components/tierlist/UploadImage'
 import useModify from '@hooks/tierlist/useModify'
+import { Mobile, TabletAndPC } from '@components/common/MediaQuery'
 
 const TierlistModifyPage = () => {
   const {
@@ -52,23 +53,36 @@ const TierlistModifyPage = () => {
           setFile={setThumbnail}
         />
       </S.ThumbnailBlock>
-      <S.ButtonBlock>
-        <CButton
-          text="저장"
-          fontSize={20}
-          hPadding={12}
-          vPadding={36}
-          onClick={savePost}
-        />
-        <CButton
-          text="취소"
-          fontSize={20}
-          hPadding={12}
-          vPadding={36}
-          backgroundColor={colors.grey.primary}
-          onClick={() => navigate(-1)}
-        />
-      </S.ButtonBlock>
+      <TabletAndPC>
+        <S.ButtonBlock>
+          <CButton
+            text="저장"
+            fontSize={20}
+            hPadding={12}
+            vPadding={36}
+            onClick={savePost}
+          />
+          <CButton
+            text="취소"
+            fontSize={20}
+            hPadding={12}
+            vPadding={36}
+            backgroundColor={colors.grey.primary}
+            onClick={() => navigate(-1)}
+          />
+        </S.ButtonBlock>
+      </TabletAndPC>
+      <Mobile>
+        <S.ButtonBlock>
+          <CButton text="저장" fontSize={16} onClick={savePost} />
+          <CButton
+            text="취소"
+            fontSize={16}
+            backgroundColor={colors.grey.primary}
+            onClick={() => navigate(-1)}
+          />
+        </S.ButtonBlock>
+      </Mobile>
     </S.Container>
   )
 }

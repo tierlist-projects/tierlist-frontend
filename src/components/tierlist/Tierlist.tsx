@@ -32,15 +32,6 @@ type Props = {
   categoryId: number
 }
 
-/**
- * TODO
- * [x] : 중복된 아이템 등록 거르기(생성말고 배열에 추가)
- * [ ] : 다른 SortableContext로 이동되게 하기(빈 배열의 경우 SortableContext가 잡히지 않는 문제인듯)
- * [x] : dragOverlay 설정
- * [x] : 이미지 등록 실패하면 아이템 추가 안하게
- * [ ] : 드래그할 때 애니메이션뜨면서 아이템 겹쳐보이는 거 해결하기
- */
-
 const Tierlist = ({ ranks, setRanks, categoryId }: Props) => {
   const [activeItem, setActiveItem] = useState<ItemType | null>(null)
   const [activeId, setActiveId] = useState<number>(0)

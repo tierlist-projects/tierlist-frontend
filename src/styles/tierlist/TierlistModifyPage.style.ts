@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    width: 90%;
+  }
 `
 
 export const TitleBlock = styled.div`
@@ -16,11 +20,19 @@ export const TitleBlock = styled.div`
   .category {
     font-size: 16px;
     color: ${colors.primary[300]};
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 14px;
+    }
   }
 
   .title {
     font-size: 20px;
     font-weight: bold;
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 16px;
+    }
   }
 `
 
@@ -55,12 +67,20 @@ export const ContentBlock = styled.div`
     ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0);
     }
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      font-size: 14px;
+    }
   }
 `
 
 export const SubTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    font-size: 16px;
+  }
 `
 
 export const ThumbnailBlock = styled.div`
@@ -76,4 +96,8 @@ export const ButtonBlock = styled.div`
   align-items: center;
   justify-content: center;
   gap: 36px;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    gap: 20px;
+  }
 `

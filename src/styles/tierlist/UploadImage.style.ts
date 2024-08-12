@@ -22,6 +22,11 @@ export const Container = styled.label<{ active: boolean }>`
     border-radius: 15px;
     object-fit: contain;
   }
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    width: 250px;
+    height: 150px;
+  }
 `
 
 export const FileInput = styled.input`
@@ -43,6 +48,11 @@ export const InnerDiv = styled.div`
   img {
     width: 70px;
     height: 70px;
+
+    @media screen and ((min-width: 360px) and (max-width: 767px)) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   p {
