@@ -17,7 +17,6 @@ const RootRouter = () => {
       <Routes>
         <Route element={<LayoutPage modify={false} />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/my-tierlist" element={<MyTierlistPage />} />
           <Route path="/tierlist/:categoryId" element={<ListPage />} />
           <Route path="/tierlist/:categoryId/:topicId" element={<ListPage />} />
@@ -25,6 +24,7 @@ const RootRouter = () => {
           <Route path="/mypage" element={<MyPage />} />
         </Route>
         <Route element={<LayoutPage modify />}>
+          <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/tierlist-modify/:id" element={<TierlistModifyPage />} />
         </Route>

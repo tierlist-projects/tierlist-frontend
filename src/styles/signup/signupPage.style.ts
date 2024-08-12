@@ -2,20 +2,32 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
-  width: 800px;
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
+
+  @media screen and ((min-width: 768px) and (max-width: 1023px)) {
+    width: 55%;
+  }
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    width: 90%;
+  }
 `
 
 export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    font-size: 20px;
+  }
 `
 export const InputBlock = styled.div`
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -31,6 +43,7 @@ export const TextBlock = styled.div`
   }
 
   .error {
+    flex: 1;
     font-size: 12px;
     color: ${colors.error};
   }

@@ -1,6 +1,7 @@
 /* eslint-disable no-else-return */
 import { http } from '@utils/http'
 import { useCallback, useRef, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate } from 'react-router-dom'
 import { ResponseErrorSignup } from 'types/signup/signup.type'
 
@@ -31,6 +32,10 @@ const useSignup = () => {
   const PASSWOAD_NOTICE_TEXT = 'password-notice-text'
   const PASSWOAD_CHECK_NOTICE_TEXT = 'password-check-notice-text'
   const NICKNAME_NOTICE_TEXT = 'nickname-notice-text'
+
+  const isMobileAndTablet = useMediaQuery({
+    query: '(min-width: 360px) and (max-width:1023px)',
+  })
 
   const setCorrectColor = useCallback((text: string) => {
     const element = document.querySelector(`.${text}`)
@@ -154,7 +159,8 @@ const useSignup = () => {
         })
         .then(() => {
           alert('회원가입이 완료되었습니다.')
-          navigate('/')
+          if (isMobileAndTablet) navigate(`/login`)
+          else navigate('/')
         })
         .catch((err) => {
           const data = err.response.data as ResponseErrorSignup
