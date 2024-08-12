@@ -12,19 +12,45 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 50px;
+
+  @media screen and ((min-width: 768px) and ((max-width: 1023px))) {
+    width: 600px;
+    height: 400px;
+  }
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    width: 300px;
+    height: 400px;
+    padding: 16px;
+    gap: 30px;
+  }
 `
 
 export const Title = styled.p`
   font-size: 28px;
   font-weight: bold;
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    font-size: 20px;
+  }
 `
 
 export const Content = styled.div`
-  width: fit-content;
+  width: 65%;
   display: flex;
   flex-direction: column;
   align-items: end;
   gap: 50px;
+
+  @media screen and ((min-width: 768px) and ((max-width: 1023px))) {
+    width: 80%;
+    gap: 30px;
+  }
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    width: 95%;
+    gap: 30px;
+  }
 `
 
 export const InputBlock = styled.div`
@@ -33,20 +59,33 @@ export const InputBlock = styled.div`
   justify-content: space-between;
   gap: 40px;
 
-  p {
+  & > p {
+    width: 30%;
     font-size: 24px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+      width: 25%;
+      font-size: 14px;
+    }
+  }
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    gap: 20px;
   }
 `
 
 export const InputWithDrop = styled.div`
-  width: 400px;
+  flex: 1;
   position: relative;
 `
 
 export const Input = styled.input`
   border-bottom: 1px solid #999999;
-  width: 400px;
+  width: 100%;
   height: 28px;
   font-size: 20px;
   padding-bottom: 5px;
@@ -54,6 +93,10 @@ export const Input = styled.input`
 
   ::placeholder {
     color: ${colors.grey.primary};
+  }
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    font-size: 14px;
   }
 `
 
@@ -69,6 +112,10 @@ export const Drop = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and ((min-width: 360px) and ((max-width: 767px))) {
+    max-height: 150px;
+  }
 `
 
 export const DropContent = styled.li`

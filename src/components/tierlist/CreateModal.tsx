@@ -4,6 +4,7 @@ import { colors } from '@constants/colors'
 import { images } from '@constants/images'
 import { Pagination } from '@mui/material'
 import useCreateModal from '@hooks/tierlist/useCreateModal'
+import { Mobile, TabletAndPC } from '@components/common/MediaQuery'
 
 type Props = {
   closeModal: () => void
@@ -118,28 +119,51 @@ const CreateModal = ({ closeModal }: Props) => {
         </S.InputBlock>
         <S.InputBlock>
           <p>제목</p>
-          <S.Input
-            type="text"
-            placeholder="제목을 입력하세요."
-            ref={titleRef}
-          />
+          <S.InputWithDrop>
+            <S.Input
+              type="text"
+              placeholder="제목을 입력하세요."
+              ref={titleRef}
+            />
+          </S.InputWithDrop>
         </S.InputBlock>
       </S.Content>
-      <S.ButtonBlock>
-        <CButton
-          text="생성"
-          fontSize={20}
-          onClick={() => {
-            onClickTierlistCreate(closeModal)
-          }}
-        />
-        <CButton
-          text="취소"
-          fontSize={20}
-          backgroundColor={colors.grey.primary}
-          onClick={closeModal}
-        />
-      </S.ButtonBlock>
+      <TabletAndPC>
+        <S.ButtonBlock>
+          <CButton
+            text="생성"
+            fontSize={20}
+            onClick={() => {
+              onClickTierlistCreate(closeModal)
+            }}
+          />
+          <CButton
+            text="취소"
+            fontSize={20}
+            backgroundColor={colors.grey.primary}
+            onClick={closeModal}
+          />
+        </S.ButtonBlock>
+      </TabletAndPC>
+      <Mobile>
+        <S.ButtonBlock>
+          <CButton
+            text="생성"
+            fontSize={16}
+            radius={5}
+            onClick={() => {
+              onClickTierlistCreate(closeModal)
+            }}
+          />
+          <CButton
+            text="취소"
+            fontSize={16}
+            radius={5}
+            backgroundColor={colors.grey.primary}
+            onClick={closeModal}
+          />
+        </S.ButtonBlock>
+      </Mobile>
     </S.Container>
   )
 }
