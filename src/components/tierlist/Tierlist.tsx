@@ -12,6 +12,7 @@ import {
   MouseSensor,
   DragEndEvent,
   DragOverlay,
+  PointerSensor,
 } from '@dnd-kit/core'
 import {
   SortableContext,
@@ -42,6 +43,7 @@ const Tierlist = ({ ranks, setRanks, categoryId }: Props) => {
         distance: 5,
       },
     }),
+    useSensor(PointerSensor),
   )
 
   const [removeMode, setRemoveMode] = useState(false)

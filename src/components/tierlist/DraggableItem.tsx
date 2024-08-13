@@ -33,6 +33,7 @@ const DraggableItem = ({
     transform: CSS.Translate.toString(transform),
     zIndex: isDragging ? 100 : 'auto',
     opacity: isDragging ? 0.5 : 1,
+    touchAction: 'none',
   }
   return (
     <div style={style} ref={setNodeRef} {...attributes} {...listeners}>
