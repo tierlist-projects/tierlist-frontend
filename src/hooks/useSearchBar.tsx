@@ -48,6 +48,10 @@ const useSearchBar = (size: number = 6) => {
     })
   }, [debouncedKeyword, isDrop, categoryPages])
 
+  useEffect(() => {
+    setCategoryPages(1)
+  }, [debouncedKeyword])
+
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value)
   }
