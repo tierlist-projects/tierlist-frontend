@@ -10,10 +10,12 @@ import LayoutPage from 'pages/LayoutPage'
 import MainPage from 'pages/MainPage'
 import LoginPage from 'pages/LoginPage'
 import SearchPage from 'pages/SearchPage'
+import ScrollToTop from '@components/common/ScrollToTop'
 
 const RootRouter = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<LayoutPage modify={false} />}>
           <Route path="/" element={<MainPage />} />
