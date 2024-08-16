@@ -87,7 +87,7 @@ const ListPage = () => {
           <S.EmptyContainer>인기 티어리스트가 없습니다.</S.EmptyContainer>
         )}
       </S.TierlistBlock>
-      <S.TierlistBlock>
+      <S.TierlistBlock className="recent-list">
         <S.Title>티어리스트</S.Title>
         {recentPostList.length > 0 ? (
           <>

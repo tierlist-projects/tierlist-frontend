@@ -37,6 +37,7 @@ const useListPage = () => {
     (event: React.ChangeEvent<unknown>, value: number) => {
       if (value === undefined) return
       setPage(value)
+      document.querySelector('.recent-list')?.scrollIntoView()
     },
     [],
   )

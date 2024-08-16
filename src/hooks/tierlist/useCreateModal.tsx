@@ -161,6 +161,7 @@ const useCreateModal = () => {
     (event: React.ChangeEvent<unknown>, value: number) => {
       event.stopPropagation()
       setCategoryPages(value)
+      document.querySelector('.drop-category')?.scrollIntoView()
     },
     [],
   )
@@ -169,6 +170,7 @@ const useCreateModal = () => {
     (event: React.ChangeEvent<unknown>, value: number) => {
       event.stopPropagation()
       setTopicPages(value)
+      document.querySelector('.drop-topic')?.scrollIntoView()
     },
     [],
   )

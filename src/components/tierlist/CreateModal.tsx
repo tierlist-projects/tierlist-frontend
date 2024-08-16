@@ -52,7 +52,10 @@ const CreateModal = ({ closeModal }: Props) => {
             />
             {isDropCategories && (
               <S.Drop>
-                <S.DropContent onMouseDown={onClickCreateCategory}>
+                <S.DropContent
+                  onMouseDown={onClickCreateCategory}
+                  className="drop-category"
+                >
                   <img src={images.common.plusBlack} alt="카테고리 생성" />
                   <p>생성</p>
                 </S.DropContent>
@@ -92,7 +95,10 @@ const CreateModal = ({ closeModal }: Props) => {
             />
             {isDropTopics && (
               <S.Drop>
-                <S.DropContent onClick={onClickCreateTopic}>
+                <S.DropContent
+                  onClick={onClickCreateTopic}
+                  className="drop-topic"
+                >
                   <img src={images.common.plusBlack} alt="토픽 생성" />
                   <p>생성</p>
                 </S.DropContent>
