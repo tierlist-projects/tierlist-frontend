@@ -19,8 +19,6 @@ const useMyTierlist = () => {
   )
 
   useEffect(() => {
-    if (!user) return
-
     getMyTierlist({
       page: page - 1,
       size: 12,

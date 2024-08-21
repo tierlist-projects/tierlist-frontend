@@ -11,6 +11,9 @@ axios.defaults.withCredentials = true
 authAxios.defaults.baseURL = SERVER_BASE_URL
 authAxios.defaults.withCredentials = true
 
+let isReissue = false
+let refreshSubscribers: ((token: string) => void)[] = []
+
 export const http = {
   get: async function get<Response = unknown>(
     url: string,
@@ -38,6 +41,15 @@ export const http = {
   },
 }
 
+function onRefreshed(token: string) {
+  refreshSubscribers.forEach((callback) => callback(token))
+  refreshSubscribers = []
+}
+
+function addRefreshSubscriber(callback: (token: string) => void) {
+  refreshSubscribers.push(callback)
+}
+
 authAxios.interceptors.response.use(
   (response) => {
     return response
@@ -53,31 +65,49 @@ authAxios.interceptors.response.use(
       const originRequest = config
       const refreshToken = getCookie('refresh-token')
 
-      const newToken = await http
-        .post<ResponseTokenType>('reissue', null, {
-          'Refresh-Token': refreshToken,
-          'Content-Type': 'application/json',
-        })
-        .catch(() => {
-          alert('로그인 해주세요.')
+      if (!isReissue) {
+        isReissue = true
+        try {
+          const newToken = await http.post<ResponseTokenType>('reissue', null, {
+            'Refresh-Token': refreshToken,
+            'Content-Type': 'application/json',
+          })
+
+          if (newToken) {
+            setCookie(
+              'refresh-token',
+              `${newToken.tokenType} ${newToken.refreshToken}`,
+              {
+                path: '/',
+                maxAge: newToken.refreshTokenExpiresIn,
+              },
+            )
+
+            isReissue = false
+            onRefreshed(newToken.accessToken)
+
+            authAxios.defaults.headers.common.Authorization = `Bearer ${newToken.accessToken}`
+            originRequest.headers.Authorization = `Bearer ${newToken.accessToken}`
+            return await authAxios(originRequest)
+          }
+        } catch (err) {
+          console.log(err)
+
           removeCookie('refresh-token')
           removeCookie('isLogin')
           window.location.replace('/')
+          return Promise.reject(error)
+        }
+      } else {
+        return new Promise((resolve) => {
+          addRefreshSubscriber(async (token: string) => {
+            originRequest.headers = {
+              ...originRequest.headers,
+              Authorization: `Bearer ${token}`,
+            }
+            resolve(await authAxios(originRequest))
+          })
         })
-
-      if (newToken) {
-        setCookie(
-          'refresh-token',
-          `${newToken.tokenType} ${newToken.refreshToken}`,
-          {
-            path: '/',
-            maxAge: newToken.refreshTokenExpiresIn,
-          },
-        )
-
-        authAxios.defaults.headers.common.Authorization = `Bearer ${newToken.accessToken}`
-        originRequest.headers.Authorization = `Bearer ${newToken.accessToken}`
-        return axios(originRequest)
       }
     }
     return Promise.reject(error)

@@ -25,7 +25,7 @@ const useFavorites = () => {
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
-        alert(data)
+        alert(data.message)
       })
 
     getFavoriteTopic(0, 10)
@@ -34,7 +34,7 @@ const useFavorites = () => {
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
-        alert(data)
+        alert(data.message)
       })
   }, [])
 
@@ -47,7 +47,7 @@ const useFavorites = () => {
         })
         .catch((err) => {
           const data = err.response.data as TierlistErrorType
-          alert(data)
+          alert(data.message)
         })
     },
     [],

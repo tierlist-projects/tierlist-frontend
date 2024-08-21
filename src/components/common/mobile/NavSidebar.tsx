@@ -1,10 +1,7 @@
 import * as S from '@styles/common/NavSidebar.style'
 import { userState } from '@atom/userAtom'
-import { getCookie, removeCookie } from '@utils/cookie'
-import { authHttp } from '@utils/http'
-import { useEffect } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { UserInformationType } from 'types/user/user.type'
+import { removeCookie } from '@utils/cookie'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { images } from '@constants/images'
 
 type Props = {
@@ -12,20 +9,9 @@ type Props = {
 }
 
 const NavSidebar = ({ closeSidebar }: Props) => {
-  const [user, setUser] = useRecoilState(userState)
+  const user = useRecoilValue(userState)
   const resetUser = useResetRecoilState(userState)
-  const refresh = getCookie('refresh-token')
 
-  useEffect(() => {
-    if (refresh) {
-      authHttp
-        .get<UserInformationType>(`member/me`)
-        .then((res) => {
-          setUser(res)
-        })
-        .catch((err) => console.error(err))
-    }
-  }, [setUser, refresh])
   return (
     <S.Container>
       {!user ? (

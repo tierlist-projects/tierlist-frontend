@@ -31,22 +31,26 @@ const useLogin = (closeModal: () => void) => {
             const data = res as ResponseTokenType
 
             setAccessToken(data.accessToken)
-            setCookie(
-              'refresh-token',
-              `${data.tokenType} ${data.refreshToken}`,
-              {
-                path: '/',
-                maxAge: data.refreshTokenExpiresIn,
-              },
-            )
-            authHttp
-              .get<UserInformationType>(`member/me`, {
-                Authorization: `Bearer ${data.accessToken}`,
-              })
-              .then((user) => {
-                setUser(user)
-              })
-            closeModal()
+            new Promise<void>((resolve) => {
+              setCookie(
+                'refresh-token',
+                `${data.tokenType} ${data.refreshToken}`,
+                {
+                  path: '/',
+                  maxAge: data.refreshTokenExpiresIn,
+                },
+              )
+              resolve()
+            }).then(() => {
+              authHttp
+                .get<UserInformationType>(`member/me`, {
+                  Authorization: `Bearer ${data.accessToken}`,
+                })
+                .then((user) => {
+                  setUser(user)
+                  closeModal()
+                })
+            })
           })
           .catch(() => {
             setErrorMsg('* 이메일과 비밀번호를 다시 확인해주세요.')

@@ -36,7 +36,7 @@ const useTierlistDetail = () => {
   }, [tierlistId])
 
   useEffect(() => {
-    if (!tierlistId || !user) return
+    if (!tierlistId) return
 
     getPostDetail()
   }, [tierlistId, user])

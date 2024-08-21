@@ -24,7 +24,7 @@ const HeaderPC = () => {
   const [isActive, setIsActive] = useDetectClose(dropRef, false)
 
   useEffect(() => {
-    if (refresh) {
+    if (refresh && !user) {
       authHttp
         .get<UserInformationType>(`member/me`)
         .then((res) => {
