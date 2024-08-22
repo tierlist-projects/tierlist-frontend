@@ -22,6 +22,11 @@ const useMyPage = () => {
   const onChangeNickname = useCallback(() => {
     if (!nicknameRef.current) return
 
+    if (user?.nickname === nicknameRef.current.value) {
+      setIsEdit(false)
+      return
+    }
+
     changeNickname(nicknameRef.current.value)
       .then(() => {
         setUser((prev) => {

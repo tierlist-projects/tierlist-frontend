@@ -2,18 +2,26 @@ import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
-  width: 800px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 50px;
+
+  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
+    width: 95%;
+    padding: 0px 16px;
+  }
 `
 
 export const UserInfo = styled.div`
   width: 100%;
   display: flex;
   gap: 30px;
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    flex-direction: column;
+  }
 `
 
 export const ProfileBlock = styled.div`
@@ -24,12 +32,22 @@ export const ProfileBlock = styled.div`
   gap: 30px;
   border-right: 1px solid ${colors.primary[100]};
   padding-right: 30px;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    border-right: none;
+    padding-right: 0px;
+  }
 `
 
 export const ProfileImage = styled.img`
   width: 128px;
   height: 128px;
   border-radius: 50%;
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    width: 96px;
+    height: 96px;
+  }
 `
 
 export const FileInput = styled.input`
@@ -88,16 +106,21 @@ export const PasswordBlock = styled.div`
     font-size: 16px;
     font-weight: bold;
   }
+
+  @media screen and ((min-width: 360px) and (max-width: 767px)) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `
 
 export const InputBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 1;
 
   input {
     font-size: 16px;
-    width: 400px;
     border-bottom: 3px solid ${colors.primary[200]};
     padding-bottom: 5px;
 
