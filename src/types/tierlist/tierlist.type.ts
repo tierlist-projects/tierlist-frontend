@@ -101,6 +101,7 @@ export type PostDetailType = {
   writer: WriterType
   topic: TopicType
   thumbnailImage: string
+  isPublished: boolean
 }
 
 export type ResponseSearchItems = {

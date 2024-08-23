@@ -15,9 +15,11 @@ export const Container = styled.div`
 export const TitleBlock = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: end;
   gap: 8px;
 
   .category {
+    width: 100%;
     font-size: 16px;
     color: ${colors.primary[300]};
 
@@ -27,6 +29,7 @@ export const TitleBlock = styled.div`
   }
 
   .title {
+    width: 100%;
     font-size: 20px;
     font-weight: bold;
 

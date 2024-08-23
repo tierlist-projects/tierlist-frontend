@@ -5,6 +5,7 @@ import { colors } from '@constants/colors'
 import UploadImage from '@components/tierlist/UploadImage'
 import useModify from '@hooks/tierlist/useModify'
 import { Mobile, TabletAndPC } from '@components/common/MediaQuery'
+import Toggle from '@components/mypage/Toggle'
 
 const TierlistModifyPage = () => {
   const {
@@ -31,6 +32,10 @@ const TierlistModifyPage = () => {
           className="title"
           defaultValue={postDetail?.title}
           ref={titleRef}
+        />
+        <Toggle
+          tierlistId={postDetail.id}
+          initialState={postDetail.isPublished}
         />
       </S.TitleBlock>
       <Tierlist
