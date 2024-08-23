@@ -14,6 +14,7 @@ const useMyTierlist = () => {
   const onClickPage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
       setPage(value)
+      document.querySelector('.my-tierlist')?.scrollIntoView()
     },
     [],
   )
@@ -26,6 +27,8 @@ const useMyTierlist = () => {
       filter: 'RECENT',
     })
       .then((res) => {
+        console.log(res)
+
         setMyList(res.content)
         setTotalPages(res.totalPages)
       })

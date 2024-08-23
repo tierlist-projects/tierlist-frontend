@@ -9,7 +9,7 @@ import MyTierlistListItem from '@components/mypage/MyTierlistListItem'
 const MyTierlistPage = () => {
   const { myList, totalPages, page, onClickPage } = useMyTierlist()
   return (
-    <S.Container>
+    <S.Container className="my-tierlist">
       <S.Title>내 티어리스트</S.Title>
       {myList.length > 0 ? (
         <S.Content>
