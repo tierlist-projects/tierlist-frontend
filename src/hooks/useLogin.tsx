@@ -22,6 +22,11 @@ const useLogin = (closeModal: () => void) => {
       } else {
         setErrorMsg('')
 
+        if (!navigator.cookieEnabled) {
+          alert('쿠키가 차단되어 있습니다. 설정을 통해 허용해주세요.')
+          return
+        }
+
         http
           .post(`login`, {
             email: emailRef.current.value,
