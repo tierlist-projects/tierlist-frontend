@@ -35,7 +35,7 @@ const TierlistModifyPage = () => {
         />
         <Toggle
           tierlistId={postDetail.id}
-          initialState={postDetail.isPublished}
+          initialState={postDetail.published}
         />
       </S.TitleBlock>
       <Tierlist
