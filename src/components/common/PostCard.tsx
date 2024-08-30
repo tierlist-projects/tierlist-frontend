@@ -7,6 +7,9 @@ import { abbreviateNumber } from '@utils/common/searchBarUtil'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@atom/userAtom'
 import { useMediaQuery } from 'react-responsive'
+import { ReactComponent as Heart } from '@assets/icon/empty-heart.svg'
+import { ReactComponent as Comment } from '@assets/icon/comment.svg'
+import { colors } from '@constants/colors'
 import Tag from './Tag'
 
 type Props = {
@@ -56,11 +59,11 @@ const PostCard = ({ post }: Props) => {
         <S.BottomBlock>
           <S.NumericalInfo>
             <S.NumberWithIcon>
-              <img src={images.common.postCard.heart} alt="좋아요 수" />
+              <Heart width={14} height={14} fill={colors.heart} />
               <p>{abbreviateNumber(post.likesCount)}</p>
             </S.NumberWithIcon>
             <S.NumberWithIcon>
-              <img src={images.common.postCard.comment} alt="댓글 수" />
+              <Comment width={14} height={14} fill={colors.grey.primary} />
               <p>{abbreviateNumber(post.commentsCount)}</p>
             </S.NumberWithIcon>
             {/* <S.NumberWithIcon>

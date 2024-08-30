@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from '@styles/tierlist/Item.style'
-import { images } from '@constants/images'
+import { ReactComponent as Remove } from '@assets/icon/x.svg'
 
 type Props = {
   name: string
@@ -28,8 +28,9 @@ const Item = ({
                 }
               : undefined
           }
+          aria-label="아이템 삭제 버튼"
         >
-          <img src={images.common.close} alt="아이템 삭제 버튼" />
+          <Remove width={12} height={12} fill="black" />
         </S.RemoveButton>
       )}
       {itemRankImage !== '' && (

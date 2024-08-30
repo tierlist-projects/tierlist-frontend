@@ -1,5 +1,6 @@
-import { images } from '@constants/images'
 import { useNavigate } from 'react-router-dom'
+import { ReactComponent as Search } from '@assets/icon/search.svg'
+import { ReactComponent as User } from '@assets/icon/user.svg'
 import useSidebar from '@hooks/useSidebar'
 import * as S from '@styles/common/HeaderMobile.style'
 import { useEffect } from 'react'
@@ -30,11 +31,15 @@ const HeaderMobile = () => {
     <S.Container>
       <S.Logo to="/">티어리스트</S.Logo>
       <S.IconBlock>
-        <button type="button" onClick={() => navigate(`/search-category`)}>
-          <img src={images.common.searchBar.searchBlack} alt="검색" />
+        <button
+          type="button"
+          onClick={() => navigate(`/search-category`)}
+          aria-label="검색"
+        >
+          <Search width={28} height={28} fill="black" />
         </button>
-        <button type="button" onClick={openSidebar}>
-          <img src={images.common.user} alt="유저" />
+        <button type="button" onClick={openSidebar} aria-label="유저">
+          <User width={28} height={28} fill="black" />
         </button>
       </S.IconBlock>
       <Sidebar isOpen={isOpen} closeSidebar={closeSidebar}>

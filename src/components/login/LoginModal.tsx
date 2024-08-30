@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from '@styles/login/LoginModal.style'
-import { images } from '@constants/images'
+import { ReactComponent as Close } from '@assets/icon/x.svg'
 import useLogin from '@hooks/useLogin'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,8 +13,8 @@ const LoginModal = ({ closeModal }: Props) => {
   const { emailRef, pwRef, errorMsg, onLogin } = useLogin(closeModal)
   return (
     <S.Container>
-      <S.CloseButton onClick={closeModal}>
-        <img src={images.common.close} alt="모달 닫기" />
+      <S.CloseButton onClick={closeModal} aria-label="모달 닫기">
+        <Close width={28} height={28} fill="black" />
       </S.CloseButton>
       <S.Title>로그인</S.Title>
       <S.InputBlock>

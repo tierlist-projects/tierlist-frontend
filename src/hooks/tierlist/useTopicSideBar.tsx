@@ -1,6 +1,7 @@
 import { getTopic } from '@apis/tierlist/createModalApi'
 import useDebounce from '@hooks/useDebounce'
 import { useCallback, useEffect, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TierlistErrorType, TopicType } from 'types/tierlist/category.type'
 
@@ -13,6 +14,10 @@ const useTopicSideBar = () => {
   const [topicList, setTopicList] = useState<TopicType[]>([])
 
   const debouncedKeyword = useDebounce(keyword, 500)
+
+  const isMobileAndTablet = useMediaQuery({
+    query: '(min-width: 360px) and (max-width:1023px)',
+  })
 
   const onChangeKeyword = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +65,7 @@ const useTopicSideBar = () => {
     page,
     topicList,
     totalPages,
+    isMobileAndTablet,
     onChangeKeyword,
     onClickPage,
     onClickTopic,

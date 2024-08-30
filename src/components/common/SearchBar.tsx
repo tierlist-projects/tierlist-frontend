@@ -1,6 +1,5 @@
 import * as S from '@styles/common/SearchBar.style'
-import { images } from '@constants/images'
-// import { changeNumberOfPost } from '@utils/common/searchBarUtil'
+import { ReactComponent as Search } from '@assets/icon/search.svg'
 import useSearchBar from '@hooks/useSearchBar'
 import { Pagination } from '@mui/material'
 
@@ -18,7 +17,7 @@ const SearchBar = () => {
 
   return (
     <S.SearchBarContainer ref={dropRef}>
-      <img src={images.common.searchBar.search} alt="검색" />
+      <Search width={28} height={28} fill="#999999" />
       <S.Search onChange={onChangeKeyword} onFocus={() => setIsDrop(true)} />
       {isDrop && (
         <S.SearchResultContainer>

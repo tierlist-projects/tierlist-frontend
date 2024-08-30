@@ -1,8 +1,8 @@
 import * as S from '@styles/tierlist/createModal.style'
 import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
+import { ReactComponent as Plus } from '@assets/icon/plus.svg'
 import { Pagination } from '@mui/material'
-import { images } from '@constants/images'
 import useItemRegist from '@hooks/tierlist/useItemRegist'
 import { RankType } from 'types/tierlist/tierlist.type'
 import UploadImage from './UploadImage'
@@ -52,7 +52,7 @@ const ItemRegistModal = ({
             {isDropItems && (
               <S.Drop>
                 <S.DropContent onClick={onClickCreateItem}>
-                  <img src={images.common.plusBlack} alt="토픽 생성" />
+                  <Plus width={16} height={16} fill="black" />
                   <p>생성</p>
                 </S.DropContent>
                 {searchedItemList.map((item) => (

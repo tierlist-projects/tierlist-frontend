@@ -1,5 +1,7 @@
 import * as S from '@styles/tierlist/ListPage.style'
-import { images } from '@constants/images'
+import { ReactComponent as FullStar } from '@assets/icon/full-star.svg'
+import { ReactComponent as EmptyStar } from '@assets/icon/empty-star.svg'
+import { ReactComponent as Search } from '@assets/icon/search.svg'
 import PostCard from '@components/common/PostCard'
 import Pagination from '@mui/material/Pagination'
 import TopicSidebar from '@components/tierlist/TopicSidebar'
@@ -14,6 +16,7 @@ import {
 import PostListItem from '@components/common/PostListItem'
 import useSidebar from '@hooks/useSidebar'
 import CButton from '@components/common/CButton'
+import { colors } from '@constants/colors'
 
 const ListPage = () => {
   const {
@@ -26,6 +29,7 @@ const ListPage = () => {
     categoryName,
     topicName,
     isFavorite,
+    isMobile,
     onChangePage,
     onClickSearch,
     onClickFavorite,
@@ -37,16 +41,20 @@ const ListPage = () => {
   return (
     <S.Container>
       <S.TitleBlock>
-        <button type="button" onClick={onClickFavorite}>
-          <img
-            src={
-              isFavorite
-                ? images.common.favorites.fullStar
-                : images.common.favorites.emptyStar
-            }
-            alt="즐겨찾기"
-            className="favorite"
-          />
+        <button type="button" onClick={onClickFavorite} aria-label="즐겨찾기">
+          {isFavorite ? (
+            <FullStar
+              width={isMobile ? 32 : 48}
+              height={isMobile ? 32 : 48}
+              fill="black"
+            />
+          ) : (
+            <EmptyStar
+              width={isMobile ? 32 : 48}
+              height={isMobile ? 32 : 48}
+              fill="black"
+            />
+          )}
         </button>
         <S.Title>
           <Link to={`/tierlist/${categoryId}`} onClick={moveToCategory}>
@@ -129,11 +137,12 @@ const ListPage = () => {
                 placeholder="검색어를 입력하세요."
                 ref={searchRef}
               />
-              <button type="button" onClick={onClickSearch}>
-                <img
-                  src={images.common.searchBar.search}
-                  alt="티어리스트 검색"
-                />
+              <button
+                type="button"
+                onClick={onClickSearch}
+                aria-label="티어리스트 검색"
+              >
+                <Search width={20} height={20} fill={colors.grey.primary} />
               </button>
             </S.SearchBarContainer>
           </S.TierlistSearch>

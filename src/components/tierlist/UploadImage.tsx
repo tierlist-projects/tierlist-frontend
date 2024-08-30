@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, DragEventHandler, useState } from 'react'
 import * as S from '@styles/tierlist/UploadImage.style'
-import { images } from '@constants/images'
+import { ReactComponent as ImageIcon } from '@assets/icon/image.svg'
+import { colors } from '@constants/colors'
 
 type Props = {
   thumbnail?: string
@@ -61,8 +62,8 @@ const UploadImage = ({ thumbnail, setFile }: Props) => {
       />
       {imageUrl && <img className="preview" src={imageUrl} alt="미리보기" />}
       {!imageUrl && (
-        <S.InnerDiv>
-          <img src={images.tierlist.image} alt="이미지 업로드" />
+        <S.InnerDiv aria-label="이미지 업로드">
+          <ImageIcon width={70} height={70} stroke={colors.primary[200]} />
           <p>이미지를 드래그하거나 클릭 후 등록해주세요.</p>
         </S.InnerDiv>
       )}

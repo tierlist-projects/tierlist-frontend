@@ -1,10 +1,10 @@
 import * as S from '@styles/tierlist/createModal.style'
 import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
-import { images } from '@constants/images'
 import { Pagination } from '@mui/material'
 import useCreateModal from '@hooks/tierlist/useCreateModal'
 import { Mobile, TabletAndPC } from '@components/common/MediaQuery'
+import { ReactComponent as Plus } from '@assets/icon/plus.svg'
 
 type Props = {
   closeModal: () => void
@@ -56,7 +56,7 @@ const CreateModal = ({ closeModal }: Props) => {
                   onMouseDown={onClickCreateCategory}
                   className="drop-category"
                 >
-                  <img src={images.common.plusBlack} alt="카테고리 생성" />
+                  <Plus width={16} height={16} fill="black" />
                   <p>생성</p>
                 </S.DropContent>
                 {categoryList.length > 0 &&
@@ -99,7 +99,7 @@ const CreateModal = ({ closeModal }: Props) => {
                   onClick={onClickCreateTopic}
                   className="drop-topic"
                 >
-                  <img src={images.common.plusBlack} alt="토픽 생성" />
+                  <Plus width={16} height={16} fill="black" />
                   <p>생성</p>
                 </S.DropContent>
                 {topicList.map((item) => (

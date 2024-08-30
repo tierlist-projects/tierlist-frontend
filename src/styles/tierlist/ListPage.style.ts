@@ -24,15 +24,6 @@ export const TitleBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  .favorite {
-    width: 48px;
-    height: 48px;
-
-    @media screen and ((min-width: 360px) and (max-width: 767px)) {
-      width: 32px;
-      height: 32px;
-    }
-  }
 `
 
 export const Title = styled.p`
@@ -119,10 +110,6 @@ export const SearchBarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      width: 20px;
-      height: 20px;
-    }
   }
 
   @media screen and ((min-width: 360px) and (max-width: 767px)) {

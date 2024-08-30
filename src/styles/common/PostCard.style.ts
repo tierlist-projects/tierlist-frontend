@@ -73,12 +73,7 @@ export const NumericalInfo = styled.div`
 export const NumberWithIcon = styled.div`
   display: flex;
   align-items: center;
-  img {
-    width: 14px;
-    height: 14px;
-    margin-right: 6px;
-  }
-
+  gap: 6px;
   p {
     font-size: 10px;
     color: ${colors.grey.primary};

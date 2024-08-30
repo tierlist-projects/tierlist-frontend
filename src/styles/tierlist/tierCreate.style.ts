@@ -15,11 +15,6 @@ export const CreateButton = styled.button`
 
   transition-duration: 0.3s;
 
-  img {
-    width: 40px;
-    height: 40px;
-  }
-
   :active {
     transform: translateY(4px);
   }

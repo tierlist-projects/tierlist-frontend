@@ -1,6 +1,7 @@
 import { getTierlistDetail, toggleLike } from '@apis/tierlist/tierlistDetailApi'
 import { userState } from '@atom/userAtom'
 import { useCallback, useEffect, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { TierlistErrorType } from 'types/tierlist/category.type'
@@ -11,6 +12,9 @@ const useTierlistDetail = () => {
   const tierlistId = Number(useParams().id)
   const user = useRecoilValue(userState)
   const [postDetail, setPostDetail] = useState<PostDetailType | null>(null)
+  const isMobile = useMediaQuery({
+    query: '(min-width: 360px) and (max-width:767px)',
+  })
 
   const getPostDetail = useCallback(() => {
     getTierlistDetail(tierlistId)
@@ -41,7 +45,7 @@ const useTierlistDetail = () => {
     getPostDetail()
   }, [tierlistId, user])
 
-  return { navigate, postDetail, onClickLikeButton }
+  return { navigate, postDetail, isMobile, onClickLikeButton }
 }
 
 export default useTierlistDetail

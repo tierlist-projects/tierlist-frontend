@@ -1,4 +1,5 @@
-import { images } from '@constants/images'
+import { ReactComponent as Search } from '@assets/icon/search.svg'
+import { colors } from '@constants/colors'
 import useSearchBar from '@hooks/useSearchBar'
 import { Pagination } from '@mui/material'
 import * as S from '@styles/common/SearchPage.style'
@@ -25,7 +26,7 @@ const SearchPage = () => {
     <S.Layout>
       <S.Container>
         <S.SearchBar>
-          <img src={images.common.searchBar.searchBlack} alt="검색" />
+          <Search width={24} height={24} fill={colors.grey.primary} />
           <input
             type="text"
             placeholder="검색어를 입력하세요."

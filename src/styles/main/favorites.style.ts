@@ -49,6 +49,7 @@ export const Favorite = styled.li`
   border: 1px solid ${colors.primary[200]};
   border-radius: 5px;
   float: left;
+  gap: 8px;
 
   p {
     font-size: 16px;
@@ -61,15 +62,6 @@ export const Favorite = styled.li`
     background-color: ${colors.primary[50]};
     transition: 250ms ease-in-out;
   }
-`
-
-export const Star = styled.img`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
 `
 
 export const EmptyText = styled.div`

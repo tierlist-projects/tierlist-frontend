@@ -39,18 +39,6 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   padding: 5px;
   border-bottom: 1px solid ${colors.grey.primary};
-
-  img {
-    width: 14px;
-    height: 14px;
-  }
-
-  @media screen and ((min-width: 360px) and (max-width: 1023px)) {
-    img {
-      width: 20px;
-      height: 20px;
-    }
-  }
 `
 
 export const Search = styled.input`

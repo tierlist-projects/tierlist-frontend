@@ -29,4 +29,5 @@ export const colors = {
     },
     background: 'white',
   },
+  heart: '#FA7070',
 }

@@ -52,11 +52,6 @@ export const NumberWithIcon = styled.div`
   align-items: center;
   gap: 4px;
 
-  img {
-    width: 16px;
-    height: 16px;
-  }
-
   p {
     font-size: 10px;
     color: ${colors.grey.primary};

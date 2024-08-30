@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from '@styles/tierlist/tierCreate.style'
-import { images } from '@constants/images'
+import { ReactComponent as Plus } from '@assets/icon/plus.svg'
 import useModal from '@hooks/useModal'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@atom/userAtom'
@@ -19,8 +19,9 @@ const TierCreate = () => {
             alert('로그인을 해야 이용할 수 있습니다.')
           }
         }}
+        aria-label="게시글 작성"
       >
-        <img src={images.common.plus} alt="게시글 작성" />
+        <Plus width={40} height={40} fill="white" />
       </S.CreateButton>
       <Modal isOpen={isOpen}>
         <CreateModal closeModal={closeModal} />

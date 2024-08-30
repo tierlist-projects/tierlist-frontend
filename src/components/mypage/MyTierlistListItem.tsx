@@ -6,6 +6,10 @@ import { abbreviateNumber } from '@utils/common/searchBarUtil'
 import { useNavigate } from 'react-router-dom'
 import useDetectClose from '@hooks/common/useDetectClose'
 import { useCallback, useRef } from 'react'
+import { ReactComponent as Heart } from '@assets/icon/empty-heart.svg'
+import { ReactComponent as Comment } from '@assets/icon/comment.svg'
+import { ReactComponent as DotMenu } from '@assets/icon/menu.svg'
+import { colors } from '@constants/colors'
 import Toggle from './Toggle'
 
 type Props = {
@@ -37,8 +41,8 @@ const MyTierlistListItem = ({ post }: Props) => {
   return (
     <S.ListItemContainer>
       <S.Menu ref={menuRef}>
-        <button type="button" onClick={onClickMenu}>
-          <img src={images.common.dotMenu} alt="메뉴" />
+        <button type="button" onClick={onClickMenu} aria-label="메뉴">
+          <DotMenu width={20} height={20} stroke="black" />
         </button>
         {isDrop && (
           <S.DropMenu>
@@ -81,11 +85,11 @@ const MyTierlistListItem = ({ post }: Props) => {
 
         <S.NumericalInfo>
           <S.NumberWithIcon>
-            <img src={images.common.postCard.heart} alt="좋아요" />
+            <Heart width={14} height={14} fill={colors.heart} />
             <p>{abbreviateNumber(post.likesCount)}</p>
           </S.NumberWithIcon>
           <S.NumberWithIcon>
-            <img src={images.common.postCard.comment} alt="댓글" />
+            <Comment width={14} height={14} fill={colors.grey.primary} />
             <p>{abbreviateNumber(post.commentsCount)}</p>
           </S.NumberWithIcon>
           {/* <S.NumberWithIcon>

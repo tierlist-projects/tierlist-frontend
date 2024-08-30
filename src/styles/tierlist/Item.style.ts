@@ -33,9 +33,4 @@ export const RemoveButton = styled.button`
   position: absolute;
   top: -10px;
   right: -10px;
-
-  img {
-    width: 12px;
-    height: 12px;
-  }
 `

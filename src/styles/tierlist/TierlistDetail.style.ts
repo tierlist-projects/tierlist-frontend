@@ -78,11 +78,6 @@ export const LikeButton = styled.button`
   padding: 12px 24px;
   border-radius: 15px;
   border: 1px solid ${colors.primary[100]};
-  img {
-    width: 28px;
-    height: 28px;
-  }
-
   font-size: 16px;
 `
 
@@ -93,16 +88,6 @@ export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-
-  img {
-    width: 24px;
-    height: 24px;
-
-    @media screen and ((min-width: 360px) and (max-width: 767px)) {
-      width: 20px;
-      height: 20px;
-    }
-  }
 `
 
 export const DropMenu = styled.ul`

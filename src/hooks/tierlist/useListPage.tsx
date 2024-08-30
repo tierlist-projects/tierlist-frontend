@@ -164,6 +164,7 @@ const useListPage = () => {
     categoryName,
     topicName,
     isFavorite,
+    isMobile,
     onChangePage,
     onClickSearch,
     onClickFavorite,

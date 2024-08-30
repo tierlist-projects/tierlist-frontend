@@ -24,7 +24,8 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/custom.d.ts"
 , "src/hooks/useAxiosInterceptor"  ],
   "exclude": ["node_modules"]
 }

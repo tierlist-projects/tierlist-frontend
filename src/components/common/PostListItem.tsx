@@ -4,6 +4,9 @@ import { PostType } from 'types/tierlist/tierlist.type'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@atom/userAtom'
+import { ReactComponent as Heart } from '@assets/icon/empty-heart.svg'
+import { ReactComponent as Comment } from '@assets/icon/comment.svg'
+import { colors } from '@constants/colors'
 import Tag from './Tag'
 
 type Props = {
@@ -51,11 +54,11 @@ const PostListItem = ({ post }: Props) => {
         <S.Author>{post.writer.nickname}</S.Author>
         <S.NumericalInfo>
           <S.NumberWithIcon>
-            <img src={images.common.postCard.heart} alt="좋아요" />
+            <Heart width={16} height={16} fill={colors.heart} />
             <p>{post.likesCount}</p>
           </S.NumberWithIcon>
           <S.NumberWithIcon>
-            <img src={images.common.postCard.comment} alt="댓글" />
+            <Comment width={16} height={16} fill={colors.grey.primary} />
             <p>{post.commentsCount}</p>
           </S.NumberWithIcon>
           {/* <S.NumberWithIcon>

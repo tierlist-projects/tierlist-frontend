@@ -45,16 +45,6 @@ export const InnerDiv = styled.div`
   justify-content: center;
   gap: 12px;
 
-  img {
-    width: 70px;
-    height: 70px;
-
-    @media screen and ((min-width: 360px) and (max-width: 767px)) {
-      width: 50px;
-      height: 50px;
-    }
-  }
-
   p {
     font-size: 14px !important;
     color: ${colors.primary[200]};

@@ -133,11 +133,6 @@ export const DropContent = styled.li`
     transition: all 0.2s ease-in-out;
   }
 
-  & > img {
-    width: 16px;
-    height: 16px;
-  }
-
   p {
     font-size: 14px;
     font-weight: bold;

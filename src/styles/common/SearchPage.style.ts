@@ -30,11 +30,6 @@ export const SearchBar = styled.div`
   padding: 14px 20px;
   gap: 16px;
 
-  img {
-    width: 24px;
-    height: 24px;
-  }
-
   input {
     flex: 1;
     font-size: 16px;

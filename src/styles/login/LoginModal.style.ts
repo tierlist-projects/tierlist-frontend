@@ -16,10 +16,6 @@ export const CloseButton = styled.button`
   position: fixed;
   top: 28px;
   right: 28px;
-  img {
-    width: 28px;
-    height: 28px;
-  }
 `
 
 export const Title = styled.p`

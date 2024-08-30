@@ -1,8 +1,8 @@
 import * as S from '@styles/main/favorites.style'
-import { images } from '@constants/images'
 import useFavorites from '@hooks/main/useFavorites'
 import React from 'react'
 import { ContentsTitle } from '@styles/main/mainPage.style'
+import { ReactComponent as FullStar } from '@assets/icon/full-star.svg'
 
 const Favorites = () => {
   const { navigate, favoriteCategories, favoriteTopics, onClick } =
@@ -18,9 +18,10 @@ const Favorites = () => {
                 key={`favoriteCategory${category.id}`}
                 onClick={() => navigate(`/tierlist/${category.id}`)}
               >
-                <S.Star
-                  src={images.common.favorites.fullStar}
-                  alt="즐겨찾기"
+                <FullStar
+                  width={20}
+                  height={20}
+                  fill="black"
                   onClick={(e: React.MouseEvent) => {
                     onClick(e, 'category', category.id)
                   }}
@@ -35,11 +36,12 @@ const Favorites = () => {
                   navigate(`/tierlist/${topic.category.id}/${topic.id}`)
                 }
               >
-                <S.Star
-                  src={images.common.favorites.fullStar}
-                  alt="즐겨찾기"
+                <FullStar
+                  width={20}
+                  height={20}
+                  fill="black"
                   onClick={(e: React.MouseEvent) => {
-                    onClick(e, 'topic', topic.id)
+                    onClick(e, 'category', topic.id)
                   }}
                 />
                 <p>

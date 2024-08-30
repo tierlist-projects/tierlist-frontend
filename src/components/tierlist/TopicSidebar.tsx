@@ -1,9 +1,10 @@
 import React from 'react'
 import * as S from '@styles/tierlist/TopicSidebar.style'
-import { images } from '@constants/images'
+import { ReactComponent as Search } from '@assets/icon/search.svg'
 import useTopicSideBar from '@hooks/tierlist/useTopicSideBar'
 import { Pagination } from '@mui/material'
 import { abbreviateNumber } from '@utils/common/searchBarUtil'
+import { colors } from '@constants/colors'
 
 type Props = {
   closeSidebar?: () => void
@@ -14,6 +15,7 @@ const TopicSidebar = ({ closeSidebar }: Props) => {
     topicList,
     page,
     totalPages,
+    isMobileAndTablet,
     onChangeKeyword,
     onClickPage,
     onClickTopic,
@@ -22,7 +24,11 @@ const TopicSidebar = ({ closeSidebar }: Props) => {
     <S.Container>
       <S.Title>토픽</S.Title>
       <S.SearchBarContainer>
-        <img src={images.common.searchBar.search} alt="토픽 검색" />
+        <Search
+          width={isMobileAndTablet ? 20 : 14}
+          height={isMobileAndTablet ? 20 : 14}
+          fill={colors.grey.primary}
+        />
         <S.Search type="text" onChange={onChangeKeyword} />
       </S.SearchBarContainer>
       <S.TopicList>

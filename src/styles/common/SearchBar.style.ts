@@ -9,20 +9,18 @@ export const SearchBarContainer = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
-  img {
-    position: absolute;
-    left: 19px;
-    top: 8px;
-    width: 24px;
-    height: 24px;
+  gap: 8px;
+
+  svg {
+    margin-left: 16px;
   }
 `
 
 export const Search = styled.input`
-  padding-left: 50px;
   width: 100%;
   height: 100%;
   font-size: 16px;
+  margin-right: 16px;
 `
 
 export const SearchResultContainer = styled.div`
