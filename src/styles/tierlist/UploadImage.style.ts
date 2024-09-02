@@ -1,7 +1,14 @@
 import { colors } from '@constants/colors'
 import styled from '@emotion/styled'
 
-export const Container = styled.label<{ active: boolean }>`
+export const Container = styled.div`
+  display: flex;
+  gap: 8px;
+
+  flex-direction: column;
+`
+
+export const ImageContainer = styled.label<{ active: boolean }>`
   width: 320px;
   height: 180px;
   border: ${(props) =>
@@ -24,7 +31,7 @@ export const Container = styled.label<{ active: boolean }>`
   }
 
   @media screen and ((min-width: 360px) and (max-width: 767px)) {
-    width: 250px;
+    width: 200px;
     height: 150px;
   }
 `
@@ -34,7 +41,7 @@ export const FileInput = styled.input`
 `
 
 export const InnerDiv = styled.div`
-  width: 100%;
+  flex: 1;
   height: 100%;
   border: 3px dashed ${colors.primary[200]};
   border-radius: 15px;

@@ -1,7 +1,13 @@
-import React, { ChangeEventHandler, DragEventHandler, useState } from 'react'
+import React, {
+  ChangeEventHandler,
+  DragEventHandler,
+  useCallback,
+  useState,
+} from 'react'
 import * as S from '@styles/tierlist/UploadImage.style'
 import { ReactComponent as ImageIcon } from '@assets/icon/image.svg'
 import { colors } from '@constants/colors'
+import CButton from '@components/common/CButton'
 
 type Props = {
   thumbnail?: string
@@ -11,7 +17,7 @@ type Props = {
 const UploadImage = ({ thumbnail, setFile }: Props) => {
   const [isActive, setIsActive] = useState(false)
   const [imageUrl, setImageUrl] = useState(
-    thumbnail !== undefined && thumbnail !== null
+    thumbnail !== undefined && thumbnail !== null && thumbnail !== ''
       ? `https://image.tierlist.site/tierlist/${thumbnail}`
       : '',
   )
@@ -47,26 +53,42 @@ const UploadImage = ({ thumbnail, setFile }: Props) => {
     setFile(file)
   }
 
+  const onClickRemoveImageButton = useCallback(() => {
+    setFile(null)
+    setImageUrl('')
+  }, [])
+
   return (
-    <S.Container
-      onDragEnter={onDragEnter}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      active={isActive}
-    >
-      <S.FileInput
-        type="file"
-        accept="image/png, image/jpeg"
-        onChange={onChange}
+    <S.Container>
+      <S.ImageContainer
+        onDragEnter={onDragEnter}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        active={isActive}
+      >
+        <S.FileInput
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={onChange}
+        />
+        {imageUrl && <img className="preview" src={imageUrl} alt="미리보기" />}
+        {!imageUrl && (
+          <S.InnerDiv aria-label="이미지 업로드">
+            <ImageIcon width={50} height={50} stroke={colors.primary[200]} />
+            <p>이미지를 드래그하거나 클릭 후 등록해주세요.</p>
+          </S.InnerDiv>
+        )}
+      </S.ImageContainer>
+      <CButton
+        vPadding={12}
+        radius={5}
+        fontSize={14}
+        text="이미지 삭제"
+        backgroundColor={colors.error}
+        medium
+        onClick={onClickRemoveImageButton}
       />
-      {imageUrl && <img className="preview" src={imageUrl} alt="미리보기" />}
-      {!imageUrl && (
-        <S.InnerDiv aria-label="이미지 업로드">
-          <ImageIcon width={70} height={70} stroke={colors.primary[200]} />
-          <p>이미지를 드래그하거나 클릭 후 등록해주세요.</p>
-        </S.InnerDiv>
-      )}
     </S.Container>
   )
 }

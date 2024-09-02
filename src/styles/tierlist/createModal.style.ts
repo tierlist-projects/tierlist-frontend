@@ -50,7 +50,7 @@ export const Content = styled.div`
 
   @media screen and ((min-width: 360px) and ((max-width: 767px))) {
     width: 95%;
-    gap: 30px;
+    gap: 20px;
   }
 `
 
@@ -75,7 +75,7 @@ export const InputBlock = styled.div`
   }
 
   @media screen and ((min-width: 360px) and ((max-width: 767px))) {
-    gap: 20px;
+    gap: 10px;
   }
 `
 
