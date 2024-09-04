@@ -1,13 +1,12 @@
 import { colors } from '@constants/colors'
-import React from 'react'
 import { ClipLoader } from 'react-spinners'
 
-const Loading = () => {
+const LoadingPage = () => {
   return (
     <div
       style={{
         width: '100%',
-        height: '100%',
+        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -18,4 +17,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default LoadingPage
