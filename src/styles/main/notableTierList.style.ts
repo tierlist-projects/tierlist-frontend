@@ -46,7 +46,7 @@ export const TierListMobile = styled.div`
 `
 
 export const EmptyText = styled.div`
-  width: 600px;
+  width: 100%;
   font-size: 16px;
   color: ${colors.grey.primary};
 `
