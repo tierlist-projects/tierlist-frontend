@@ -6,46 +6,53 @@ import PostCard from '@components/common/PostCard'
 import { Pagination } from '@mui/material'
 import { Mobile, PC, Tablet } from '@components/common/MediaQuery'
 import PostListItem from '@components/common/PostListItem'
+import Loading from '@components/common/Loading'
 
 const NotableTierList = () => {
-  const { notableList, page, totalPages, onChangePage } = useNotableTierlist()
+  const { notableList, page, totalPages, isLoading, onChangePage } =
+    useNotableTierlist()
   return (
     <S.ContentsContainer>
       <ContentsTitle>주목할만한 티어리스트</ContentsTitle>
 
-      {notableList.length > 0 ? (
-        <>
-          <PC>
-            <S.TierList className="notable-top">
-              {notableList.map((post) => (
-                <PostCard post={post} key={post.id} />
-              ))}
-            </S.TierList>
-          </PC>
-          <Tablet>
-            <S.TierList className="notable-top">
-              {notableList.map((post) => (
-                <PostCard post={post} key={post.id} />
-              ))}
-            </S.TierList>
-          </Tablet>
-          <Mobile>
-            <S.TierListMobile className="notable-top">
-              {notableList.map((post) => (
-                <PostListItem post={post} key={post.id} />
-              ))}
-            </S.TierListMobile>
-          </Mobile>
-          <Pagination
-            count={totalPages}
-            page={page}
-            size="small"
-            onChange={onChangePage}
-          />
-        </>
-      ) : (
-        <S.EmptyText>주목할만한 티어리스트가 없습니다.</S.EmptyText>
-      )}
+      {(() => {
+        if (isLoading) return <Loading />
+
+        if (notableList.length > 0) {
+          return (
+            <>
+              <PC>
+                <S.TierList className="notable-top">
+                  {notableList.map((post) => (
+                    <PostCard post={post} key={post.id} />
+                  ))}
+                </S.TierList>
+              </PC>
+              <Tablet>
+                <S.TierList className="notable-top">
+                  {notableList.map((post) => (
+                    <PostCard post={post} key={post.id} />
+                  ))}
+                </S.TierList>
+              </Tablet>
+              <Mobile>
+                <S.TierListMobile className="notable-top">
+                  {notableList.map((post) => (
+                    <PostListItem post={post} key={post.id} />
+                  ))}
+                </S.TierListMobile>
+              </Mobile>
+              <Pagination
+                count={totalPages}
+                page={page}
+                size="small"
+                onChange={onChangePage}
+              />
+            </>
+          )
+        }
+        return <S.EmptyText>주목할만한 티어리스트가 없습니다.</S.EmptyText>
+      })()}
     </S.ContentsContainer>
   )
 }

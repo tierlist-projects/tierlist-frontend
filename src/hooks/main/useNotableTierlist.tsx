@@ -4,6 +4,7 @@ import { TierlistErrorType } from 'types/tierlist/category.type'
 import { PostType } from 'types/tierlist/tierlist.type'
 
 const useNotableTierlist = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [notableList, setNotableList] = useState<PostType[]>([])
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
@@ -19,11 +20,13 @@ const useNotableTierlist = () => {
   )
 
   useEffect(() => {
+    setIsLoading(true)
     getNotableTierlist(page - 1)
       .then((res) => {
         setNotableList(res.content)
         if (res.totalPages > 4) setTotalPages(4)
         else setTotalPages(res.pageSize)
+        setIsLoading(false)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
@@ -31,7 +34,7 @@ const useNotableTierlist = () => {
       })
   }, [page])
 
-  return { notableList, page, totalPages, onChangePage }
+  return { notableList, page, totalPages, isLoading, onChangePage }
 }
 
 export default useNotableTierlist
