@@ -17,8 +17,10 @@ const useFavorites = () => {
     [],
   )
   const [favoriteTopics, setFavoriteTopics] = useState<TopicType[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const getFavorites = useCallback(() => {
+    setIsLoading(true)
     getFavoriteCategory(0, 10)
       .then((res) => {
         setFavoriteCategories(res.content)
@@ -31,6 +33,7 @@ const useFavorites = () => {
     getFavoriteTopic(0, 10)
       .then((res) => {
         setFavoriteTopics(res.content)
+        setIsLoading(false)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
@@ -59,7 +62,7 @@ const useFavorites = () => {
     getFavorites()
   }, [user])
 
-  return { navigate, favoriteCategories, favoriteTopics, onClick }
+  return { navigate, favoriteCategories, favoriteTopics, isLoading, onClick }
 }
 
 export default useFavorites
