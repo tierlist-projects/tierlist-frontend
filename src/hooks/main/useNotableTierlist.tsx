@@ -12,6 +12,8 @@ const useNotableTierlist = () => {
     (event: React.ChangeEvent<unknown>, value: number) => {
       if (value === undefined) return
       setPage(value)
+      const listEl = document.querySelector('.notable-top')
+      if (listEl) listEl.scrollTop = 0
     },
     [],
   )
@@ -20,7 +22,8 @@ const useNotableTierlist = () => {
     getNotableTierlist(page - 1)
       .then((res) => {
         setNotableList(res.content)
-        if (res.totalPages < 4) setTotalPages(res.totalPages)
+        if (res.totalPages > 4) setTotalPages(4)
+        else setTotalPages(res.pageSize)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType

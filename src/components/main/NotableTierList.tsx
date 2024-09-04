@@ -16,21 +16,21 @@ const NotableTierList = () => {
       {notableList.length > 0 ? (
         <>
           <PC>
-            <S.TierList>
+            <S.TierList className="notable-top">
               {notableList.map((post) => (
                 <PostCard post={post} key={post.id} />
               ))}
             </S.TierList>
           </PC>
           <Tablet>
-            <S.TierList>
+            <S.TierList className="notable-top">
               {notableList.map((post) => (
                 <PostCard post={post} key={post.id} />
               ))}
             </S.TierList>
           </Tablet>
           <Mobile>
-            <S.TierListMobile>
+            <S.TierListMobile className="notable-top">
               {notableList.map((post) => (
                 <PostListItem post={post} key={post.id} />
               ))}
