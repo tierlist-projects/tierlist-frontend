@@ -19,11 +19,12 @@ export const Container = styled(Link)<LinkProps>`
   border-radius: 5px;
 
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  color: white;
 
   a,
   &:visited,
   &:active {
-    color: white;
+    color: white !important;
   }
 
   &:hover {
