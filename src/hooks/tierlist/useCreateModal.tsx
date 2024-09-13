@@ -8,7 +8,7 @@ import {
 import useDetectCloseInModal from '@hooks/common/useDetectCloseInModal'
 import useDebounce from '@hooks/useDebounce'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   TierlistErrorType,
   CategoryType,
@@ -16,6 +16,7 @@ import {
 } from 'types/tierlist/category.type'
 
 const useCreateModal = () => {
+  const pathname = useLocation().pathname.split('/')[1]
   const navigate = useNavigate()
 
   const [category, setCategory] = useState('')
@@ -180,7 +181,10 @@ const useCreateModal = () => {
       if (titleRef.current?.value) {
         createTierlist(selectedTopicId, titleRef.current.value)
           .then(() => {
-            navigate(`my-tierlist`)
+            console.log(pathname)
+
+            if (pathname === 'my-tierlist') window.location.reload()
+            else navigate(`my-tierlist`)
             closeModal()
           })
           .catch((err) => {
