@@ -1,4 +1,5 @@
 import { ReactComponent as Search } from '@assets/icon/search.svg'
+import Loading from '@components/common/Loading'
 import { colors } from '@constants/colors'
 import useSearchBar from '@hooks/useSearchBar'
 import { Pagination } from '@mui/material'
@@ -11,6 +12,8 @@ const SearchPage = () => {
     onChangeKeyword,
     totalPages,
     categoryList,
+    categoryPages,
+    isLoading,
     setIsDrop,
     onClickCategoryPage,
   } = useSearchBar(20)
@@ -33,26 +36,34 @@ const SearchPage = () => {
             onChange={onChangeKeyword}
           />
         </S.SearchBar>
-        {categoryList.length > 0 ? (
-          <>
-            <S.CategoryUl>
-              {categoryList.map((category) => (
-                <S.CategoryLi key={category.id}>
-                  <S.CategoryLink to={`/tierlist/${category.id}`}>
-                    {category.name}({abbreviateNumber(category.favoriteCount)})
-                  </S.CategoryLink>
-                </S.CategoryLi>
-              ))}
-            </S.CategoryUl>
-            <Pagination
-              count={totalPages}
-              size="small"
-              onChange={onClickCategoryPage}
-            />
-          </>
-        ) : (
-          <div>검색 결과가 없습니다.</div>
-        )}
+        {(() => {
+          if (isLoading) return <Loading />
+
+          if (categoryList.length > 0) {
+            return (
+              <>
+                <S.CategoryUl>
+                  {categoryList.map((category) => (
+                    <S.CategoryLi key={category.id}>
+                      <S.CategoryLink to={`/tierlist/${category.id}`}>
+                        {category.name}(
+                        {abbreviateNumber(category.favoriteCount)})
+                      </S.CategoryLink>
+                    </S.CategoryLi>
+                  ))}
+                </S.CategoryUl>
+                <Pagination
+                  page={categoryPages}
+                  count={totalPages}
+                  size="small"
+                  onChange={onClickCategoryPage}
+                />
+              </>
+            )
+
+            return <div>검색 결과가 없습니다.</div>
+          }
+        })()}
       </S.Container>
     </S.Layout>
   )

@@ -12,6 +12,7 @@ const useSearchBar = (size: number = 6) => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([])
   const [totalPages, setTotalPages] = useState(0)
   const [categoryPages, setCategoryPages] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
 
   const debouncedKeyword = useDebounce(keyword, 500)
 
@@ -37,6 +38,7 @@ const useSearchBar = (size: number = 6) => {
 
   useEffect(() => {
     if (!isDrop) return
+    setIsLoading(true)
     getCategory({
       page: categoryPages - 1,
       size,
@@ -45,6 +47,7 @@ const useSearchBar = (size: number = 6) => {
     }).then((res) => {
       setCategoryList(res.content)
       setTotalPages(res.totalPages)
+      setIsLoading(false)
     })
   }, [debouncedKeyword, isDrop, categoryPages])
 
@@ -72,8 +75,10 @@ const useSearchBar = (size: number = 6) => {
   return {
     dropRef,
     categoryList,
+    categoryPages,
     totalPages,
     isDrop,
+    isLoading,
     setIsDrop,
     onChangeKeyword,
     onClickCategoryPage,

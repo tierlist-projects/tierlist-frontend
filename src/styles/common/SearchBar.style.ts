@@ -11,7 +11,7 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   gap: 8px;
 
-  svg {
+  & > svg {
     margin-left: 16px;
   }
 `
@@ -78,4 +78,9 @@ export const EmptyResult = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: ${colors.grey.primary};
+`
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  height: 268px;
 `
