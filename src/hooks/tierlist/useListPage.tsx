@@ -32,6 +32,8 @@ const useListPage = () => {
   const isMobile = useMediaQuery({
     query: '(min-width: 360px) and (max-width:767px)',
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [isRecentLoading, setIsRecentLoading] = useState(false)
 
   const onChangePage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
@@ -78,7 +80,11 @@ const useListPage = () => {
         if (filter === 'RECENT') {
           setRecentPostList(res.content)
           setTotalPages(res.totalPages)
-        } else setHotPostList(res.content)
+          setIsRecentLoading(false)
+        } else {
+          setHotPostList(res.content)
+          setIsLoading(false)
+        }
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
@@ -98,6 +104,7 @@ const useListPage = () => {
 
   // 티어리스트 가져오기
   useEffect(() => {
+    setIsRecentLoading(true)
     if (topicId) {
       getPost('topic', Number(topicId), 'RECENT')
     } else {
@@ -107,6 +114,7 @@ const useListPage = () => {
 
   // 인기 티어리스트 가져오기
   useEffect(() => {
+    setIsLoading(true)
     if (topicId) {
       getPost('topic', Number(topicId), 'HOT')
     } else {
@@ -165,6 +173,8 @@ const useListPage = () => {
     topicName,
     isFavorite,
     isMobile,
+    isLoading,
+    isRecentLoading,
     onChangePage,
     onClickSearch,
     onClickFavorite,

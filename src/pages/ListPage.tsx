@@ -17,6 +17,7 @@ import PostListItem from '@components/common/PostListItem'
 import useSidebar from '@hooks/useSidebar'
 import CButton from '@components/common/CButton'
 import { colors } from '@constants/colors'
+import Loading from '@components/common/Loading'
 
 const ListPage = () => {
   const {
@@ -30,6 +31,8 @@ const ListPage = () => {
     topicName,
     isFavorite,
     isMobile,
+    isLoading,
+    isRecentLoading,
     onChangePage,
     onClickSearch,
     onClickFavorite,
@@ -74,49 +77,62 @@ const ListPage = () => {
       </S.TitleBlock>
       <S.TierlistBlock>
         <S.Title>인기 티어리스트</S.Title>
-        {hotPostList.length > 0 ? (
-          <>
-            <TabletAndPC>
-              <S.List>
-                {hotPostList.map((post) => (
-                  <PostCard key={`hotPost${post.id}`} post={post} />
-                ))}
-              </S.List>
-            </TabletAndPC>
-            <Mobile>
-              <S.ListMobile type="HOT">
-                {hotPostList.map((post) => (
-                  <PostListItem key={`hotPost${post.id}`} post={post} />
-                ))}
-              </S.ListMobile>
-            </Mobile>
-          </>
-        ) : (
-          <S.EmptyContainer>인기 티어리스트가 없습니다.</S.EmptyContainer>
-        )}
+        {(() => {
+          if (isLoading) return <Loading />
+
+          if (hotPostList.length > 0) {
+            return (
+              <>
+                <TabletAndPC>
+                  <S.List>
+                    {hotPostList.map((post) => (
+                      <PostCard key={`hotPost${post.id}`} post={post} />
+                    ))}
+                  </S.List>
+                </TabletAndPC>
+                <Mobile>
+                  <S.ListMobile type="HOT">
+                    {hotPostList.map((post) => (
+                      <PostListItem key={`hotPost${post.id}`} post={post} />
+                    ))}
+                  </S.ListMobile>
+                </Mobile>
+              </>
+            )
+          }
+
+          return (
+            <S.EmptyContainer>인기 티어리스트가 없습니다.</S.EmptyContainer>
+          )
+        })()}
       </S.TierlistBlock>
       <S.TierlistBlock className="recent-list">
         <S.Title>티어리스트</S.Title>
-        {recentPostList.length > 0 ? (
-          <>
-            <TabletAndPC>
-              <S.List>
-                {recentPostList.map((post) => (
-                  <PostCard key={`recentPost${post.id}`} post={post} />
-                ))}
-              </S.List>
-            </TabletAndPC>
-            <Mobile>
-              <S.ListMobile type="NONE">
-                {recentPostList.map((post) => (
-                  <PostListItem key={`recentPost${post.id}`} post={post} />
-                ))}
-              </S.ListMobile>
-            </Mobile>
-          </>
-        ) : (
-          <S.EmptyContainer>티어리스트가 없습니다.</S.EmptyContainer>
-        )}
+        {(() => {
+          if (isRecentLoading) return <Loading />
+
+          if (recentPostList.length > 0) {
+            return (
+              <>
+                <TabletAndPC>
+                  <S.List>
+                    {recentPostList.map((post) => (
+                      <PostCard key={`recentPost${post.id}`} post={post} />
+                    ))}
+                  </S.List>
+                </TabletAndPC>
+                <Mobile>
+                  <S.ListMobile type="NONE">
+                    {recentPostList.map((post) => (
+                      <PostListItem key={`recentPost${post.id}`} post={post} />
+                    ))}
+                  </S.ListMobile>
+                </Mobile>
+              </>
+            )
+          }
+          return <S.EmptyContainer>티어리스트가 없습니다.</S.EmptyContainer>
+        })()}
         <S.BottomBlock>
           {recentPostList.length > 0 && (
             <Pagination
