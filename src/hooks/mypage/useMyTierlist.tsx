@@ -10,6 +10,7 @@ const useMyTierlist = () => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const user = useRecoilValue(userState)
+  const [isLoading, setIsLoading] = useState(false)
 
   const onClickPage = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
@@ -20,6 +21,7 @@ const useMyTierlist = () => {
   )
 
   useEffect(() => {
+    setIsLoading(true)
     getMyTierlist({
       page: page - 1,
       size: 12,
@@ -29,6 +31,7 @@ const useMyTierlist = () => {
       .then((res) => {
         setMyList(res.content)
         setTotalPages(res.totalPages)
+        setIsLoading(false)
       })
       .catch((err) => {
         const data = err.response.data as TierlistErrorType
@@ -37,7 +40,7 @@ const useMyTierlist = () => {
       })
   }, [user, page])
 
-  return { myList, totalPages, page, onClickPage }
+  return { myList, totalPages, page, isLoading, onClickPage }
 }
 
 export default useMyTierlist
